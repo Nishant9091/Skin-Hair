@@ -1,0 +1,222 @@
+/*!
+Theme Name: garekars
+Theme URI: http://underscores.me/
+Author: Underscores.me
+Author URI: http://underscores.me/
+Description: Description
+Version: 1.0.0
+Tested up to: 5.4
+Requires PHP: 5.6
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: garekars
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+*/
+
+/* COMMON CTA *****************************************/
+.common-cta .block11,.common-cta .block22,.common-cta .block33 {width:33%!important; float:left!important;}
+.common-cta .block33{margin-top:5px}
+
+/*HOMEPAGE - GK2 IMAGE*/
+img.desktop-gk{display:block}
+img.mobile-gk{display:none; }
+.gk-wrapper{text-align:center; margin: auto}
+
+
+/*HOMEPAGE - Reservations***********************************************/ 
+body .res-wrapper{width:100%!important; }
+body .res-wrapper .block1{float: left!important; }
+body .res-wrapper .block2{float: right !important;}
+
+
+
+/*COMMNET BOX **************************************************/
+div#comments {margin-top: 50px;}
+#comments textarea#comment {border: thin solid #ececec;}
+#comments p.comment-form-author {float:left;  max-width:360px; width: 100%; margin-right: 5px}
+#comments p.comment-form-author input{border: thin solid #ececec;}
+
+#comments p.comment-form-email {float:left;  max-width:370px; width: 100%}
+#comments p.comment-form-email input{border: thin solid #ececec; }
+
+#comments p.comment-form-url{float:right; max-width:370px; width: 100%}
+#comments p.comment-form-url input{border: thin solid #ececec;padding:8px 0px;width: 100%; }
+
+#comments p.comment-form-cookies-consent {clear: both;}
+#comments p.comment-form-cookies-consent label{display: inline}
+
+
+/*Appointment FORM*/
+.booking-box .gfield_select{background: none; border-color: #ececec;}
+.booking-box input#gform_submit_button_1 {background: #bb925a;    color: #fff!important;}
+.booking-box .ginput_container.ginput_container_date ::placeholder {color:#fff!important}
+.booking-box .ginput_container.ginput_container_select select{    height: 42px; padding: 0 5px; border-radius: 0;}
+
+/*PAGE: BLOG *********************************************/
+.blog .banner-header { background: url(../../uploads/2023/08/garekars-page-header.jpg);background-size: cover;}
+/* BLOG NAVIGATION*/
+.nav-links .nav-previous{display:inline}
+.nav-links .nav-next{display:inline; margin-left:20px}
+.gmd-read-more, .gmd-read-more:hover{    display: block;font-weight: bold;    margin-top: 10px;}
+h2.loop_post_title{    font-size: 25px!important; margin:0}
+.loop_feature_image_wrapper {overflow: hidden;    height: 185px;    width: 100%;    margin-bottom: 15px;}
+.single-post .entry-meta {color: #fff;}
+.blog .entry-meta {color: unset; margin-bottom: 15px!important;}
+.blog .entry-meta span{font-weight:bold}
+.nav-links a {font-size: 18px; font-weight: bold; text-transform: uppercase; }
+
+
+
+/*SINGLE POST*/
+nav.navigation.post-navigation * {color: #fff;}
+.single-post .post-thumbnail .wp-post-image {margin-bottom:20px; max-width: 1024px}
+nav.navigation.post-navigation { margin-top: 50px; background: #aa8453;padding: 10px 10px;}
+nav.navigation.post-navigation .nav-links .nav-previous span.nav-title,
+nav.navigation.post-navigation .nav-links .nav-next span.nav-title{ font-weight: normal!important; font-size:15px;}
+.nav-links .nav-next {float:right}
+
+
+footer.entry-footer {margin-top: 30px; font-size: 18px!important}
+
+footer.entry-footer span.cat-links {font-weight:bold}
+footer.entry-footer span.cat-links a{font-weight:normal}
+footer.entry-footer span.cat-links a:before{content:": "}
+
+footer.entry-footer span.edit-link {font-weight: bold; margin-left:20px}
+
+/* Heading formatting for SEO ******************************/
+.for-seo{
+	font-size: inherit;
+    font-weight: normal;
+    line-height: inherit;
+    margin: inherit;
+    color: initial;
+    display: inline;
+    font-family: inherit;
+    color: #666;
+}
+
+/*Menu default theme  *************************************************/
+.navbar-nav > li.dropdown > a{ position: relative; }
+.navbar-nav > li.dropdown > a:after{
+	content: '+';
+	display: inline-block;
+	margin-left: 4px;
+}
+body div .dropdown-menu,body div  .sub-menu{ width: 280px!important;}
+/*************************************************************************/
+
+/*MEGA MENU***********************************************************/
+body div#navbarSupportedContent,body div#mega-menu-wrap-main { width: 100%!important;}
+.garekar-mega-menu a {  text-transform:  none !important;}
+
+.mega-menu-toggle{
+	    background: none;
+    	position: absolute;
+   		 right: 10px;
+   		 top: 45px;
+}
+#mega-menu-wrap-main{ position: inherit !important; z-index:9}
+
+body div ol, body div ol li{   list-style-position: inside!important;}
+
+
+/*PAGES: CONCERNS  Section: Insgtagram */
+body section.ig-video img{height: 350px!important;}
+body section.ig-video div.img{text-align:center;background: #000;}
+
+
+
+
+/* GRAVITY FORM */
+.gform_submission_error, .validation_message {    color: #000!important;}
+input#gform_submit_button_1:hover {cursor: pointer;}
+
+/* Page: resigter yourself */
+.page-id-83 .booking-box * {    color: #000!important;}
+
+/*TABS */
+.hor-tabs ul li {
+	list-style:circle;
+	list-style-position:inside
+}
+.hor-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	max-width:1140px;
+	margin:auto
+}
+.hor-tabs label {
+    order: 1;
+    display: block;
+    padding: 1rem 1rem;
+    /* margin-right: 0.2rem; */
+    cursor: pointer;
+    /* background-color: #f4f4f4; */
+    font-weight: bold;
+    transition: background ease 0.2s;
+    color: #999!important;
+    border: thin #ccc solid;
+	margin-bottom: 0px;
+
+}
+.hor-tabs .tab {
+  order: 99;
+  flex-grow: 1;
+	width: 100%;
+	display: none;
+  padding: 1rem;
+  background: #fff;
+	border:thin #ccc solid;
+
+}
+.hor-tabs input[type="radio"] {
+	display: none;
+}
+/*.hor-tabs input[type="radio"]:checked + label {
+	background: #fff;
+	color:#000;
+}*/
+.hor-tabs input[type="radio"]:checked + label + .tab {
+	display: block;
+
+}
+.hor-tabs h4{
+    color: #333;
+
+}
+
+
+@media (max-width: 45em) {
+  .hor-tabs .tab,  .hor-tabs label {    order: initial;  }
+  .hor-tabs label {    width: 100%;    margin-right: 0;    margin-top: 0.2rem;  }
+}
+
+@media (max-width: 767px)
+{
+	/*Contact Page*/
+	.page-id-82 .booking-box {margin-bottom:40px!important}
+
+    #mega-menu-wrap-main{ }
+	ul#mega-menu-main {position: fixed!important;z-index: 99999!important;width:100%!important; top: 113px!important; height: 700px!important;    overflow: scroll!important;}
+	#mega-menu-wrap-main > ul > li{color: #fff!important; }
+	
+	.nav-links .nav-next{margin-left:0;}
+	.nav-links .nav-next a{margin-top: 30px}
+
+	
+/*HOMEPAGE - Reservations ***********************************************/ 
+body .res-wrapper .block1{float: none!important; }
+body .res-wrapper .block2{float: none !important; margin-top:30px}
+.res-wrapper .reservations .text { margin-left: 10px;}	
+
+/*HOMEPAGE - GK2 Section ***********************************************/ 
+	.gk-wrapper {  padding: 0px 13px; text-align: left}
+.gk-wrapper h2, .gk-wrapper p {  text-align: left!important;}
+img.desktop-gk{display: none} img.mobile-gk {display: block; }
+
+/* COMMON CTA *****************************************/
+.common-cta .block11,.common-cta .block22,.common-cta .block33 {width:100%!important; float:none!important;}
+.common-cta .block22{margin-top:30px!important; margin-bottom: 30px!important;}
+.common-cta .text{margin-left: 6px!important}	
+}

@@ -1,0 +1,78 @@
+b, strong {font-weight: 600!important;font-size: unset!important;}
+p strong {font-size: unset!important;}
+
+section + p{ margin-bottom: 0; }
+body.page{ margin-bottom: 0 !important; }
+footer ul{ margin-left: 0; }
+
+/*Header: logo *************************************************/
+.logo img{ max-width: 200px!important; }
+
+/*Header: Menu *************************************************/
+.nav-scroll .logo-wrapper{background-color:none!important; padding:0px!important}
+.nav-scroll #mega-menu-wrap-main #mega-menu-main > li.mega-menu-item > a.mega-menu-link { color:inherit!important}
+.nav-scroll .mega-current_page_item {color: #fff}
+.nav-scroll{position: unset!important}
+
+
+/*Page: home *************************************************/
+p.home-mam-profile span:first-child, p.home-sir-profile span:first-child{font-weight: bold!important;}
+p.home-mam-profile, p.home-sir-profile{background: #000!important;padding: 5px 5px!important;margin: 0!important;color: #fff!important;text-align: center!important; font-size: 89%!important}
+
+
+span.flaticon-world:before,
+span.flaticon-car:before,
+span.flaticon-bed:before,
+span.flaticon-swimming:before,
+span.flaticon-wifi:before,
+span.flaticon-breakfast:before{display:none!important}
+
+span.flaticon-world img,
+span.flaticon-car img,
+span.flaticon-bed img,
+span.flaticon-swimming img,
+span.flaticon-wifi img,
+span.flaticon-breakfast img{max-width:55px}
+
+/*GRAVITY FORM *************************************************/
+.gform_footer {padding: 16px 0 0 0!important;}
+.booking-box * {color: #ececec!important;}
+
+/* Homepage: instagram section ********************************/
+.home-ig-section  .butn-dark,.home-ig-section .section-subtitle,
+.home-ig-section .section-title {text-align: center!important}
+
+/* Homepage: service section ********************************/
+.row.facilities ul {display: none!important;}
+
+/* Fixed Footer in Mobile ********************************/
+.footer_Fix {
+    text-align: center;
+    position: fixed;
+    z-index: 999999;
+    bottom: 0;
+    padding: 10px 0px 20px 0px;
+    background: #000;
+    width: 100%;
+    display: none;
+    }
+    .footer_Fix a{
+    color: #fff;
+        font-size:16px
+    }
+
+/* Fixed Header in Mobile ********************************/
+.header_Fix {
+    text-align: center;
+    position: fixed;
+    z-index: 999999;
+    top: 0;
+    padding: 2px 0px 2px 0px;
+    background: #000;
+    width: 100%;
+    display: none;
+    }
+    .header_Fix a{
+    color: #fff;
+        font-size:13px
+    }
