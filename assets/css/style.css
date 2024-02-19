@@ -4688,3 +4688,25 @@ select {
     backdrop-filter: blur(5px); /* Adjust the blur radius as needed */
     pointer-events: none; /* Allows clicking through the overlay to elements beneath */
 }
+
+/*  */
+#abt_drs .col-md-6 {
+    position: relative;
+}
+
+.hid {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s, transform 0.3s;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #22222200;
+    padding: 1rem;
+}
+
+#abt_drs .col-md-6:hover .hid {
+    opacity: 1;
+    transform: translateY(0);
+}
