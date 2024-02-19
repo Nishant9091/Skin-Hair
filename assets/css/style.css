@@ -73,7 +73,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Gilda Display', serif;;
+    font-family: "Roboto", sans-serif;;
     font-weight: 400;
     line-height: 1.25em;
     margin: 0 0 20px 0;
@@ -181,7 +181,7 @@ input[type="checkbox"] {
 }
 input[type="submit"] {
     font-weight: 400;
-    font-family: 'Gilda Display', serif;;
+    font-family: "Roboto", sans-serif;;
     text-transform: uppercase;
     background: #aa8453;
     color: #fff;
@@ -343,7 +343,7 @@ blockquote cite:before {
     font-weight: 600;
 }
 .count {
-    font-family: 'Gilda Display', serif;;
+    font-family: "Roboto", sans-serif;;
 }
 .valign {
     display: -webkit-box;
@@ -775,7 +775,7 @@ color: #aa8453;
 }
 .section-title,.sub-heading {
     font-size: 35px;
-    font-family: 'Gilda Display', serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 400;
     color: #222;
     position: relative;
@@ -863,7 +863,7 @@ color: #aa8453;
     margin-bottom: 0px;
 }
 .nav-scroll .logo-wrapper .logo h2 {
-    font-family: 'Gilda Display', serif;
+    font-family: "Roboto", sans-serif;
     font-size: 24px;
     font-weight: 400;
     text-transform: uppercase;
@@ -893,7 +893,7 @@ color: #aa8453;
     float: left;
 }
 .logo-wrapper .logo h2 {
-    font-family: 'Gilda Display', serif;
+    font-family: "Roboto", sans-serif;
     font-size: 24px;
     font-weight: 400;
     text-transform: uppercase;
@@ -1114,7 +1114,7 @@ color: #aa8453;
 .header .caption h1 {
     position: relative;
     margin-bottom: 20px;
-    font-family: 'Gilda Display', serif;;
+    font-family: "Roboto", sans-serif;;
     font-size: 55px;
     text-transform: uppercase;
     line-height: 1.35em;
@@ -1295,7 +1295,7 @@ hr {
 }
 
 .header div.reservation .call span {
-       font-family: 'Gilda Display', serif;
+       font-family: "Roboto", sans-serif;
     font-size: 24px;
     color: #aa8453;
     letter-spacing: 1px;
@@ -2219,7 +2219,7 @@ hr.border-2 {
 /* ======= Rooms Page style ======= */
 .rooms-page h6 {
     position: relative;
-    font-family: 'Gilda Display', serif;
+    font-family: "Roboto", sans-serif;
     font-size: 24px;
     color: #222;
 }
@@ -3295,7 +3295,7 @@ button.mfp-arrow {
 .pricing-card .name {
     line-height: 1;
     margin: 0;
-    font-family: 'Gilda Display', serif;
+    font-family: "Roboto", sans-serif;
     font-size: 24px;
     color: #222;
     margin-bottom: 20px;
@@ -3312,7 +3312,7 @@ button.mfp-arrow {
 .pricing-card .amount {
   margin: 0;
   line-height: 1;
- font-family: 'Gilda Display', serif;
+ font-family: "Roboto", sans-serif;
   font-size: 40px;
   margin-bottom: 20px;
     color: #aa8453;
@@ -3376,7 +3376,7 @@ button.mfp-arrow {
     padding-right: 60px;
     color: #222;
     transition: all 500ms ease;
-    font-family: 'Gilda Display', serif;;
+    font-family: "Roboto", sans-serif;;
 }
 .accordion-box .block .acc-btn .count {
   color: #aa8453;
@@ -3514,7 +3514,7 @@ button.mfp-arrow {
 .news .item .con h5 a {
     color: #222;
     font-size: 24px;
-    font-family: 'Gilda Display', serif;;
+    font-family: "Roboto", sans-serif;;
     font-weight: 400;
     margin-bottom: 0px;
 }
@@ -3777,7 +3777,7 @@ button.mfp-arrow {
 .post-comment-section h3 {
     font-size: 20px;
     color: #222;
-    font-family: 'Gilda Display', serif;
+    font-family: "Roboto", sans-serif;
     margin-bottom: 15px;
 }
 .post-comment-section h3 span {
@@ -4206,7 +4206,7 @@ button.mfp-arrow {
   margin: 0;
 }
 .footer-contact-phone {
-    font-family: 'Gilda Display', serif;
+    font-family: "Roboto", sans-serif;
   font-size: 24px;
   color: #fff;
   font-weight: 400;
