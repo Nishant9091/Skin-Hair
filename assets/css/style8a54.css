@@ -39,7 +39,7 @@ div#comments {margin-top: 50px;}
 .booking-box .ginput_container.ginput_container_select select{    height: 42px; padding: 0 5px; border-radius: 0;}
 
 /*PAGE: BLOG *********************************************/
-.blog .banner-header { background: url(../../uploads/2023/08/garekars-page-header.jpg);background-size: cover;}
+/* .blog .banner-header { background: url(../../uploads/2023/08/garekars-page-header.jpg);background-size: cover;} */
 /* BLOG NAVIGATION*/
 .nav-links .nav-previous{display:inline}
 .nav-links .nav-next{display:inline; margin-left:20px}

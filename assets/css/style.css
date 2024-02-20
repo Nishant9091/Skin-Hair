@@ -77,7 +77,7 @@ h6 {
   font-weight: 400;
   line-height: 1.25em;
   margin: 0 0 20px 0;
-  color: #824322;
+  color: #36312e;
 }
 img {
   width: 100%;
@@ -246,7 +246,7 @@ blockquote:before {
   font-size: 110px;
   opacity: 0.07;
   line-height: 1;
-  color: #824322;
+  color: #36312e;
 }
 blockquote p {
   margin-bottom: 0;
@@ -374,7 +374,7 @@ blockquote cite:before {
 
 /* background & color */
 .bg-black {
-  background: #824322;
+  background: #36312e;
 }
 .bg-cream {
   background: #f8f5f0;
@@ -389,7 +389,7 @@ blockquote cite:before {
   color: #666;
 }
 .color-4 {
-  color: #824322;
+  color: #36312e;
 }
 .color-5 {
   color: #c78853;
@@ -769,7 +769,7 @@ blockquote cite:before {
   font-size: 35px;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  color: #824322;
+  color: #36312e;
   position: relative;
   margin-bottom: 20px;
   line-height: 1.25em;
@@ -839,14 +839,14 @@ blockquote cite:before {
     color: #C78853;
 }
 .nav-scroll .navbar-nav .nav-link {
-    color: #824322;
+    color: #36312E;
 }
 .nav-scroll .navbar-nav .active {
     color: #C78853 !important;
 }
 .nav-scroll .navbar-nav .logo {
     padding: 15px 0;
-    color: #824322;
+    color: #36312E;
 }
 .nav-scroll .logo {
 }
@@ -870,7 +870,7 @@ blockquote cite:before {
     display: block;
      font-family: "Roboto", sans-serif;
     font-size: 10px;
-    color: #824322;
+    color: #36312E;
     font-weight: 400;
     letter-spacing: 7px;
     display: block;
@@ -964,7 +964,7 @@ blockquote cite:before {
   font-family: "Roboto", sans-serif;
   font-size: 15px;
   font-weight: 400;
-  color: #824322;
+  color: #36312e;
   position: relative;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
@@ -979,7 +979,7 @@ blockquote cite:before {
 .sub-menu .dropdown-item:hover {
   background: transparent;
   padding-left: 20px;
-  color: #824322;
+  color: #36312e;
 }
 .dropdown-menu .dropdown-item a,
 .sub-menu .dropdown-item a {
@@ -994,7 +994,7 @@ blockquote cite:before {
 .dropdown-menu .dropdown-item em,
 .sub-menu .dropdown-item em {
   font-size: 8px;
-  background-color: #824322;
+  background-color: #36312e;
   padding: 2px 4px;
   color: #fff;
   border-radius: 2px;
@@ -1089,7 +1089,7 @@ blockquote cite:before {
 }
 
 .header .caption h4 {
-  font-family: "Barlow Condensed", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 15px;
   font-weight: 400;
   text-transform: uppercase;
@@ -1141,7 +1141,7 @@ blockquote cite:before {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #824322;
+  background: #36312e;
   position: absolute;
   top: 10px;
   right: 0;
@@ -1532,7 +1532,7 @@ hr {
 .team .info h6 {
   font-size: 20px;
   margin-bottom: 5px;
-  color: #824322;
+  color: #36312e;
 }
 .team .info p {
   margin-bottom: 0px;
@@ -1554,7 +1554,7 @@ hr {
   margin: 0 5px;
 }
 .team .info .social a:hover {
-  color: #824322;
+  color: #36312e;
 }
 .team .info .social p {
   margin-bottom: 0px;
@@ -1806,7 +1806,7 @@ hr {
 .rooms2 .caption h4,
 .rooms2 .caption h4 a {
   font-size: 35px;
-  color: #824322;
+  color: #36312e;
   margin-bottom: 5px;
 }
 .rooms2 .caption h3,
@@ -1860,7 +1860,7 @@ hr {
   font-size: 10px;
 }
 .rooms2 .caption .info-wrapper .date {
-  color: #824322;
+  color: #36312e;
   font-family: "Roboto", sans-serif;
   font-size: 15px;
   background: transparent;
@@ -1871,8 +1871,8 @@ hr {
 }
 .rooms2 .caption .info-wrapper .date:hover {
   background: transparent;
-  border: 1px solid #824322;
-  color: #824322;
+  border: 1px solid #36312e;
+  color: #36312e;
 }
 @media (max-width: 991.98px) {
   .rooms2 figure {
@@ -2102,7 +2102,7 @@ hr.border-2 {
 }
 .rooms3 .square2 h4 {
   font-size: 30px;
-  color: #824322;
+  color: #36312e;
 }
 .rooms3 .square2 h6 {
   position: relative;
@@ -2218,7 +2218,7 @@ hr.border-2 {
   position: relative;
   font-family: "Roboto", sans-serif;
   font-size: 24px;
-  color: #824322;
+  color: #36312e;
 }
 /* page list */
 .page-list {
@@ -2300,11 +2300,11 @@ hr.border-2 {
 }
 .facilties .single-facility h5 {
   font-size: 24px;
-  color: #824322;
+  color: #36312e;
   margin-bottom: 10px;
 }
 .facilties .single-facility:hover h5 {
-  color: #824322;
+  color: #36312e;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
@@ -2336,7 +2336,7 @@ hr.border-2 {
 }
 .facilties .single-facility .facility-shape span {
   font-size: 140px;
-  color: #824322;
+  color: #36312e;
 }
 /* hr */
 hr {
@@ -2347,7 +2347,7 @@ hr {
 }
 /* room facilities */
 .room-facilities .wrap {
-  background: #824322;
+  background: #36312e;
   padding: 30px;
 }
 .room-facilities ul {
@@ -2417,7 +2417,7 @@ hr {
 .services .content .cont h4 {
   margin: 0 0 10px 0;
   font-size: 32px;
-  color: #824322;
+  color: #36312e;
   font-weight: 400;
   line-height: 1.5em;
 }
@@ -2440,7 +2440,7 @@ hr {
   left: 0px;
 }
 .services .content .cont .more:hover {
-  color: #824322;
+  color: #36312e;
 }
 .services .content .info h6 {
   font-size: 15px;
@@ -2656,11 +2656,11 @@ hr {
   font-size: 14px;
 }
 .gallery-box .gallery-detail i {
-  color: #824322;
+  color: #36312e;
   padding: 8px;
 }
 .gallery-box .gallery-detail i:hover {
-  color: #824322;
+  color: #36312e;
 }
 .gallery-box:hover .gallery-detail {
   top: 50%;
@@ -2849,7 +2849,7 @@ button.mfp-arrow {
   margin-bottom: 10px;
 }
 .testimonials-box .head-box h4 span {
-  color: #824322;
+  color: #36312e;
 }
 .line {
   width: 60px;
@@ -2916,7 +2916,7 @@ button.mfp-arrow {
   float: right;
 }
 .testimonials .item .info i {
-  color: #824322;
+  color: #36312e;
   font-size: 6px;
 }
 
@@ -2994,7 +2994,7 @@ button.mfp-arrow {
 }
 .ui-datepicker {
   font-size: 15px;
-  color: #824322;
+  color: #36312e;
   background: #fff;
   z-index: 100 !important;
   border: 1px solid #fff;
@@ -3005,7 +3005,7 @@ button.mfp-arrow {
 .ui-widget-header .ui-state-default {
   border: 1px solid #f8f5f0;
   background: #f8f5f0;
-  color: #824322;
+  color: #36312e;
 }
 .ui-state-hover,
 .ui-widget-content .ui-state-hover,
@@ -3042,7 +3042,8 @@ button.mfp-arrow {
   border: none;
   margin: 0;
   width: 100%;
-  background: #c78853;
+  background: #c7875300;
+  border: 1px solid white;
   color: #fff;
   font-family: "Roboto", sans-serif;
   font-size: 15px;
@@ -3055,7 +3056,7 @@ button.mfp-arrow {
   text-transform: uppercase;
 }
 .btn-form1-submit:hover {
-  background: #824322;
+  background: #c78853;
 }
 .btn-form1-submit:focus {
   outline: none;
@@ -3091,7 +3092,7 @@ button.mfp-arrow {
   display: block;
   width: 100%;
   font-size: 15px;
-  color: #824322;
+  color: #36312e;
   padding: 20px 40px 20px 20px;
   background: #fff;
   border: none;
@@ -3100,13 +3101,13 @@ button.mfp-arrow {
 }
 .input1_inner input::placeholder {
   font-size: 15px;
-  color: #824322!important;
+  color: #36312e !important;
 }
 .input1_inner input:focus {
   outline: none;
   box-shadow: none;
   background: #fff;
-  color: #824322!important;
+  color: #36312e !important;
 }
 .select1_wrapper {
   margin-bottom: 0;
@@ -3151,7 +3152,7 @@ button.mfp-arrow {
   font-size: 15px;
   line-height: 1;
   padding: 23px 49px 17px 20px;
-  color: #824322;
+  color: #36312e;
 }
 .select2-container--default
   .select2-selection--single
@@ -3176,7 +3177,7 @@ button.mfp-arrow {
   background: #fff;
   font-size: 15px;
   line-height: 20px;
-  color: #824322;
+  color: #36312e;
   border-top: 1px solid #ececec;
   text-align: center;
 }
@@ -3264,12 +3265,12 @@ button.mfp-arrow {
 .booking-box .head-box h4 {
   font-size: 27px;
   font-weight: 400;
-  color: #824322;
+  color: #36312e;
   border-bottom: 1px solid #ececec;
   padding-bottom: 15px;
 }
 .booking-box .head-box h4 span {
-  color: #824322;
+  color: #36312e;
 }
 @media screen and (max-width: 991px) {
   .booking-box {
@@ -3291,7 +3292,7 @@ button.mfp-arrow {
   margin: 0;
   font-family: "Roboto", sans-serif;
   font-size: 24px;
-  color: #824322;
+  color: #36312e;
   margin-bottom: 20px;
 }
 .pricing-card .subname {
@@ -3367,7 +3368,7 @@ button.mfp-arrow {
   cursor: pointer;
   padding: 20px 40px;
   padding-right: 60px;
-  color: #824322;
+  color: #36312e;
   transition: all 500ms ease;
   font-family: "Roboto", sans-serif;
 }
@@ -3494,7 +3495,7 @@ button.mfp-arrow {
   color: #666;
 }
 .news .item .con .category a:hover {
-  color: #824322;
+  color: #36312e;
 }
 .news .item .con .category a:last-child {
   margin-right: 0;
@@ -3504,7 +3505,7 @@ button.mfp-arrow {
 }
 .news .item .con h5,
 .news .item .con h5 a {
-  color: #824322;
+  color: #36312e;
   font-size: 24px;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
@@ -3594,7 +3595,7 @@ button.mfp-arrow {
   font-size: 30px;
 }
 .news2 .post-cont h5 a {
-  color: #824322;
+  color: #36312e;
 }
 .news2 .post-cont h5 a:hover {
   color: #c78853;
@@ -3671,7 +3672,7 @@ button.mfp-arrow {
   font-size: 24px;
   line-height: 1.75em;
   margin-bottom: 15px;
-  color: #824322;
+  color: #36312e;
 }
 .news2-sidebar .search form {
   position: relative;
@@ -3688,7 +3689,7 @@ button.mfp-arrow {
   right: 0;
   top: 0;
   background-color: transparent;
-  color: #824322;
+  color: #36312e;
   border: 0;
   padding: 10px;
   cursor: pointer;
@@ -3766,7 +3767,7 @@ button.mfp-arrow {
 }
 .post-comment-section h3 {
   font-size: 20px;
-  color: #824322;
+  color: #36312e;
   font-family: "Roboto", sans-serif;
   margin-bottom: 15px;
 }
@@ -3806,7 +3807,7 @@ button.mfp-arrow {
 /* ======= Contact style ======= */
 .contact h3 {
   font-size: 24px;
-  color: #824322;
+  color: #36312e;
 }
 .map {
   -webkit-filter: grayscale(100%);
@@ -3839,7 +3840,7 @@ button.mfp-arrow {
   bottom: 0;
   left: 100%;
   z-index: 1;
-  background: #824322;
+  background: #36312e;
   color: #fff;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -3898,7 +3899,7 @@ button.mfp-arrow {
   transition: width 0.3s ease;
 }
 .butn-light a:hover span {
-  color: #824322;
+  color: #36312e;
 }
 
 /* ====== Coming Soon ======= */
@@ -3997,7 +3998,7 @@ button.mfp-arrow {
   outline: none;
 }
 .comming form button:hover {
-  background-color: #824322;
+  background-color: #36312e;
   color: #fff;
   outline: none;
 }
@@ -4089,7 +4090,7 @@ button.mfp-arrow {
 .footer-top {
   position: relative;
   display: block;
-  background-color: #824322;
+  background-color: #36312e;
   padding: 50px 0 0 0;
   z-index: 1;
 }
@@ -4269,7 +4270,7 @@ select {
 .footer-bottom {
   position: relative;
   display: block;
-  background-color: #824322;
+  background-color: #36312e;
   -webkit-box-shadow: 0px -1px 0px 0px rgba(255, 255, 255, 0.05);
   box-shadow: 0px -1px 0px 0px rgba(255, 255, 255, 0.05);
   padding: 15px 0;
@@ -4393,7 +4394,7 @@ select {
   background: #000;
 }
 [data-overlay-darkgray]:before {
-  background: #824322;
+  background: #36312e;
 }
 [data-overlay-light]:before {
   background: #fff;
@@ -4499,10 +4500,10 @@ select {
     display: block !important;
   }
   .footer-bottom {
-    margin-bottom: 30px !important;
+    /* margin-bottom: 30px !important; */
   }
   nav {
-    margin-top: 30px;
+    /* margin-top: 30px; */
   }
   .mega-menu-toggle {
     top: 70px !important;
@@ -4552,10 +4553,10 @@ select {
     margin: 0px auto !important;
   }
   .navbar .navbar-nav .nav-link {
-    color: #824322;
+    color: #36312e;
   }
   .nav-scroll .navbar-collapse .nav-link {
-    color: #824322!important;
+    color: #36312e !important;
   }
   .nav-scroll .navbar-collapse .active {
     color: #c78853 !important;
@@ -4649,7 +4650,7 @@ select {
 
 /* appointment */
 #appointment {
-  background-color: #824322;
+  background-color: #36312e;
 }
 
 /* Treatments */
@@ -4658,15 +4659,29 @@ select {
   padding: 0 3rem;
   position: relative;
   top: -2rem;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .cont {
   font-size: 12px;
 }
+.cont:hover {
+  background-color: #c78853 !important;
+  color: #fff;
+  transition: 0.3s ease-in-out;
+}
 
 .card-tr {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
+    rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
+    rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.card-tr h6 {
+  margin: 0 !important;
+  padding: 1rem 0;
+  background-color: #36312e;
+  color: #fff;
 }
 
 /* about */
@@ -4681,7 +4696,7 @@ select {
 /* Form_sch */
 #Form_sch .container {
   max-width: 100% !important;
-  background-color: #824322;
+  background-color: #36312e;
 }
 
 .blur-overlay {
@@ -4708,7 +4723,7 @@ select {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #824322;
+  background-color: #36312e;
   padding: 1rem;
 }
 
@@ -4721,7 +4736,7 @@ select {
   backdrop-filter: blur(15px);
   background-color: #00000040 !important;
 }
-.ite .row p{
-    color: white!important;
-    padding-top: 1rem;
+.ite .row p {
+  color: white !important;
+  padding-top: 1rem;
 }
