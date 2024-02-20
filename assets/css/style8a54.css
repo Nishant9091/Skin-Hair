@@ -34,7 +34,7 @@ div#comments {margin-top: 50px;}
 
 /*Appointment FORM*/
 .booking-box .gfield_select{background: none; border-color: #ececec;}
-.booking-box input#gform_submit_button_1 {background: #bb925a;    color: #fff!important;}
+.booking-box input#gform_submit_button_1 {background: #C78853;    color: #fff!important;}
 .booking-box .ginput_container.ginput_container_date ::placeholder {color:#fff!important}
 .booking-box .ginput_container.ginput_container_select select{    height: 42px; padding: 0 5px; border-radius: 0;}
 
@@ -56,7 +56,7 @@ h2.loop_post_title{    font-size: 25px!important; margin:0}
 /*SINGLE POST*/
 nav.navigation.post-navigation * {color: #fff;}
 .single-post .post-thumbnail .wp-post-image {margin-bottom:20px; max-width: 1024px}
-nav.navigation.post-navigation { margin-top: 50px; background: #aa8453;padding: 10px 10px;}
+nav.navigation.post-navigation { margin-top: 50px; background: #C78853;padding: 10px 10px;}
 nav.navigation.post-navigation .nav-links .nav-previous span.nav-title,
 nav.navigation.post-navigation .nav-links .nav-next span.nav-title{ font-weight: normal!important; font-size:15px;}
 .nav-links .nav-next {float:right}
