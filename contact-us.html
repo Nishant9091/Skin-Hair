@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="assets/imgs/Satya-logo-Gold.png " type="image/x-icon">
+    <script>class RocketLazyLoadScripts { constructor(e) { this.triggerEvents = e, this.eventOptions = { passive: !0 }, this.userEventListener = this.triggerListener.bind(this), this.delayedScripts = { normal: [], async: [], defer: [] }, this.allJQueries = [] } _addUserInteractionListener(e) { this.triggerEvents.forEach((t => window.addEventListener(t, e.userEventListener, e.eventOptions))) } _removeUserInteractionListener(e) { this.triggerEvents.forEach((t => window.removeEventListener(t, e.userEventListener, e.eventOptions))) } triggerListener() { this._removeUserInteractionListener(this), "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", this._loadEverythingNow.bind(this)) : this._loadEverythingNow() } async _loadEverythingNow() { this._delayEventListeners(), this._delayJQueryReady(this), this._handleDocumentWrite(), this._registerAllDelayedScripts(), this._preloadAllScripts(), await this._loadScriptsFromList(this.delayedScripts.normal), await this._loadScriptsFromList(this.delayedScripts.defer), await this._loadScriptsFromList(this.delayedScripts.async), await this._triggerDOMContentLoaded(), await this._triggerWindowLoad(), window.dispatchEvent(new Event("rocket-allScriptsLoaded")) } _registerAllDelayedScripts() { document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e => { e.hasAttribute("src") ? e.hasAttribute("async") && !1 !== e.async ? this.delayedScripts.async.push(e) : e.hasAttribute("defer") && !1 !== e.defer || "module" === e.getAttribute("data-rocket-type") ? this.delayedScripts.defer.push(e) : this.delayedScripts.normal.push(e) : this.delayedScripts.normal.push(e) })) } async _transformScript(e) { return await this._requestAnimFrame(), new Promise((t => { const n = document.createElement("script"); let r;[...e.attributes].forEach((e => { let t = e.nodeName; "type" !== t && ("data-rocket-type" === t && (t = "type", r = e.nodeValue), n.setAttribute(t, e.nodeValue)) })), e.hasAttribute("src") ? (n.addEventListener("load", t), n.addEventListener("error", t)) : (n.text = e.text, t()), e.parentNode.replaceChild(n, e) })) } async _loadScriptsFromList(e) { const t = e.shift(); return t ? (await this._transformScript(t), this._loadScriptsFromList(e)) : Promise.resolve() } _preloadAllScripts() { var e = document.createDocumentFragment();[...this.delayedScripts.normal, ...this.delayedScripts.defer, ...this.delayedScripts.async].forEach((t => { const n = t.getAttribute("src"); if (n) { const t = document.createElement("link"); t.href = n, t.rel = "preload", t.as = "script", e.appendChild(t) } })), document.head.appendChild(e) } _delayEventListeners() { let e = {}; function t(t, n) { !function (t) { function n(n) { return e[t].eventsToRewrite.indexOf(n) >= 0 ? "rocket-" + n : n } e[t] || (e[t] = { originalFunctions: { add: t.addEventListener, remove: t.removeEventListener }, eventsToRewrite: [] }, t.addEventListener = function () { arguments[0] = n(arguments[0]), e[t].originalFunctions.add.apply(t, arguments) }, t.removeEventListener = function () { arguments[0] = n(arguments[0]), e[t].originalFunctions.remove.apply(t, arguments) }) }(t), e[t].eventsToRewrite.push(n) } function n(e, t) { let n = e[t]; Object.defineProperty(e, t, { get: () => n || function () { }, set(r) { e["rocket" + t] = n = r } }) } t(document, "DOMContentLoaded"), t(window, "DOMContentLoaded"), t(window, "load"), t(window, "pageshow"), t(document, "readystatechange"), n(document, "onreadystatechange"), n(window, "onload"), n(window, "onpageshow") } _delayJQueryReady(e) { let t = window.jQuery; Object.defineProperty(window, "jQuery", { get: () => t, set(n) { if (n && n.fn && !e.allJQueries.includes(n)) { n.fn.ready = n.fn.init.prototype.ready = function (t) { e.domReadyFired ? t.bind(document)(n) : document.addEventListener("rocket-DOMContentLoaded", (() => t.bind(document)(n))) }; const t = n.fn.on; n.fn.on = n.fn.init.prototype.on = function () { if (this[0] === window) { function e(e) { return e.split(" ").map((e => "load" === e || 0 === e.indexOf("load.") ? "rocket-jquery-load" : e)).join(" ") } "string" == typeof arguments[0] || arguments[0] instanceof String ? arguments[0] = e(arguments[0]) : "object" == typeof arguments[0] && Object.keys(arguments[0]).forEach((t => { delete Object.assign(arguments[0], { [e(t)]: arguments[0][t] })[t] })) } return t.apply(this, arguments), this }, e.allJQueries.push(n) } t = n } }) } async _triggerDOMContentLoaded() { this.domReadyFired = !0, await this._requestAnimFrame(), document.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._requestAnimFrame(), window.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._requestAnimFrame(), document.dispatchEvent(new Event("rocket-readystatechange")), await this._requestAnimFrame(), document.rocketonreadystatechange && document.rocketonreadystatechange() } async _triggerWindowLoad() { await this._requestAnimFrame(), window.dispatchEvent(new Event("rocket-load")), await this._requestAnimFrame(), window.rocketonload && window.rocketonload(), await this._requestAnimFrame(), this.allJQueries.forEach((e => e(window).trigger("rocket-jquery-load"))), window.dispatchEvent(new Event("rocket-pageshow")), await this._requestAnimFrame(), window.rocketonpageshow && window.rocketonpageshow() } _handleDocumentWrite() { const e = new Map; document.write = document.writeln = function (t) { const n = document.currentScript, r = document.createRange(), i = n.parentElement; let o = e.get(n); void 0 === o && (o = n.nextSibling, e.set(n, o)); const a = document.createDocumentFragment(); r.setStart(a, 0), a.appendChild(r.createContextualFragment(t)), i.insertBefore(a, o) } } async _requestAnimFrame() { return new Promise((e => requestAnimationFrame(e))) } static run() { const e = new RocketLazyLoadScripts(["keydown", "mousemove", "touchmove", "touchstart", "touchend", "wheel"]); e._addUserInteractionListener(e) } } RocketLazyLoadScripts.run();</script>
+
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="assets/css/themify-icons.css" />
+    <link rel="stylesheet" href="assets/css/flaticon.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/custom.css" />
+    <title>Satya Skin Solutions</title>
+    <link rel='stylesheet' id='megamenu-css' href='assets/css/stylef82d.css' media='all' />
+    <link data-minify="1" rel='stylesheet' id='dashicons-css' href='assets/css/dashicons.min138c.css?ver=1708005023'
+        media='all' />
+    <link rel='stylesheet' id='style-css' href='assets/css/style8a54.css' media='all' />
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+
+</head>
+
+
+<body class="page-template-default page page-id-82 wp-custom-logo mega-menu-main no-sidebar">
+
+<div class="header_Fix"> <a href="index.html">  MAKE A BOOKING</a></div>
+
+
+    <!-- Preloader -->
+    <div class="preloader-bg"></div>
+    <div id="preloader">
+        <div id="preloader-status">
+            <div class="preloader-position loader"> <span></span> </div>
+        </div>
+    </div>
+    <!-- Progress scroll totop -->
+    <div class="progress-wrap cursor-pointer">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <!-- Logo -->
+            <div class="logo-wrapper navbar-brand valign">
+                <div class="logo">
+                   <!-- <a href="https://garekarsmdskinclinic.com">
+                        <a href="https://garekarsmdskinclinic.com/" class="custom-logo-link" rel="home"><img width="300" height="124" src="https://garekarsmdskinclinic.com/wp-content/uploads/2022/08/garekars-logo.png" class="custom-logo" alt="Garekars M.D. Dermatology Clinic" decoding="async" /></a>                    </a>-->
+                    <a href="../index.html" class="custom-logo-link" rel="home"><img width="300" height="124" src="../wp-content/uploads/2022/08/garekars-logo.png" class="custom-logo" alt="Garekars M.D. Dermatology Clinic" decoding="async" /></a>                </div>
+            </div>
+
+            <!-- Navbar links -->
+                <div id="mega-menu-wrap-main" class="mega-menu-wrap"><div class="mega-menu-toggle"><div class="mega-toggle-blocks-left"></div><div class="mega-toggle-blocks-center"></div><div class="mega-toggle-blocks-right"><div class='mega-toggle-block mega-menu-toggle-animated-block mega-toggle-block-0' id='mega-toggle-block-0'><button aria-label="Toggle Menu" class="mega-toggle-animated mega-toggle-animated-slider" type="button" aria-expanded="false">
+                  <span class="mega-toggle-animated-box">
+                    <span class="mega-toggle-animated-inner"></span>
+                  </span>
+                </button></div></div></div><ul id="mega-menu-main" class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js" data-event="hover_intent" data-effect="fade_up" data-effect-speed="200" data-effect-mobile="disabled" data-effect-speed-mobile="0" data-mobile-force-width="false" data-second-click="go" data-document-click="collapse" data-vertical-behaviour="standard" data-breakpoint="768" data-unbind="true" data-mobile-state="collapse_all" data-hover-intent-timeout="300" data-hover-intent-interval="100"><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-86' id='mega-menu-item-86'><a class="mega-menu-link" href="../index.html" tabindex="0">Home</a></li><li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-3165' id='mega-menu-item-3165'><a class="mega-menu-link" href="#" aria-haspopup="true" aria-expanded="false" tabindex="0">About<span class="mega-indicator"></span></a>
+<ul class="mega-sub-menu">
+<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-87' id='mega-menu-item-87'><a class="mega-menu-link" href="../dr-gurveen-waraich-garekar/index.html">Dr. Gurveen Waraich Garekar</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-3166' id='mega-menu-item-3166'><a class="mega-menu-link" href="../dr-siddharth-garekar/index.html">Dr. Siddharth Garekar</a></li></ul>
+</li><li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-88 dropdown' id='mega-menu-item-88'><a class="mega-menu-link" href="#" aria-haspopup="true" aria-expanded="false" tabindex="0">Treatments<span class="mega-indicator"></span></a>
+<ul class="mega-sub-menu">
+<li class='mega-menu-row mega-garekar-mega-menu garekar-mega-menu' id='mega-menu-88-0'>
+	<ul class="mega-sub-menu">
+<li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-0'>
+		<ul class="mega-sub-menu">
+<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2432' id='mega-menu-item-2432'><a class="mega-menu-link" href="../fillers-treatment-gurgaon/index.html">Fillers</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2433' id='mega-menu-item-2433'><a class="mega-menu-link" href="../botox-treatment-gurgaon/index.html">Botox</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2434' id='mega-menu-item-2434'><a class="mega-menu-link" href="../thread-lift-treatment-gurgaon/index.html">Thread Lift</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2435' id='mega-menu-item-2435'><a class="mega-menu-link" href="../photofacial/index.html">Photofacial</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2535' id='mega-menu-item-2535'><a class="mega-menu-link" href="../clear-lift/index.html">Clear Lift</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2536' id='mega-menu-item-2536'><a class="mega-menu-link" href="../carbon-laser/index.html">Carbon laser</a></li>		</ul>
+</li><li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-1'>
+		<ul class="mega-sub-menu">
+<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2537' id='mega-menu-item-2537'><a class="mega-menu-link" href="../laser-toning/index.html">Laser toning</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2439' id='mega-menu-item-2439'><a class="mega-menu-link" href="../prp-hair-treatment/index.html">Prp hair</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2538' id='mega-menu-item-2538'><a class="mega-menu-link" href="../prp-face/index.html">PRP face</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2441' id='mega-menu-item-2441'><a class="mega-menu-link" href="../endymed-mnrf/index.html">Endymed MNRF</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2539' id='mega-menu-item-2539'><a class="mega-menu-link" href="../endymed-sculpt/index.html">Endymed sculpt</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2443' id='mega-menu-item-2443'><a class="mega-menu-link" href="../hydrafacial-in-gurgaon/index.html">Hydrafacial</a></li>		</ul>
+</li><li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-2'>
+		<ul class="mega-sub-menu">
+<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2563' id='mega-menu-item-2563'><a class="mega-menu-link" href="../mirapeel/index.html">Mirapeel</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2445' id='mega-menu-item-2445'><a class="mega-menu-link" href="../hair-mesotherapy-treatment-gurgaon/index.html">Mesotherapy</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2448' id='mega-menu-item-2448'><a class="mega-menu-link" href="../laser-hair-removal-delhi/index.html">Laser Hair Removal</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2562' id='mega-menu-item-2562'><a class="mega-menu-link" href="../skin-boosters-glass-skin/index.html">Skin Boosters/Glass skin</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2561' id='mega-menu-item-2561'><a class="mega-menu-link" href="../profhilo/index.html">Profhilo</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2549' id='mega-menu-item-2549'><a class="mega-menu-link" href="../facials/index.html">Medi Facials</a></li>		</ul>
+</li><li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-3'>
+		<ul class="mega-sub-menu">
+<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2541' id='mega-menu-item-2541'><a class="mega-menu-link" href="../microneedling/index.html">Microneedling</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2546' id='mega-menu-item-2546'><a class="mega-menu-link" href="../pixel-erbium-laser/index.html">Pixel erbium laser</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2689' id='mega-menu-item-2689'><a class="mega-menu-link" href="../chemical-peeling/index.html">Chemical peeling</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2587' id='mega-menu-item-2587'><a class="mega-menu-link" href="../tattoo-removal-in-gurgaon/index.html">Tattoo Removal</a></li>		</ul>
+</li>	</ul>
+</li></ul>
+</li><li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-89 dropdown' id='mega-menu-item-89'><a class="mega-menu-link" href="#" aria-haspopup="true" aria-expanded="false" tabindex="0">Concerns<span class="mega-indicator"></span></a>
+<ul class="mega-sub-menu">
+<li class='mega-menu-row' id='mega-menu-89-0'>
+	<ul class="mega-sub-menu">
+<li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-89-0-0'>
+		<ul class="mega-sub-menu">
+<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661' id='mega-menu-item-2661'><a class="mega-menu-link" href="../concerns/aging/index.html">Aging</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2665' id='mega-menu-item-2665'><a class="mega-menu-link" href="../concerns/fine-lines-wrinkles/index.html">Fine lines/wrinkles</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657' id='mega-menu-item-2657'><a class="mega-menu-link" href="../concerns/under-eye-darkening-hollows/index.html">Under eye darkening/hollows</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668' id='mega-menu-item-2668'><a class="mega-menu-link" href="../concerns/laugh-lines/index.html">Laugh lines</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656' id='mega-menu-item-2656'><a class="mega-menu-link" href="../concerns/thin-lips/index.html">Thin lips</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669' id='mega-menu-item-2669'><a class="mega-menu-link" href="../concerns/neck-lines/index.html">Neck lines</a></li>		</ul>
+</li><li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-89-0-1'>
+		<ul class="mega-sub-menu">
+<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2653' id='mega-menu-item-2653'><a class="mega-menu-link" href="../concerns/sagging/index.html">Sagging</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2658' id='mega-menu-item-2658'><a class="mega-menu-link" href="../concerns/uneven-skin-tone/index.html">Uneven skin tone</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2672' id='mega-menu-item-2672'><a class="mega-menu-link" href="../concerns/patchy-skin/index.html">Patchy skin</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2654' id='mega-menu-item-2654'><a class="mega-menu-link" href="../concerns/sensitive-skin/index.html">Sensitive skin</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2652' id='mega-menu-item-2652'><a class="mega-menu-link" href="../concerns/rosacea/index.html">Rosacea</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659' id='mega-menu-item-2659'><a class="mega-menu-link" href="../concerns/acne/index.html">Acne</a></li>		</ul>
+</li><li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-89-0-2'>
+		<ul class="mega-sub-menu">
+<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2660' id='mega-menu-item-2660'><a class="mega-menu-link" href="../concerns/acne-scars/index.html">Acne scars</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2663' id='mega-menu-item-2663'><a class="mega-menu-link" href="../concerns/dull-skin/index.html">Dull skin</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2671' id='mega-menu-item-2671'><a class="mega-menu-link" href="../concerns/open-pores/index.html">Open pores</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2670' id='mega-menu-item-2670'><a class="mega-menu-link" href="../concerns/oily-skin/index.html">Oily skin</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2655' id='mega-menu-item-2655'><a class="mega-menu-link" href="../concerns/stretch-marks/index.html">Stretch marks</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2666' id='mega-menu-item-2666'><a class="mega-menu-link" href="../concerns/hair-loss-thinning/index.html">Hair loss/ thinning</a></li>		</ul>
+</li><li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-89-0-3'>
+		<ul class="mega-sub-menu">
+<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2667' id='mega-menu-item-2667'><a class="mega-menu-link" href="../concerns/hands-wrinkles-pigmentation/index.html">Hands: wrinkles/ pigmentation</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2662' id='mega-menu-item-2662'><a class="mega-menu-link" href="../concerns/double-chin/index.html">Double chin</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2664' id='mega-menu-item-2664'><a class="mega-menu-link" href="../concerns/facial-hair/index.html">Facial hair</a></li>		</ul>
+</li>	</ul>
+</li></ul>
+</li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2581' id='mega-menu-item-2581'><a class="mega-menu-link" href="../laser-hair-removal/index.html" tabindex="0">Laser hair removal</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2431' id='mega-menu-item-2431'><a class="mega-menu-link" href="../best-pre-bridal-skin-packages/index.html" tabindex="0">Pre Bridal</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-3392' id='mega-menu-item-3392'><a class="mega-menu-link" href="../blog/index.html" tabindex="0">Blog</a></li><li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-ancestor mega-current-menu-parent mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-91 dropdown' id='mega-menu-item-91'><a class="mega-menu-link" href="#" aria-haspopup="true" aria-expanded="false" tabindex="0">Contact<span class="mega-indicator"></span></a>
+<ul class="mega-sub-menu">
+<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-current-menu-item mega-page_item mega-page-item-82 mega-current_page_item mega-menu-item-110' id='mega-menu-item-110'><a class="mega-menu-link" href="index.html" aria-current="page">Get Appointment</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-109' id='mega-menu-item-109'><a class="mega-menu-link" href="../register-yourself/index.html">Register Yourself</a></li></ul>
+</li></ul></div>
+        </div>
+    </nav>
+    <!-- Header Banner -->
+    <div class="banner-header section-padding valign bg-img bg-fixed" data-overlay-dark="4" data-background="https://garekarsmdskinclinic.com/wp-content/uploads/2023/09/clinic-bg.jpg" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 caption mt-90">
+                   <!--  <h5>Luxury Hotel</h5> -->
+                    <h1>Get Appointment</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+	<main id="primary1" class="site-main1">
+
+		
+
+	<div class="entry-content">
+		<section class="testimonials" >
+    <div class="section-padding" >
+        <div class="container " >
+            <div class="row">
+
+                <!-- Booking From -->
+                <div class="col-md-6">
+                    <div class="booking-box" style="margin-bottom:0px;background: #aa8453;padding:64px 43px;">
+                        <div class="head-box">
+                            <h6>Garekars MD</h6>
+                            <h4>Get Appointment</h4>
+                            <!-- <p style="color:#000"> Call us at <a href="tel:9667684409" style="font-weight: bold;">9667684409</a> to get one.</p> -->
+                        </div>
+
+                        
+                <div class='gf_browser_chrome gform_wrapper gravity-theme' id='gform_wrapper_1' ><div id='gf_1' class='gform_anchor' tabindex='-1'></div>
+                        <div class='gform_heading'>
+							<p class='gform_required_legend'>&quot;<span class="gfield_required gfield_required_asterisk">*</span>&quot; indicates required fields</p>
+                        </div><form method='post' enctype='multipart/form-data' target='gform_ajax_frame_1' id='gform_1'  action='https://garekarsmdskinclinic.com/get-appointment/#gf_1' >
+                        <div class='gform_body gform-body'><div id='gform_fields_1' class='gform_fields top_label form_sublabel_below description_below'><div id="field_1_1"  class="gfield gfield_contains_required field_sublabel_below field_description_below gfield_visibility_visible"  data-js-reload="field_1_1"><label class='gfield_label' for='input_1_1' >Full name<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_text'><input name='input_1' id='input_1_1' type='text' value='' class='large'   tabindex='49'  aria-required="true" aria-invalid="false"   /> </div></div><div id="field_1_2"  class="gfield gfield--width-half gfield_contains_required field_sublabel_below field_description_below gfield_visibility_visible"  data-js-reload="field_1_2"><label class='gfield_label' for='input_1_2' >Phone<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_phone'><input name='input_2' id='input_1_2' type='text' value='' class='large' tabindex='50'  aria-required="true" aria-invalid="false"   /></div></div><div id="field_1_3"  class="gfield gfield--width-half gfield_contains_required field_sublabel_below field_description_below gfield_visibility_visible"  data-js-reload="field_1_3"><label class='gfield_label' for='input_1_3' >Email<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_email'>
+                            <input name='input_3' id='input_1_3' type='text' value='' class='large' tabindex='51'   aria-required="true" aria-invalid="false"  />
+                        </div></div><div id="field_1_9"  class="gfield gfield--width-full gfield_contains_required field_sublabel_below field_description_below gfield_visibility_visible"  data-js-reload="field_1_9"><label class='gfield_label' for='input_1_9' >Choose Location<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_select'><select name='input_9' id='input_1_9' class='large gfield_select' tabindex='52'   aria-required="true" aria-invalid="false" ><option value='Gurgaon' >Gurgaon</option><option value='Delhi' >Delhi</option></select></div></div><div id="field_1_6"  class="gfield gfield--width-half gfield_contains_required field_sublabel_below field_description_below gfield_visibility_visible"  data-js-reload="field_1_6"><label class='gfield_label' for='input_1_6' >Appointment Date<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_date'>
+                            <input name='input_6' id='input_1_6' type='text' value='' class='datepicker mdy datepicker_no_icon gdatepicker-no-icon' tabindex='53'  placeholder='mm/dd/yyyy' aria-describedby="input_1_6_date_format" aria-invalid="false" aria-required="true"/>
+                            <span id='input_1_6_date_format' class='screen-reader-text'>MM slash DD slash YYYY</span>
+                        </div>
+                        <input type='hidden' id='gforms_calendar_icon_input_1_6' class='gform_hidden' value='../wp-content/plugins/gravityforms/images/datepicker/datepicker.svg'/></div><div id="field_1_8"  class="gfield gfield--width-half gfield_contains_required field_sublabel_below field_description_below gfield_visibility_visible"  data-js-reload="field_1_8"><label class='gfield_label' for='input_1_8' >Appointment Time<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_text'><input name='input_8' id='input_1_8' type='text' value='' class='large'   tabindex='54'  aria-required="true" aria-invalid="false"   /> </div></div><div id="field_1_10"  class="gfield gform_validation_container field_sublabel_below field_description_below gfield_visibility_visible"  data-js-reload="field_1_10"><label class='gfield_label' for='input_1_10' >Email</label><div class='ginput_container'><input name='input_10' id='input_1_10' type='text' value='' /></div><div class='gfield_description' id='gfield_description_1_10'>This field is for validation purposes and should be left unchanged.</div></div></div></div>
+        <div class='gform_footer top_label'> <input type='submit' id='gform_submit_button_1' class='gform_button button' value='Send' tabindex='55' onclick='if(window["gf_submitting_1"]){return false;}  window["gf_submitting_1"]=true;  ' onkeypress='if( event.keyCode == 13 ){ if(window["gf_submitting_1"]){return false;} window["gf_submitting_1"]=true;  jQuery("#gform_1").trigger("submit",[true]); }' /> <input type='hidden' name='gform_ajax' value='form_id=1&amp;title=&amp;description=&amp;tabindex=49' />
+            <input type='hidden' class='gform_hidden' name='is_submit_1' value='1' />
+            <input type='hidden' class='gform_hidden' name='gform_submit' value='1' />
+            
+            <input type='hidden' class='gform_hidden' name='gform_unique_id' value='' />
+            <input type='hidden' class='gform_hidden' name='state_1' value='WyJbXSIsIjdlNmM2MGY0MzA2MDg2MjQwYWZhNWQzN2QwZjlhNDNiIl0=' />
+            <input type='hidden' class='gform_hidden' name='gform_target_page_number_1' id='gform_target_page_number_1' value='0' />
+            <input type='hidden' class='gform_hidden' name='gform_source_page_number_1' id='gform_source_page_number_1' value='1' />
+            <input type='hidden' name='gform_field_values' value='' />
+            
+        </div>
+                        </form>
+                        </div>
+                <iframe style='display:none;width:0px;height:0px;' src='about:blank' name='gform_ajax_frame_1' id='gform_ajax_frame_1' title='This iframe contains the logic required to handle Ajax powered Gravity Forms.'></iframe>
+                <script type="rocketlazyloadscript">
+gform.initializeOnLoaded( function() {gformInitSpinner( 1, '../wp-content/plugins/gravityforms/images/spinner.svg' );jQuery('#gform_ajax_frame_1').on('load',function(){var contents = jQuery(this).contents().find('*').html();var is_postback = contents.indexOf('GF_AJAX_POSTBACK') >= 0;if(!is_postback){return;}var form_content = jQuery(this).contents().find('#gform_wrapper_1');var is_confirmation = jQuery(this).contents().find('#gform_confirmation_wrapper_1').length > 0;var is_redirect = contents.indexOf('gformRedirect(){') >= 0;var is_form = form_content.length > 0 && ! is_redirect && ! is_confirmation;var mt = parseInt(jQuery('html').css('margin-top'), 10) + parseInt(jQuery('body').css('margin-top'), 10) + 100;if(is_form){jQuery('#gform_wrapper_1').html(form_content.html());if(form_content.hasClass('gform_validation_error')){jQuery('#gform_wrapper_1').addClass('gform_validation_error');} else {jQuery('#gform_wrapper_1').removeClass('gform_validation_error');}setTimeout( function() { /* delay the scroll by 50 milliseconds to fix a bug in chrome */ jQuery(document).scrollTop(jQuery('#gform_wrapper_1').offset().top - mt); }, 50 );if(window['gformInitDatepicker']) {gformInitDatepicker();}if(window['gformInitPriceFields']) {gformInitPriceFields();}var current_page = jQuery('#gform_source_page_number_1').val();gformInitSpinner( 1, '../wp-content/plugins/gravityforms/images/spinner.svg' );jQuery(document).trigger('gform_page_loaded', [1, current_page]);window['gf_submitting_1'] = false;}else if(!is_redirect){var confirmation_content = jQuery(this).contents().find('.GF_AJAX_POSTBACK').html();if(!confirmation_content){confirmation_content = contents;}setTimeout(function(){jQuery('#gform_wrapper_1').replaceWith(confirmation_content);jQuery(document).scrollTop(jQuery('#gf_1').offset().top - mt);jQuery(document).trigger('gform_confirmation_loaded', [1]);window['gf_submitting_1'] = false;wp.a11y.speak(jQuery('#gform_confirmation_message_1').text());}, 50);}else{jQuery('#gform_1').append(contents);if(window['gformRedirect']) {gformRedirect();}}jQuery(document).trigger('gform_post_render', [1, current_page]);} );} );
+</script>
+
+
+                    </div>
+                </div>
+
+                <!-- Call us -->
+                <div class="col-md-6">
+                <!-- <div class="row">
+                    <div class="col-md-6" style="background: #aa845380;padding-top: 60px; color: #fff;text-align: center;">
+                        <strong>Garekars M.D. Dermatology Clinic</strong><br/>
+                        DSP-120, South point mall<br/>
+                        DLF Phase 5,Sector 53<br/>
+                        Gurugram, Haryana 122002
+                        <div class="reservations mt-30" style="display: block;">
+                            <div class="text" style="margin: 0;">
+                                <p class="color-1">Get appointment</p> <a class="color-1" href="tel:9667684409 ">96676 84409 </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 " style="padding:0 ;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d28064.41223619494!2d77.099373!3d28.447863!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4782405bb39c0d81!2sGarekars%20M.D.%20Dermatology%20Clinic!5e0!3m2!1sen!2sin!4v1664261506841!5m2!1sen!2sin" width="100%" height="325" style="border:0;opacity: .8;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 " style="padding:0 ;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.0468230625015!2d77.09677551540841!3d28.448004882490984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d190a719afcb3%3A0xb0b0798c82b076c3!2sGarekars%20M.D.%20Dermatology%20Clinic%2C%20DLF%20Phase%205%20%2C%20Southpoint%20Mall%20%7C%20Laser%20Hair%20Removal%20In%20Gurgaon!5e0!3m2!1sen!2sin!4v1664267439867!5m2!1sen!2sin" width="100%" height="325" style="border:0;opacity: .8;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="col-md-6" style="background: #aa845380; color:#fff; padding-top: 60px; text-align: center;">
+                        <strong>Garekars M.D. Dermatology Clinic</strong><br/>
+                        LG07, South point mall<br/>
+                        DLF Phase 5,Sector 53<br/>
+                        Gurugram, Haryana 122002
+
+                        <div class="reservations mt-30" style="display: block;">
+                            <div class="text" style="margin:0;">
+                                <p class="color-1">Get appointment</p> <a class="color-1" href="tel:9599491986 ">9599491986 </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> -->
+
+<div class="head-box">
+<h6 style="font-size:16px;margin:0">GAREKARS MD</h6>
+<h4 style="border-bottom: thin solid #ccc; padding-bottom: 8px;">Gurgaon Clinic</h4>
+
+</div>              
+
+DSP-120, South point mall, DLF Phase 5, Sector 53, Gurugram, Haryana 122002 <br/> <span style="padding-top: 10px;
+    font-weight: bold!important;font-size:17px"> <span class="flaticon-call"></span> <a href="tel:9667684409">96676 84409</a> | garekarsmd@gmail.com</span>
+<br/><br/>
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d28064.41223619494!2d77.099373!3d28.447863!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4782405bb39c0d81!2sGarekars%20M.D.%20Dermatology%20Clinic!5e0!3m2!1sen!2sin!4v1664261506841!5m2!1sen!2sin" width="100%" height="150" style="border:0;opacity: .8;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    <br/><br/>
+               
+    <div class="head-box">
+<h6 style="font-size:16px;margin:0">GAREKARS MD</h6>
+<h4 style="border-bottom: thin solid #ccc; padding-bottom: 8px;">Delhi Clinic</h4>
+
+</div> 
+M-41, 2nd floor, M Block Market, Above Geetanjali Salon<br/> Greater Kailash II, New Delhi 110048<br/>
+<span style="padding-top: 10px;
+    font-weight: bold!important;font-size:17px"> <span class="flaticon-call"></span> <a href="tel:9599491986">95994 91986</a> | garekarsmd@gmail.com</span>
+<br/><br/>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.1450366539043!2d77.23937707549722!3d28.535359975717952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce3cad3e240e7%3A0x894fe3340318ed2c!2sGarekars%20M.D.%20Dermatology%20Clinic!5e0!3m2!1sen!2suk!4v1694160783660!5m2!1sen!2suk" width="100%" height="150" style="border:0;opacity: .8;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section><!-- Clients -->	</div><!-- .entry-content -->
+	</main><!-- #main -->
+
+
+<!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="footer-column footer-about">
+                            <h3 class="footer-title">Recent Posts</h3>
+
+ <ul class="footer-explore-list list-unstyled">
+<li><a href="../7-vows-help-brides-craft-good-skin-care-routine/index.html">7 Vows to help brides craft a Good Skin Care Routine</a></li>
+<li><a href="../visit-dermatologist-get-efficient-solutions-skin-problems/index.html">Visit a Dermatologist to Get the most efficient Solutions for Skin Problems</a></li>
+<li><a href="../turn-hair-removal-treatment-unleash-beauty/index.html">Turn to Hair Removal Treatment to Unleash your Beauty!</a></li>
+<li><a href="../korean-glass-skin-treatment/index.html">Get a Radiant Glass Skin Treatment with GAREKARS</a></li>
+<li><a href="../how-often-should-you-get-hydrafacial/index.html">How Often Should You Get A HydraFacial?</a></li>
+
+<li><a href="../side-effects-facial-laser-hair-removal/index.html">Side Effects of Laser Hair Removal on Face and a Sure-Shot Way to Prevent Them!</a></li>
+<li><a href="../get-rid-of-dark-spots-face/index.html">Wondering how to get rid of dark spots on the face? We’ve got you covered!</a></li>
+</ul>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 offset-md-1">
+                        <div class="footer-column footer-explore clearfix">
+                            <h3 class="footer-title">Explore</h3>
+                            <ul class="footer-explore-list list-unstyled">
+                            <li><a href="../facials/index.html">Facials</a></li>
+                            <li><a href="../fillers-treatment-gurgaon/index.html"> Fillers Treatment in Gurgaon</a></li>
+                            <li><a href="../keloid-treatment-gurgaon/index.html">Keloid Treatment In Gurgaon</a></li>
+                            <li><a href="../hair-mesotherapy-treatment-gurgaon/index.html">Mesotherapy Hair Treatment</a></li>
+                            <li><a href="../prp-hair-treatment/index.html">PRP Hair Treatment in Gurgaon</a></li>
+                            <li><a href="../laser-hair-removal-delhi/index.html">Laser Hair Removal in Delhi</a></li>
+                            <li><a href="../index.html">Dermatologist in Gurgaon</a></li>
+                            <li><a href="../laser-hair-removal/index.html">Laser Hair Removal in Gurgaon</a></li>
+                            <li><a href="../hydrafacial-in-gurgaon/index.html">Hydrafacial in Gurgaon</a></li>
+                            <li><a href="../clear-lift/index.html">ClearLift Treatment in Gurgaon</a></li>
+                            <li><a href="../botox-treatment-gurgaon/index.html">Botox Treatment in Gurgaon</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="footer-column footer-contact">
+                            <h3 class="footer-title">Contact</h3>
+                            <h4 class="footer-title" style="font-size:18px">Gurgaon Clinic</h4>
+                            <p class="footer-contact-text">DSP-120 South point mall Golf Course Rd<br/> DLF Phase 5, Sector 53, Gurugram 122002, Haryana <br/><span style="padding-top: 10px;
+    font-weight: bold!important;color: #fff;font-size:17px"> <span class="flaticon-call"></span> <a href="tel:9667684409">96676 84409</a> | garekarsmd@gmail.com</span></p>
+
+
+                            <h4 class="footer-title" style="font-size:18px">Delhi Clinic</h4>
+                            <p class="footer-contact-text" style="padding-bottom:0">M-41, 2nd floor,M Block Market, Above Geetanjali Salon<br/>Greater Kailash II, New Delhi 110048 <br/><span style="padding-top: 10px;
+    font-weight: bold!important;color: #fff;font-size:17px"> <span class="flaticon-call"></span> <a href="tel:9599491986">95994 91986</a> | garekarsmd@gmail.com</span></p>
+                            <!--<div class="footer-contact-info">
+                                <p class="footer-contact-phone" style="font-size:19px"><span class="flaticon-call"></span> <a href="tel:9205639140">92056 39140</a> | <span class="flaticon-email"></span> drsgarekar@gmail.com</p>-->
+                                <!--<p class="footer-contact-mail">drsgarekar@gmail.com</p>-->
+                            <!--</div>-->
+                            <div class="footer-about-social-list">
+                                <a href="https://www.instagram.com/garekarsmddermatologyclinic/"><i class="ti-instagram"></i></a>
+                                <a href="https://twitter.com/Garekars"><i class="ti-twitter"></i></a>
+                                <a href="https://www.youtube.com/channel/UCl3ctLasMQ0B1TcdVSO633g"><i class="ti-youtube"></i></a>
+                                <a href="https://www.facebook.com/garekarsmddermatologyclinic"><i class="ti-facebook"></i></a>
+                                <a href="https://in.pinterest.com/garekarsmddermatologyclinic/"><i class="ti-pinterest"></i></a>
+                                <a href="https://www.linkedin.com/company/garekars-m-d-dermatolog-clinic"><i class="ti-linkedin"></i></a>
+                                <a href="https://plus.google.com/b/102740688098782780015/+GarekarsMDDermatologyAestheticsClinicGurgaon?hl=en"><i class="ti-google"></i></a>
+                            </div>
+                                <!--<br/> 5 stars – based on 2622 reviews on Practo, Facebook, and Google-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="footer-bottom-inner">
+                            <p class="footer-bottom-copy-right">Copyright 2016 - 2024 <a href="../index.html">Garekars M.D. Dermatology Clinic, Gurgaon</a> <br/> All Rights Reserved | <a href="../sitemap_index.xml">Sitemap</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script type="rocketlazyloadscript" src="../wp-content/themes/garekars/js/navigation8a54.html?ver=1.0.0" id="garekars-navigation-js" defer></script>
+<script type="rocketlazyloadscript" src="../wp-includes/js/dist/vendor/wp-polyfill-inert.min0226.js?ver=3.1.2" id="wp-polyfill-inert-js" defer></script>
+<script type="rocketlazyloadscript" src="../wp-includes/js/dist/vendor/regenerator-runtime.min6c85.js?ver=0.14.0" id="regenerator-runtime-js" defer></script>
+<script type="rocketlazyloadscript" src="../wp-includes/js/dist/vendor/wp-polyfill.min2c7c.js?ver=3.15.0" id="wp-polyfill-js"></script>
+<script type="rocketlazyloadscript" src="../wp-includes/js/dist/dom-ready.minded6.js?ver=392bdd43726760d1f3ca" id="wp-dom-ready-js" defer></script>
+<script type="rocketlazyloadscript" src="../wp-includes/js/dist/hooks.min2ebd.js?ver=c6aec9a8d4e5a5d543a1" id="wp-hooks-js"></script>
+<script type="rocketlazyloadscript" src="../wp-includes/js/dist/i18n.minf92f.js?ver=7701b0c3857f914212ef" id="wp-i18n-js"></script>
+<script type="rocketlazyloadscript" id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+</script>
+<script type="rocketlazyloadscript" src="../wp-includes/js/dist/a11y.min866e.js?ver=7032343a947cfccf5608" id="wp-a11y-js" defer></script>
+<script type="rocketlazyloadscript" src="../wp-includes/js/jquery/ui/core.min3f14.js?ver=1.13.2" id="jquery-ui-core-js" defer></script>
+<script type="rocketlazyloadscript" src="../wp-includes/js/jquery/ui/datepicker.min3f14.js?ver=1.13.2" id="jquery-ui-datepicker-js" defer></script>
+<script type="rocketlazyloadscript" id="jquery-ui-datepicker-js-after">
+jQuery(function(jQuery){jQuery.datepicker.setDefaults({"closeText":"Close","currentText":"Today","monthNames":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"nextText":"Next","prevText":"Previous","dayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"dayNamesShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"dayNamesMin":["S","M","T","W","T","F","S"],"dateFormat":"MM d, yy","firstDay":1,"isRTL":false});});
+</script>
+<script type="rocketlazyloadscript" defer='defer' src="../wp-content/plugins/gravityforms/js/datepicker-legacy.mina19e.js?ver=2.6.9" id="gform_datepicker_legacy-js"></script>
+<script type="rocketlazyloadscript" defer='defer' src="../wp-content/plugins/gravityforms/js/datepicker.mina19e.js?ver=2.6.9" id="gform_datepicker_init-js"></script>
+<script type="rocketlazyloadscript" src="../wp-includes/js/hoverIntent.min3e5a.js?ver=1.10.2" id="hoverIntent-js" defer></script>
+<script id="megamenu-js-extra">
+var megamenu = {"timeout":"300","interval":"100"};
+</script>
+<script type="rocketlazyloadscript" data-minify="1" src="../wp-content/cache/min/1/wp-content/plugins/megamenu/js/maxmegamenu138c.js?ver=1708005023" id="megamenu-js" defer></script>
+
+<!-- This site is optimized with Phil Singleton's WP SEO Structured Data Plugin v2.7.7 - https://kcseopro.com/wordpress-seo-structured-data-schema-plugin/ -->
+
+<!-- / WP SEO Structured Data Plugin. -->
+
+<script type="rocketlazyloadscript">
+gform.initializeOnLoaded( function() { jQuery(document).on('gform_post_render', function(event, formId, currentPage){if(formId == 1) {} } );jQuery(document).bind('gform_post_conditional_logic', function(event, formId, fields, isInit){} ) } );
+</script>
+<script type="rocketlazyloadscript">
+gform.initializeOnLoaded( function() { jQuery(document).trigger('gform_post_render', [1, 1]) } );
+</script>
+
+<!-- jQuery -->
+    <script type="rocketlazyloadscript" src="../wp-content/themes/garekars/js/jquery-3.6.0.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="../wp-content/themes/garekars/js/jquery-migrate-3.0.0.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="../wp-content/themes/garekars/js/modernizr-2.6.2.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="../wp-content/themes/garekars/js/imagesloaded.pkgd.min.js" defer></script>
+    <script type="rocketlazyloadscript" data-minify="1" src="../wp-content/cache/min/1/wp-content/themes/garekars/js/jquery.isotope.v3.0.2138c.js?ver=1708005023" defer></script>
+    <script type="rocketlazyloadscript" data-minify="1" src="../wp-content/cache/min/1/wp-content/themes/garekars/js/pace138c.js?ver=1708005023" defer></script>
+    <script type="rocketlazyloadscript" src="../wp-content/themes/garekars/js/popper.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="../wp-content/themes/garekars/js/bootstrap.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="../wp-content/themes/garekars/js/scrollIt.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="../wp-content/themes/garekars/js/jquery.waypoints.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="../wp-content/themes/garekars/js/owl.carousel.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="../wp-content/themes/garekars/js/jquery.stellar.min.js" defer></script>
+    <script type="rocketlazyloadscript" data-minify="1" src="../wp-content/cache/min/1/wp-content/themes/garekars/js/jquery.magnific-popup138c.js?ver=1708005023"></script>
+    <script type="rocketlazyloadscript" data-minify="1" src="../wp-content/cache/min/1/wp-content/themes/garekars/js/YouTubePopUp138c.js?ver=1708005023" defer></script>
+    <script type="rocketlazyloadscript" data-minify="1" src="../wp-content/cache/min/1/wp-content/themes/garekars/js/select2138c.js?ver=1708005023"></script>
+    <script type="rocketlazyloadscript" data-minify="1" src="../wp-content/cache/min/1/wp-content/themes/garekars/js/datepicker138c.js?ver=1708005023"></script>
+    <script type="rocketlazyloadscript" src="../wp-content/themes/garekars/js/smooth-scroll.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="../wp-content/themes/garekars/js/custom-min.js" defer></script>
+
+<script type="rocketlazyloadscript">
+	jQuery('p').each(function() {
+	    const $this = jQuery(this);
+	    if($this.html().replace(/\s|&nbsp;/g, '').length === 0)
+	        $this.remove();
+	});
+</script>
+<script type="rocketlazyloadscript">
+	//PRE BRIDAL PAGE SCRIPT	
+	window.onload = function(){
+  document.getElementById('tabone').click();
+	}
+	</script>
+<div class="footer_Fix"> <a href="tel:+919667684409">  +91 96676 84409</a></div>
+</body>
+
+<!-- Mirrored from garekarsmdskinclinic.com/get-appointment/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 16 Feb 2024 10:11:52 GMT -->
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1708065451 -->

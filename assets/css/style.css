@@ -1113,6 +1113,7 @@ blockquote cite:before {
   color: #fff;
   font-weight: 400;
   letter-spacing: 15px;
+  /* -webkit-text-stroke: 2px #c78853; */
 }
 .header .caption p {
   font-size: 18px;
@@ -4664,8 +4665,9 @@ select {
 
 .cont {
   font-size: 12px;
+  height: 13rem;
 }
-.cont:hover {
+#Treatments .cont:hover {
   background-color: #c78853 !important;
   color: #fff;
   transition: 0.3s ease-in-out;
@@ -4753,6 +4755,46 @@ select {
 }
 
 .sidebar {
-  background: #e7e2df;
+  background: #c78853;
+  color: #fff;
   padding: 1rem;
+}
+
+#blog img {
+  height: 450px;
+  object-fit: cover;
+}
+
+/* ytb */
+body {
+  font-family: Arial, sans-serif;
+}
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  max-width: 800px;
+  background-color: #ffffff00;
+  padding: 20px;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+  z-index: 1000;
+}
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 900;
+}
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 }
