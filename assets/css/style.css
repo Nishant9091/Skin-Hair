@@ -749,7 +749,7 @@ blockquote cite:before {
 .section-padding h6 {
   color: #c78853;
   font-size: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 .section-subtitle {
   font-size: 15px;
@@ -4655,11 +4655,11 @@ select {
 
 /* Treatments */
 #Treatments .container {
-  background-color: #d6a76c91;
+  background-color: #d6a66c17;
   padding: 0 3rem;
   position: relative;
   top: -2rem;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
 }
 
 .cont {
@@ -4682,6 +4682,11 @@ select {
   padding: 1rem 0;
   background-color: #36312e;
   color: #fff;
+}
+
+.card-tr img {
+  height: 190px;
+  object-fit: cover;
 }
 
 /* about */
@@ -4713,6 +4718,7 @@ select {
 /*  */
 #abt_drs .col-md-6 {
   position: relative;
+  overflow: hidden;
 }
 
 .hid {
@@ -4725,6 +4731,11 @@ select {
   right: 0;
   background-color: #36312e;
   padding: 1rem;
+}
+#abt_drs .col-md-6 img:hover {
+  transform: scale(1.1);
+  filter: brightness(0.8);
+  transition: 0.6s ease-in-out;
 }
 
 #abt_drs .col-md-6:hover .hid {
@@ -4739,4 +4750,9 @@ select {
 .ite .row p {
   color: white !important;
   padding-top: 1rem;
+}
+
+.sidebar {
+  background: #e7e2df;
+  padding: 1rem;
 }

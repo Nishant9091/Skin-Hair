@@ -6,7 +6,7 @@ body.page{ margin-bottom: 0 !important; }
 footer ul{ margin-left: 0; }
 
 /*Header: logo *************************************************/
-.logo img{ max-width: 200px!important; }
+.logo img{ max-width: 400px!important; }
 
 /*Header: Menu *************************************************/
 .nav-scroll .logo-wrapper{background-color:none!important; padding:0px!important}

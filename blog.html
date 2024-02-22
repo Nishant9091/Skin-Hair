@@ -4,643 +4,669 @@
 
 <head>
 
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="assets/imgs/Satya-Final-logo-Bamboo.png " type="image/x-icon">
-	<script>class RocketLazyLoadScripts { constructor(e) { this.triggerEvents = e, this.eventOptions = { passive: !0 }, this.userEventListener = this.triggerListener.bind(this), this.delayedScripts = { normal: [], async: [], defer: [] }, this.allJQueries = [] } _addUserInteractionListener(e) { this.triggerEvents.forEach((t => window.addEventListener(t, e.userEventListener, e.eventOptions))) } _removeUserInteractionListener(e) { this.triggerEvents.forEach((t => window.removeEventListener(t, e.userEventListener, e.eventOptions))) } triggerListener() { this._removeUserInteractionListener(this), "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", this._loadEverythingNow.bind(this)) : this._loadEverythingNow() } async _loadEverythingNow() { this._delayEventListeners(), this._delayJQueryReady(this), this._handleDocumentWrite(), this._registerAllDelayedScripts(), this._preloadAllScripts(), await this._loadScriptsFromList(this.delayedScripts.normal), await this._loadScriptsFromList(this.delayedScripts.defer), await this._loadScriptsFromList(this.delayedScripts.async), await this._triggerDOMContentLoaded(), await this._triggerWindowLoad(), window.dispatchEvent(new Event("rocket-allScriptsLoaded")) } _registerAllDelayedScripts() { document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e => { e.hasAttribute("src") ? e.hasAttribute("async") && !1 !== e.async ? this.delayedScripts.async.push(e) : e.hasAttribute("defer") && !1 !== e.defer || "module" === e.getAttribute("data-rocket-type") ? this.delayedScripts.defer.push(e) : this.delayedScripts.normal.push(e) : this.delayedScripts.normal.push(e) })) } async _transformScript(e) { return await this._requestAnimFrame(), new Promise((t => { const n = document.createElement("script"); let r;[...e.attributes].forEach((e => { let t = e.nodeName; "type" !== t && ("data-rocket-type" === t && (t = "type", r = e.nodeValue), n.setAttribute(t, e.nodeValue)) })), e.hasAttribute("src") ? (n.addEventListener("load", t), n.addEventListener("error", t)) : (n.text = e.text, t()), e.parentNode.replaceChild(n, e) })) } async _loadScriptsFromList(e) { const t = e.shift(); return t ? (await this._transformScript(t), this._loadScriptsFromList(e)) : Promise.resolve() } _preloadAllScripts() { var e = document.createDocumentFragment();[...this.delayedScripts.normal, ...this.delayedScripts.defer, ...this.delayedScripts.async].forEach((t => { const n = t.getAttribute("src"); if (n) { const t = document.createElement("link"); t.href = n, t.rel = "preload", t.as = "script", e.appendChild(t) } })), document.head.appendChild(e) } _delayEventListeners() { let e = {}; function t(t, n) { !function (t) { function n(n) { return e[t].eventsToRewrite.indexOf(n) >= 0 ? "rocket-" + n : n } e[t] || (e[t] = { originalFunctions: { add: t.addEventListener, remove: t.removeEventListener }, eventsToRewrite: [] }, t.addEventListener = function () { arguments[0] = n(arguments[0]), e[t].originalFunctions.add.apply(t, arguments) }, t.removeEventListener = function () { arguments[0] = n(arguments[0]), e[t].originalFunctions.remove.apply(t, arguments) }) }(t), e[t].eventsToRewrite.push(n) } function n(e, t) { let n = e[t]; Object.defineProperty(e, t, { get: () => n || function () { }, set(r) { e["rocket" + t] = n = r } }) } t(document, "DOMContentLoaded"), t(window, "DOMContentLoaded"), t(window, "load"), t(window, "pageshow"), t(document, "readystatechange"), n(document, "onreadystatechange"), n(window, "onload"), n(window, "onpageshow") } _delayJQueryReady(e) { let t = window.jQuery; Object.defineProperty(window, "jQuery", { get: () => t, set(n) { if (n && n.fn && !e.allJQueries.includes(n)) { n.fn.ready = n.fn.init.prototype.ready = function (t) { e.domReadyFired ? t.bind(document)(n) : document.addEventListener("rocket-DOMContentLoaded", (() => t.bind(document)(n))) }; const t = n.fn.on; n.fn.on = n.fn.init.prototype.on = function () { if (this[0] === window) { function e(e) { return e.split(" ").map((e => "load" === e || 0 === e.indexOf("load.") ? "rocket-jquery-load" : e)).join(" ") } "string" == typeof arguments[0] || arguments[0] instanceof String ? arguments[0] = e(arguments[0]) : "object" == typeof arguments[0] && Object.keys(arguments[0]).forEach((t => { delete Object.assign(arguments[0], { [e(t)]: arguments[0][t] })[t] })) } return t.apply(this, arguments), this }, e.allJQueries.push(n) } t = n } }) } async _triggerDOMContentLoaded() { this.domReadyFired = !0, await this._requestAnimFrame(), document.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._requestAnimFrame(), window.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._requestAnimFrame(), document.dispatchEvent(new Event("rocket-readystatechange")), await this._requestAnimFrame(), document.rocketonreadystatechange && document.rocketonreadystatechange() } async _triggerWindowLoad() { await this._requestAnimFrame(), window.dispatchEvent(new Event("rocket-load")), await this._requestAnimFrame(), window.rocketonload && window.rocketonload(), await this._requestAnimFrame(), this.allJQueries.forEach((e => e(window).trigger("rocket-jquery-load"))), window.dispatchEvent(new Event("rocket-pageshow")), await this._requestAnimFrame(), window.rocketonpageshow && window.rocketonpageshow() } _handleDocumentWrite() { const e = new Map; document.write = document.writeln = function (t) { const n = document.currentScript, r = document.createRange(), i = n.parentElement; let o = e.get(n); void 0 === o && (o = n.nextSibling, e.set(n, o)); const a = document.createDocumentFragment(); r.setStart(a, 0), a.appendChild(r.createContextualFragment(t)), i.insertBefore(a, o) } } async _requestAnimFrame() { return new Promise((e => requestAnimationFrame(e))) } static run() { const e = new RocketLazyLoadScripts(["keydown", "mousemove", "touchmove", "touchstart", "touchend", "wheel"]); e._addUserInteractionListener(e) } } RocketLazyLoadScripts.run();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="assets/imgs/Satya-logo-Gold.png " type="image/x-icon">
+    <script>class RocketLazyLoadScripts { constructor(e) { this.triggerEvents = e, this.eventOptions = { passive: !0 }, this.userEventListener = this.triggerListener.bind(this), this.delayedScripts = { normal: [], async: [], defer: [] }, this.allJQueries = [] } _addUserInteractionListener(e) { this.triggerEvents.forEach((t => window.addEventListener(t, e.userEventListener, e.eventOptions))) } _removeUserInteractionListener(e) { this.triggerEvents.forEach((t => window.removeEventListener(t, e.userEventListener, e.eventOptions))) } triggerListener() { this._removeUserInteractionListener(this), "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", this._loadEverythingNow.bind(this)) : this._loadEverythingNow() } async _loadEverythingNow() { this._delayEventListeners(), this._delayJQueryReady(this), this._handleDocumentWrite(), this._registerAllDelayedScripts(), this._preloadAllScripts(), await this._loadScriptsFromList(this.delayedScripts.normal), await this._loadScriptsFromList(this.delayedScripts.defer), await this._loadScriptsFromList(this.delayedScripts.async), await this._triggerDOMContentLoaded(), await this._triggerWindowLoad(), window.dispatchEvent(new Event("rocket-allScriptsLoaded")) } _registerAllDelayedScripts() { document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e => { e.hasAttribute("src") ? e.hasAttribute("async") && !1 !== e.async ? this.delayedScripts.async.push(e) : e.hasAttribute("defer") && !1 !== e.defer || "module" === e.getAttribute("data-rocket-type") ? this.delayedScripts.defer.push(e) : this.delayedScripts.normal.push(e) : this.delayedScripts.normal.push(e) })) } async _transformScript(e) { return await this._requestAnimFrame(), new Promise((t => { const n = document.createElement("script"); let r;[...e.attributes].forEach((e => { let t = e.nodeName; "type" !== t && ("data-rocket-type" === t && (t = "type", r = e.nodeValue), n.setAttribute(t, e.nodeValue)) })), e.hasAttribute("src") ? (n.addEventListener("load", t), n.addEventListener("error", t)) : (n.text = e.text, t()), e.parentNode.replaceChild(n, e) })) } async _loadScriptsFromList(e) { const t = e.shift(); return t ? (await this._transformScript(t), this._loadScriptsFromList(e)) : Promise.resolve() } _preloadAllScripts() { var e = document.createDocumentFragment();[...this.delayedScripts.normal, ...this.delayedScripts.defer, ...this.delayedScripts.async].forEach((t => { const n = t.getAttribute("src"); if (n) { const t = document.createElement("link"); t.href = n, t.rel = "preload", t.as = "script", e.appendChild(t) } })), document.head.appendChild(e) } _delayEventListeners() { let e = {}; function t(t, n) { !function (t) { function n(n) { return e[t].eventsToRewrite.indexOf(n) >= 0 ? "rocket-" + n : n } e[t] || (e[t] = { originalFunctions: { add: t.addEventListener, remove: t.removeEventListener }, eventsToRewrite: [] }, t.addEventListener = function () { arguments[0] = n(arguments[0]), e[t].originalFunctions.add.apply(t, arguments) }, t.removeEventListener = function () { arguments[0] = n(arguments[0]), e[t].originalFunctions.remove.apply(t, arguments) }) }(t), e[t].eventsToRewrite.push(n) } function n(e, t) { let n = e[t]; Object.defineProperty(e, t, { get: () => n || function () { }, set(r) { e["rocket" + t] = n = r } }) } t(document, "DOMContentLoaded"), t(window, "DOMContentLoaded"), t(window, "load"), t(window, "pageshow"), t(document, "readystatechange"), n(document, "onreadystatechange"), n(window, "onload"), n(window, "onpageshow") } _delayJQueryReady(e) { let t = window.jQuery; Object.defineProperty(window, "jQuery", { get: () => t, set(n) { if (n && n.fn && !e.allJQueries.includes(n)) { n.fn.ready = n.fn.init.prototype.ready = function (t) { e.domReadyFired ? t.bind(document)(n) : document.addEventListener("rocket-DOMContentLoaded", (() => t.bind(document)(n))) }; const t = n.fn.on; n.fn.on = n.fn.init.prototype.on = function () { if (this[0] === window) { function e(e) { return e.split(" ").map((e => "load" === e || 0 === e.indexOf("load.") ? "rocket-jquery-load" : e)).join(" ") } "string" == typeof arguments[0] || arguments[0] instanceof String ? arguments[0] = e(arguments[0]) : "object" == typeof arguments[0] && Object.keys(arguments[0]).forEach((t => { delete Object.assign(arguments[0], { [e(t)]: arguments[0][t] })[t] })) } return t.apply(this, arguments), this }, e.allJQueries.push(n) } t = n } }) } async _triggerDOMContentLoaded() { this.domReadyFired = !0, await this._requestAnimFrame(), document.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._requestAnimFrame(), window.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._requestAnimFrame(), document.dispatchEvent(new Event("rocket-readystatechange")), await this._requestAnimFrame(), document.rocketonreadystatechange && document.rocketonreadystatechange() } async _triggerWindowLoad() { await this._requestAnimFrame(), window.dispatchEvent(new Event("rocket-load")), await this._requestAnimFrame(), window.rocketonload && window.rocketonload(), await this._requestAnimFrame(), this.allJQueries.forEach((e => e(window).trigger("rocket-jquery-load"))), window.dispatchEvent(new Event("rocket-pageshow")), await this._requestAnimFrame(), window.rocketonpageshow && window.rocketonpageshow() } _handleDocumentWrite() { const e = new Map; document.write = document.writeln = function (t) { const n = document.currentScript, r = document.createRange(), i = n.parentElement; let o = e.get(n); void 0 === o && (o = n.nextSibling, e.set(n, o)); const a = document.createDocumentFragment(); r.setStart(a, 0), a.appendChild(r.createContextualFragment(t)), i.insertBefore(a, o) } } async _requestAnimFrame() { return new Promise((e => requestAnimationFrame(e))) } static run() { const e = new RocketLazyLoadScripts(["keydown", "mousemove", "touchmove", "touchstart", "touchend", "wheel"]); e._addUserInteractionListener(e) } } RocketLazyLoadScripts.run();</script>
 
-	<link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
-	<link rel="stylesheet" href="assets/css/owl.theme.default.min.css" />
-	<link rel="stylesheet" href="assets/css/themify-icons.css" />
-	<link rel="stylesheet" href="assets/css/flaticon.css" />
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<link rel="stylesheet" href="assets/css/style.css" />
-	<link rel="stylesheet" href="assets/css/custom.css" />
-	<title>Satya Skin Solutions</title>
-	<link rel='stylesheet' id='megamenu-css' href='assets/css/stylef82d.css' media='all' />
-	<link data-minify="1" rel='stylesheet' id='dashicons-css' href='assets/css/dashicons.min138c.css?ver=1708005023'
-		media='all' />
-	<link rel='stylesheet' id='style-css' href='assets/css/style8a54.css' media='all' />
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="assets/css/themify-icons.css" />
+    <link rel="stylesheet" href="assets/css/flaticon.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/custom.css" />
+    <title>Satya Skin Solutions</title>
+    <link rel='stylesheet' id='megamenu-css' href='assets/css/stylef82d.css' media='all' />
+    <link data-minify="1" rel='stylesheet' id='dashicons-css' href='assets/css/dashicons.min138c.css?ver=1708005023'
+        media='all' />
+    <link rel='stylesheet' id='style-css' href='assets/css/style8a54.css' media='all' />
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <style>
+        .loop_post_title a {
+            font-size: 14px;
+            color: #C78853;
+            text-decoration: underline;
+        }
+
+        .post img {
+            height: 4rem;
+            object-fit: cover;
+            margin: 1rem 0;
+        }
+
+        .sidebar .col-md-4,
+        .sidebar .col-md-8 {
+            border-bottom: 1px solid rgb(211, 211, 211);
+        }
+
+        .loop_post_title {
+            margin: 0 !important;
+        }
+
+        .blog-tag a {
+            padding: 6px;
+            margin: 6px 0;
+            border: 2px solid #C78853;
+            border-radius: 20px;
+        }
+    </style>
 
 </head>
 
-<body class="blog wp-custom-logo mega-menu-main hfeed no-sidebar">
+<body>
 
-   <!-- Navbar -->
-   <nav class="navbar navbar-expand-lg">
-	<div class="container">
-		<!-- Logo -->
-		<div class="logo-wrapper navbar-brand valign">
-			<div class="logo">
-				<a href="index.html" class="custom-logo-link" rel="home" aria-current="page"><img width="300"
-						height="124" src="assets/imgs/Satya-Final-logo-Bamboo.png" class="custom-logo" alt="Satya_Logo"
-						decoding="async" /></a>
-			</div>
-		</div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <div class="logo-wrapper navbar-brand valign">
+                <div class="logo">
+                    <a href="index.html" class="custom-logo-link" rel="home" aria-current="page"><img height="124"
+                            src="assets/imgs/Satya-logo-Gold.png" class="custom-logo w-50 w-md-100 " alt="Satya_Logo"
+                            decoding="async" /></a>
+                </div>
+            </div>
 
-		<!-- Navbar links -->
-		<div id="mega-menu-wrap-main" class="mega-menu-wrap">
-			<div class="mega-menu-toggle">
-				<div class="mega-toggle-blocks-left"></div>
-				<div class="mega-toggle-blocks-center"></div>
-				<div class="mega-toggle-blocks-right">
-					<div class='mega-toggle-block mega-menu-toggle-animated-block mega-toggle-block-0'
-						id='mega-toggle-block-0'><button aria-label="Toggle Menu"
-							class="mega-toggle-animated mega-toggle-animated-slider" type="button"
-							aria-expanded="false">
-							<span class="mega-toggle-animated-box">
-								<span class="mega-toggle-animated-inner"></span>
-							</span>
-						</button></div>
-				</div>
-			</div>
-			<ul id="mega-menu-main" class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js"
-				data-event="hover_intent" data-effect="fade_up" data-effect-speed="200"
-				data-effect-mobile="disabled" data-effect-speed-mobile="0" data-mobile-force-width="false"
-				data-second-click="go" data-document-click="collapse" data-vertical-behaviour="standard"
-				data-breakpoint="768" data-unbind="true" data-mobile-state="collapse_all"
-				data-hover-intent-timeout="300" data-hover-intent-interval="100">
-				<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-home mega-current-menu-item mega-page_item mega-page-item-9 mega-current_page_item mega-align-bottom-left mega-menu-flyout mega-menu-item-86'
-					id='mega-menu-item-86'><a class="mega-menu-link" href="index.html" aria-current="page"
-						tabindex="0">Hair</a></li>
-				<li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-3165'
-					id='mega-menu-item-3165'><a class="mega-menu-link" href="#" aria-haspopup="true"
-						aria-expanded="false" tabindex="0">Non-surgical<span class="mega-indicator"></span></a>
-					<ul class="mega-sub-menu">
-						<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-87'
-							id='mega-menu-item-87'><a class="mega-menu-link"
-								href="dr-gurveen-waraich-garekar/index.html">Dr. Gurveen Waraich Garekar</a></li>
-						<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-3166'
-							id='mega-menu-item-3166'><a class="mega-menu-link"
-								href="dr-siddharth-garekar/index.html">Dr. Siddharth Garekar</a></li>
-					</ul>
-				</li>
-				<li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-88 dropdown'
-					id='mega-menu-item-88'><a class="mega-menu-link" href="#" aria-haspopup="true"
-						aria-expanded="false" tabindex="0">Results<span class="mega-indicator"></span></a>
-					<ul class="mega-sub-menu">
-						<li class='mega-menu-row mega-garekar-mega-menu garekar-mega-menu' id='mega-menu-88-0'>
-							<ul class="mega-sub-menu">
-								<li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-0'>
-									<ul class="mega-sub-menu">
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2432'
-											id='mega-menu-item-2432'><a class="mega-menu-link"
-												href="fillers-treatment-gurgaon/index.html">Fillers</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2433'
-											id='mega-menu-item-2433'><a class="mega-menu-link"
-												href="botox-treatment-gurgaon/index.html">Botox</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2434'
-											id='mega-menu-item-2434'><a class="mega-menu-link"
-												href="thread-lift-treatment-gurgaon/index.html">Thread Lift</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2435'
-											id='mega-menu-item-2435'><a class="mega-menu-link"
-												href="photofacial/index.html">Photofacial</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2535'
-											id='mega-menu-item-2535'><a class="mega-menu-link"
-												href="clear-lift/index.html">Clear Lift</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2536'
-											id='mega-menu-item-2536'><a class="mega-menu-link"
-												href="carbon-laser/index.html">Carbon laser</a></li>
-									</ul>
-								</li>
-								<li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-1'>
-									<ul class="mega-sub-menu">
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2537'
-											id='mega-menu-item-2537'><a class="mega-menu-link"
-												href="laser-toning/index.html">Laser toning</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2439'
-											id='mega-menu-item-2439'><a class="mega-menu-link"
-												href="prp-hair-treatment/index.html">Prp hair</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2538'
-											id='mega-menu-item-2538'><a class="mega-menu-link"
-												href="prp-face/index.html">PRP face</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2441'
-											id='mega-menu-item-2441'><a class="mega-menu-link"
-												href="endymed-mnrf/index.html">Endymed MNRF</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2539'
-											id='mega-menu-item-2539'><a class="mega-menu-link"
-												href="endymed-sculpt/index.html">Endymed sculpt</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2443'
-											id='mega-menu-item-2443'><a class="mega-menu-link"
-												href="hydrafacial-in-gurgaon/index.html">Hydrafacial</a></li>
-									</ul>
-								</li>
-								<li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-2'>
-									<ul class="mega-sub-menu">
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2563'
-											id='mega-menu-item-2563'><a class="mega-menu-link"
-												href="mirapeel/index.html">Mirapeel</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2445'
-											id='mega-menu-item-2445'><a class="mega-menu-link"
-												href="hair-mesotherapy-treatment-gurgaon/index.html">Mesotherapy</a>
-										</li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2448'
-											id='mega-menu-item-2448'><a class="mega-menu-link"
-												href="laser-hair-removal-delhi/index.html">Laser Hair Removal</a>
-										</li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2562'
-											id='mega-menu-item-2562'><a class="mega-menu-link"
-												href="skin-boosters-glass-skin/index.html">Skin Boosters/Glass
-												skin</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2561'
-											id='mega-menu-item-2561'><a class="mega-menu-link"
-												href="profhilo/index.html">Profhilo</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2549'
-											id='mega-menu-item-2549'><a class="mega-menu-link"
-												href="facials/index.html">Medi Facials</a></li>
-									</ul>
-								</li>
-								<li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-3'>
-									<ul class="mega-sub-menu">
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2541'
-											id='mega-menu-item-2541'><a class="mega-menu-link"
-												href="microneedling/index.html">Microneedling</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2546'
-											id='mega-menu-item-2546'><a class="mega-menu-link"
-												href="pixel-erbium-laser/index.html">Pixel erbium laser</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2689'
-											id='mega-menu-item-2689'><a class="mega-menu-link"
-												href="chemical-peeling/index.html">Chemical peeling</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2587'
-											id='mega-menu-item-2587'><a class="mega-menu-link"
-												href="tattoo-removal-in-gurgaon/index.html">Tattoo Removal</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-				<li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-89 dropdown'
-					id='mega-menu-item-89'><a class="mega-menu-link" href="#" aria-haspopup="true"
-						aria-expanded="false" tabindex="0">Why Satya<span class="mega-indicator"></span></a>
-					<ul class="mega-sub-menu">
-						<li class='mega-menu-row' id='mega-menu-89-0'>
-							<ul class="mega-sub-menu">
-								<li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-89-0-0'>
-									<ul class="mega-sub-menu">
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
-											id='mega-menu-item-2661'><a class="mega-menu-link"
-												href="concerns/aging/index.html">Aging</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2665'
-											id='mega-menu-item-2665'><a class="mega-menu-link"
-												href="concerns/fine-lines-wrinkles/index.html">Fine
-												lines/wrinkles</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
-											id='mega-menu-item-2657'><a class="mega-menu-link"
-												href="concerns/under-eye-darkening-hollows/index.html">Under eye
-												darkening/hollows</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
-											id='mega-menu-item-2668'><a class="mega-menu-link"
-												href="concerns/laugh-lines/index.html">Laugh lines</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
-											id='mega-menu-item-2656'><a class="mega-menu-link"
-												href="concerns/thin-lips/index.html">Thin lips</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
-											id='mega-menu-item-2669'><a class="mega-menu-link"
-												href="concerns/neck-lines/index.html">Neck lines</a></li>
-									</ul>
-								</li>
-								<li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-89-0-1'>
-									<ul class="mega-sub-menu">
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2653'
-											id='mega-menu-item-2653'><a class="mega-menu-link"
-												href="concerns/sagging/index.html">Sagging</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2658'
-											id='mega-menu-item-2658'><a class="mega-menu-link"
-												href="concerns/uneven-skin-tone/index.html">Uneven skin tone</a>
-										</li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2672'
-											id='mega-menu-item-2672'><a class="mega-menu-link"
-												href="concerns/patchy-skin/index.html">Patchy skin</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2654'
-											id='mega-menu-item-2654'><a class="mega-menu-link"
-												href="concerns/sensitive-skin/index.html">Sensitive skin</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2652'
-											id='mega-menu-item-2652'><a class="mega-menu-link"
-												href="concerns/rosacea/index.html">Rosacea</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
-											id='mega-menu-item-2659'><a class="mega-menu-link"
-												href="concerns/acne/index.html">Acne</a></li>
-									</ul>
-								</li>
-								<li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-89-0-2'>
-									<ul class="mega-sub-menu">
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2660'
-											id='mega-menu-item-2660'><a class="mega-menu-link"
-												href="concerns/acne-scars/index.html">Acne scars</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2663'
-											id='mega-menu-item-2663'><a class="mega-menu-link"
-												href="concerns/dull-skin/index.html">Dull skin</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2671'
-											id='mega-menu-item-2671'><a class="mega-menu-link"
-												href="concerns/open-pores/index.html">Open pores</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2670'
-											id='mega-menu-item-2670'><a class="mega-menu-link"
-												href="concerns/oily-skin/index.html">Oily skin</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2655'
-											id='mega-menu-item-2655'><a class="mega-menu-link"
-												href="concerns/stretch-marks/index.html">Stretch marks</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2666'
-											id='mega-menu-item-2666'><a class="mega-menu-link"
-												href="concerns/hair-loss-thinning/index.html">Hair loss/
-												thinning</a></li>
-									</ul>
-								</li>
-								<li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-89-0-3'>
-									<ul class="mega-sub-menu">
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2667'
-											id='mega-menu-item-2667'><a class="mega-menu-link"
-												href="concerns/hands-wrinkles-pigmentation/index.html">Hands:
-												wrinkles/ pigmentation</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2662'
-											id='mega-menu-item-2662'><a class="mega-menu-link"
-												href="concerns/double-chin/index.html">Double chin</a></li>
-										<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2664'
-											id='mega-menu-item-2664'><a class="mega-menu-link"
-												href="concerns/facial-hair/index.html">Facial hair</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-				<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2581'
-					id='mega-menu-item-2581'><a class="mega-menu-link" href="laser-hair-removal/index.html"
-						tabindex="0">Location</a></li>
-				<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2431'
-					id='mega-menu-item-2431'><a class="mega-menu-link"
-						href="best-pre-bridal-skin-packages/index.html" tabindex="0">Shop</a></li>
-				<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-3392'
-					id='mega-menu-item-3392'><a class="mega-menu-link" href="blog/index.html"
-						tabindex="0">Careers</a>
-				</li>
-				<li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-91 dropdown'
-					id='mega-menu-item-91'><a class="mega-menu-link" href="#" aria-haspopup="true"
-						aria-expanded="false" tabindex="0">Consultation<span class="mega-indicator"></span></a>
-					<ul class="mega-sub-menu">
-						<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-110'
-							id='mega-menu-item-110'><a class="mega-menu-link" href="get-appointment/index.html">Get
-								Appointment</a></li>
-						<li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-109'
-							id='mega-menu-item-109'><a class="mega-menu-link"
-								href="register-yourself/index.html">Register Yourself</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-	</div>
-	</nav>
+            <!-- Navbar links -->
+            <div id="mega-menu-wrap-main" class="mega-menu-wrap">
+                <div class="mega-menu-toggle">
+                    <div class="mega-toggle-blocks-left"></div>
+                    <div class="mega-toggle-blocks-center"></div>
+                    <div class="mega-toggle-blocks-right">
+                        <div class='mega-toggle-block mega-menu-toggle-animated-block mega-toggle-block-0'
+                            id='mega-toggle-block-0'><button aria-label="Toggle Menu"
+                                class="mega-toggle-animated mega-toggle-animated-slider" type="button"
+                                aria-expanded="false">
+                                <span class="mega-toggle-animated-box">
+                                    <span class="mega-toggle-animated-inner"></span>
+                                </span>
+                            </button></div>
+                    </div>
+                </div>
+                <ul id="mega-menu-main" class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js"
+                    data-event="hover_intent" data-effect="fade_up" data-effect-speed="200"
+                    data-effect-mobile="disabled" data-effect-speed-mobile="0" data-mobile-force-width="false"
+                    data-second-click="go" data-document-click="collapse" data-vertical-behaviour="standard"
+                    data-breakpoint="768" data-unbind="true" data-mobile-state="collapse_all"
+                    data-hover-intent-timeout="300" data-hover-intent-interval="100">
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-home mega-current-menu-item mega-page_item mega-page-item-9 mega-current_page_item mega-align-bottom-left mega-menu-flyout mega-menu-item-86'
+                        id='mega-menu-item-86'><a class="mega-menu-link" href="index.html" aria-current="page"
+                            tabindex="0">Home</a></li>
+                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-3165'
+                        id='mega-menu-item-3165'><a class="mega-menu-link" href="About.html" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">About<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-87'
+                                id='mega-menu-item-87'><a class="mega-menu-link"
+                                    href="dr-gurveen-waraich-garekar/index.html">About Satya</a></li>
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-87'
+                                id='mega-menu-item-87'><a class="mega-menu-link"
+                                    href="dr-gurveen-waraich-garekar/index.html">Dr. Shaiil Gupta</a></li>
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-3166'
+                                id='mega-menu-item-3166'><a class="mega-menu-link"
+                                    href="dr-siddharth-garekar/index.html">Dr. Ruchi Agarwal</a></li>
+                        </ul>
+                    </li>
+                    <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-88 dropdown'
+                        id='mega-menu-item-88'><a class="mega-menu-link" href="#" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">Skin Treatments<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-row mega-garekar-mega-menu garekar-mega-menu' id='mega-menu-88-0'>
+                                <ul class="mega-sub-menu">
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-0'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2432'
+                                                id='mega-menu-item-2432'><a class="mega-menu-link"
+                                                    href="fillers-treatment-gurgaon/index.html">Fillers</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2433'
+                                                id='mega-menu-item-2433'><a class="mega-menu-link"
+                                                    href="botox-treatment-gurgaon/index.html">Botox</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2434'
+                                                id='mega-menu-item-2434'><a class="mega-menu-link"
+                                                    href="thread-lift-treatment-gurgaon/index.html">Thread Lift</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2435'
+                                                id='mega-menu-item-2435'><a class="mega-menu-link"
+                                                    href="photofacial/index.html">Photofacial</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2535'
+                                                id='mega-menu-item-2535'><a class="mega-menu-link"
+                                                    href="clear-lift/index.html">Clear Lift</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2536'
+                                                id='mega-menu-item-2536'><a class="mega-menu-link"
+                                                    href="carbon-laser/index.html">Carbon laser</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-1'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2537'
+                                                id='mega-menu-item-2537'><a class="mega-menu-link"
+                                                    href="laser-toning/index.html">Laser toning</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2439'
+                                                id='mega-menu-item-2439'><a class="mega-menu-link"
+                                                    href="prp-hair-treatment/index.html">Prp hair</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2538'
+                                                id='mega-menu-item-2538'><a class="mega-menu-link"
+                                                    href="prp-face/index.html">PRP face</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2441'
+                                                id='mega-menu-item-2441'><a class="mega-menu-link"
+                                                    href="endymed-mnrf/index.html">Endymed MNRF</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2539'
+                                                id='mega-menu-item-2539'><a class="mega-menu-link"
+                                                    href="endymed-sculpt/index.html">Endymed sculpt</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2443'
+                                                id='mega-menu-item-2443'><a class="mega-menu-link"
+                                                    href="hydrafacial-in-gurgaon/index.html">Hydrafacial</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-2'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2563'
+                                                id='mega-menu-item-2563'><a class="mega-menu-link"
+                                                    href="mirapeel/index.html">Mirapeel</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2445'
+                                                id='mega-menu-item-2445'><a class="mega-menu-link"
+                                                    href="hair-mesotherapy-treatment-gurgaon/index.html">Mesotherapy</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2448'
+                                                id='mega-menu-item-2448'><a class="mega-menu-link"
+                                                    href="laser-hair-removal-delhi/index.html">Laser Hair Removal</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2562'
+                                                id='mega-menu-item-2562'><a class="mega-menu-link"
+                                                    href="skin-boosters-glass-skin/index.html">Skin Boosters/Glass
+                                                    skin</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2561'
+                                                id='mega-menu-item-2561'><a class="mega-menu-link"
+                                                    href="profhilo/index.html">Profhilo</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2549'
+                                                id='mega-menu-item-2549'><a class="mega-menu-link"
+                                                    href="facials/index.html">Medi Facials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-3'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2541'
+                                                id='mega-menu-item-2541'><a class="mega-menu-link"
+                                                    href="microneedling/index.html">Microneedling</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2546'
+                                                id='mega-menu-item-2546'><a class="mega-menu-link"
+                                                    href="pixel-erbium-laser/index.html">Pixel erbium laser</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2689'
+                                                id='mega-menu-item-2689'><a class="mega-menu-link"
+                                                    href="chemical-peeling/index.html">Chemical peeling</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2587'
+                                                id='mega-menu-item-2587'><a class="mega-menu-link"
+                                                    href="tattoo-removal-in-gurgaon/index.html">Tattoo Removal</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-89 dropdown'
+                        id='mega-menu-item-89'><a class="mega-menu-link" href="#" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">Hair Transplant<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-row' id='mega-menu-89-0'>
+                                <ul class="mega-sub-menu">
+                                    <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-0'>
+                                        <ul class="mega-sub-menu" style="column-count: 2;">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
+                                                id='mega-menu-item-2661'><a class="mega-menu-link"
+                                                    href="concerns/aging/index.html"> <strong style="color: #C78853;">
+                                                        Hair
+                                                        Transplant</strong></a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
+                                                id='mega-menu-item-2661'><a class="mega-menu-link"
+                                                    href="concerns/aging/index.html"> FUT</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2665'
+                                                id='mega-menu-item-2665'><a class="mega-menu-link"
+                                                    href="concerns/fine-lines-wrinkles/index.html">FUE</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
+                                                id='mega-menu-item-2657'><a class="mega-menu-link"
+                                                    href="concerns/under-eye-darkening-hollows/index.html">MHT</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
+                                                id='mega-menu-item-2668'><a class="mega-menu-link"
+                                                    href="concerns/laugh-lines/index.html"> Balanced Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
+                                                id='mega-menu-item-2656'><a class="mega-menu-link"
+                                                    href="concerns/thin-lips/index.html">Beard Restoration</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
+                                                id='mega-menu-item-2669'><a class="mega-menu-link"
+                                                    href="concerns/neck-lines/index.html">Synthetic Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
+                                                id='mega-menu-item-2657'><a class="mega-menu-link"
+                                                    href="concerns/under-eye-darkening-hollows/index.html">Long Hair
+                                                    Transplant</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
+                                                id='mega-menu-item-2668'><a class="mega-menu-link"
+                                                    href="concerns/laugh-lines/index.html"> Body Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
+                                                id='mega-menu-item-2656'><a class="mega-menu-link"
+                                                    href="concerns/thin-lips/index.html"> Female Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
+                                                id='mega-menu-item-2669'><a class="mega-menu-link"
+                                                    href="concerns/neck-lines/index.html">Repair Hair Transplant</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-1'>
+                                        <ul class="mega-sub-menu" style="column-count: 2;">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2653'
+                                                id='mega-menu-item-2653'><a class="mega-menu-link"
+                                                    href="concerns/sagging/index.html"><strong
+                                                        style="color: #C78853;">NON SURGICAL</strong></a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2658'
+                                                id='mega-menu-item-2658'><a class="mega-menu-link"
+                                                    href="concerns/uneven-skin-tone/index.html">PRP</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2672'
+                                                id='mega-menu-item-2672'><a class="mega-menu-link"
+                                                    href="concerns/patchy-skin/index.html">Mesotherapy</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2654'
+                                                id='mega-menu-item-2654'><a class="mega-menu-link"
+                                                    href="concerns/sensitive-skin/index.html">Stem Cell Therapy</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2652'
+                                                id='mega-menu-item-2652'><a class="mega-menu-link"
+                                                    href="concerns/rosacea/index.html">Hair Weaving</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
+                                                id='mega-menu-item-2659'><a class="mega-menu-link"
+                                                    href="concerns/acne/index.html">Laser Comb</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
+                                                id='mega-menu-item-2659'><a class="mega-menu-link"
+                                                    href="concerns/acne/index.html">Scalp Micro Pigmentation</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-91 dropdown'
+                        id='mega-menu-item-91'><a class="mega-menu-link" href="#" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">Concerns<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-110'
+                                id='mega-menu-item-110'><a class="mega-menu-link"
+                                    href="get-appointment/index.html">Hair</a></li>
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-109'
+                                id='mega-menu-item-109'><a class="mega-menu-link"
+                                    href="register-yourself/index.html">Skin</a></li>
+                        </ul>
+                    </li>
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-3392'
+                        id='mega-menu-item-3392'><a class="mega-menu-link" href="blog/index.html"
+                            tabindex="0">Result</a>
+                    </li>
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2431'
+                        id='mega-menu-item-2431'><a class="mega-menu-link" href="blog.html" tabindex="0">Blog</a></li>
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2581'
+                        id='mega-menu-item-2581'><a class="mega-menu-link" href="laser-hair-removal/index.html"
+                            tabindex="0">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-	<!-- Header Banner -->
-	<div class="banner-header section-padding valign bg-img bg-fixed" data-overlay-dark="4" data-background="./assets/imgs/_DSC5915.jpg">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 caption mt-90">
-					<!--  <h5>Luxury Hotel</h5> -->
-					<h1>Blog </h1>
-				</div>
-			</div>
-		</div>
-	</div>
+    <!-- Header Banner -->
+    <div class="banner-header section-padding valign bg-img bg-fixed" data-overlay-dark="4"
+        data-background="./assets/imgs/_DSC5915.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 caption mt-90">
+                    <!--  <h5>Luxury Hotel</h5> -->
+                    <h1>Blog </h1>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<main id="primary1" class="site-main1">
-		<section class="about section-padding">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
-						<div class="loop_feature_image_wrapper">
-							<a href="#"><img
-									class="loop_feature_image"
-									src="assets/imgs/blog/Skin-Specialist-MD.jpg"
-									alt="7 Vows to help brides craft a Good Skin Care Routine" /></a>
-						</div>
+    <main id="primary1" class="site-main1">
+        <section class="about section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
+                                <div class="loop_feature_image_wrapper">
+                                    <a href="blog-details.html"><img class="loop_feature_image"
+                                            src="assets/imgs/blog/Skin-Specialist-MD.jpg" alt="blog" /></a>
+                                </div>
+                                <div class="entry-meta">
+                                    Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
+                                    <h2 class="loop_post_title"><a href="blog-details.html">Lorem, ipsum dolor sit amet
+                                            consectetur adipisicing elit.</a></h2>
+                                </div>
+                            </div>
 
-						<h2 class="loop_post_title"><a
-								href="#">7 Vows to help
-								brides craft a Good Skin Care Routine</a></h2>
-						<div class="entry-meta">
-							Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
-						</div><!-- .entry-meta -->
-						<p>When it comes to wedding preparations, there is no such thing as starting too soon!  As a
-							bride, the most<a class="gmd-read-more"
-								href="#">Read More</a></p>
-					</div>
+                            <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
+                                <div class="loop_feature_image_wrapper">
+                                    <a href="blog-details.html"><img class="loop_feature_image"
+                                            src="assets/imgs/blog/Skin-Specialist-MD.jpg" alt="blog" /></a>
+                                </div>
+                                <div class="entry-meta">
+                                    Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
+                                    <h2 class="loop_post_title"><a href="blog-details.html">Lorem, ipsum dolor sit amet
+                                            consectetur adipisicing elit.</a></h2>
+                                </div>
+                            </div>
 
-					<div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
-						<div class="loop_feature_image_wrapper">
-							<a href="#"><img
-									class="loop_feature_image"
-									src="assets/imgs/blog/Skin-Specialist-MD.jpg"
-									alt="Visit a Dermatologist to Get the most efficient Solutions for Skin Problems" /></a>
-						</div>
+                            <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
+                                <div class="loop_feature_image_wrapper">
+                                    <a href="blog-details.html"><img class="loop_feature_image"
+                                            src="assets/imgs/blog/Skin-Specialist-MD.jpg" alt="blog" /></a>
+                                </div>
+                                <div class="entry-meta">
+                                    Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
+                                    <h2 class="loop_post_title"><a href="blog-details.html">Lorem, ipsum dolor sit amet
+                                            consectetur adipisicing elit.</a></h2>
+                                </div>
+                            </div>
 
-						<h2 class="loop_post_title"><a
-								href="#">Visit a
-								Dermatologist to Get the most efficient Solutions for Skin Problems</a></h2>
-						<div class="entry-meta">
-							Posted on <strong>March 23, 2021</strong> | By <strong>admin</strong>
-						</div><!-- .entry-meta -->
-						<p>Due to the hustle and bustle of our daily lives, most of us fail to follow a healthy skincare
-							routine.<a class="gmd-read-more"
-								href="#">Read
-								More</a></p>
-					</div>
+                            <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
+                                <div class="loop_feature_image_wrapper">
+                                    <a href="blog-details.html"><img class="loop_feature_image"
+                                            src="assets/imgs/blog/Skin-Specialist-MD.jpg" alt="blog" /></a>
+                                </div>
+                                <div class="entry-meta">
+                                    Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
+                                    <h2 class="loop_post_title"><a href="blog-details.html">Lorem, ipsum dolor sit amet
+                                            consectetur adipisicing elit.</a></h2>
+                                </div>
+                            </div>
 
-					<div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
-						<div class="loop_feature_image_wrapper">
-							<a href="#"><img
-									class="loop_feature_image"
-									src="assets/imgs/blog/Skin-Specialist-MD.jpg"
-									alt="Turn to Hair Removal Treatment to Unleash your Beauty!" /></a>
-						</div>
+                            <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
+                                <div class="loop_feature_image_wrapper">
+                                    <a href="blog-details.html"><img class="loop_feature_image"
+                                            src="assets/imgs/blog/Skin-Specialist-MD.jpg" alt="blog" /></a>
+                                </div>
+                                <div class="entry-meta">
+                                    Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
+                                    <h2 class="loop_post_title"><a href="blog-details.html">Lorem, ipsum dolor sit amet
+                                            consectetur adipisicing elit.</a></h2>
+                                </div>
+                            </div>
 
-						<h2 class="loop_post_title"><a
-								href="#">Turn to Hair Removal
-								Treatment to Unleash your Beauty!</a></h2>
-						<div class="entry-meta">
-							Posted on <strong>March 5, 2021</strong> | By <strong>admin</strong>
-						</div><!-- .entry-meta -->
-						<p>Who doesn’t yearn for silky, smooth skin that is free from unwanted hair? But it’s easier
-							said than done as<a class="gmd-read-more"
-								href="#">Read More</a></p>
-					</div>
+                            <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
+                                <div class="loop_feature_image_wrapper">
+                                    <a href="blog-details.html"><img class="loop_feature_image"
+                                            src="assets/imgs/blog/Skin-Specialist-MD.jpg" alt="blog" /></a>
+                                </div>
+                                <div class="entry-meta">
+                                    Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
+                                    <h2 class="loop_post_title"><a href="blog-details.html">Lorem, ipsum dolor sit amet
+                                            consectetur adipisicing elit.</a></h2>
+                                </div>
+                            </div>
 
-					<div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
-						<div class="loop_feature_image_wrapper">
-							<a href="#"><img class="loop_feature_image"
-									src="assets/imgs/blog/Skin-Specialist-MD.jpg"
-									alt="Get a Radiant Glass Skin Treatment with GAREKARS" /></a>
-						</div>
+                            <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
+                                <div class="loop_feature_image_wrapper">
+                                    <a href="blog-details.html"><img class="loop_feature_image"
+                                            src="assets/imgs/blog/Skin-Specialist-MD.jpg" alt="blog" /></a>
+                                </div>
+                                <div class="entry-meta">
+                                    Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
+                                    <h2 class="loop_post_title"><a href="blog-details.html">Lorem, ipsum dolor sit amet
+                                            consectetur adipisicing elit.</a></h2>
+                                </div>
+                            </div>
 
-						<h2 class="loop_post_title"><a href="#">Get a Radiant
-								Glass Skin Treatment with GAREKARS</a></h2>
-						<div class="entry-meta">
-							Posted on <strong>October 20, 2020</strong> | By <strong>admin</strong>
-						</div><!-- .entry-meta -->
-						<p>Are you looking for a skin treatment that gives you the radiant “glass skin” that Korean
-							women have made a<a class="gmd-read-more"
-								href="#">Read More</a></p>
-					</div>
+                            <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
+                                <div class="loop_feature_image_wrapper">
+                                    <a href="blog-details.html"><img class="loop_feature_image"
+                                            src="assets/imgs/blog/Skin-Specialist-MD.jpg" alt="blog" /></a>
+                                </div>
+                                <div class="entry-meta">
+                                    Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
+                                    <h2 class="loop_post_title"><a href="blog-details.html">Lorem, ipsum dolor sit amet
+                                            consectetur adipisicing elit.</a></h2>
+                                </div>
+                            </div>
 
-					<div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
-						<div class="loop_feature_image_wrapper">
-							<a href="#"><img class="loop_feature_image"
-									src="assets/imgs/blog/Skin-Specialist-MD.jpg"
-									alt="How Often Should You Get A HydraFacial?" /></a>
-						</div>
+                            <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
+                                <div class="loop_feature_image_wrapper">
+                                    <a href="blog-details.html"><img class="loop_feature_image"
+                                            src="assets/imgs/blog/Skin-Specialist-MD.jpg" alt="blog" /></a>
+                                </div>
+                                <div class="entry-meta">
+                                    Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
+                                    <h2 class="loop_post_title"><a href="blog-details.html">Lorem, ipsum dolor sit amet
+                                            consectetur adipisicing elit.</a></h2>
+                                </div>
+                            </div>
 
-						<h2 class="loop_post_title"><a href="#">How
-								Often Should You Get A HydraFacial?</a></h2>
-						<div class="entry-meta">
-							Posted on <strong>August 18, 2020</strong> | By <strong>admin</strong>
-						</div><!-- .entry-meta -->
-						<p>Who doesn’t desire to have skin that is as smooth as silk?  Everyone does, right? But in
-							today’s modern-day world, attaining<a class="gmd-read-more"
-								href="#">Read More</a></p>
-					</div>
+                            <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
+                                <div class="loop_feature_image_wrapper">
+                                    <a href="blog-details.html"><img class="loop_feature_image"
+                                            src="assets/imgs/blog/Skin-Specialist-MD.jpg" alt="blog" /></a>
+                                </div>
+                                <div class="entry-meta">
+                                    Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
+                                    <h2 class="loop_post_title"><a href="blog-details.html">Lorem, ipsum dolor sit amet
+                                            consectetur adipisicing elit.</a></h2>
+                                </div>
+                            </div>
 
-					<div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
-						<div class="loop_feature_image_wrapper">
-							<a href="#"><img class="loop_feature_image"
-									src="assets/imgs/blog/Skin-Specialist-MD.jpg"
-									alt="Is Laser Hair Removal A Temporary or Permanent Fix?" /></a>
-						</div>
+                            <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
+                                <div class="loop_feature_image_wrapper">
+                                    <a href="blog-details.html"><img class="loop_feature_image"
+                                            src="assets/imgs/blog/Skin-Specialist-MD.jpg" alt="blog" /></a>
+                                </div>
+                                <div class="entry-meta">
+                                    Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
+                                    <h2 class="loop_post_title"><a href="blog-details.html">Lorem, ipsum dolor sit amet
+                                            consectetur adipisicing elit.</a></h2>
+                                </div>
+                            </div>
 
-						<h2 class="loop_post_title"><a href="#">Is Laser
-								Hair Removal A Temporary or Permanent Fix?</a></h2>
-						<div class="entry-meta">
-							Posted on <strong>May 13, 2020</strong> | By <strong>admin</strong>
-						</div><!-- .entry-meta -->
-						<p>When it comes to undergoing hair removal procedures like waxing, shaving or epilating, it can
-							be really tough on you,<a class="gmd-read-more"
-								href="#">Read More</a></p>
-					</div>
+                            <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
+                                <div class="loop_feature_image_wrapper">
+                                    <a href="blog-details.html"><img class="loop_feature_image"
+                                            src="assets/imgs/blog/Skin-Specialist-MD.jpg" alt="blog" /></a>
+                                </div>
+                                <div class="entry-meta">
+                                    Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
+                                    <h2 class="loop_post_title"><a href="blog-details.html">Lorem, ipsum dolor sit amet
+                                            consectetur adipisicing elit.</a></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-md-3 sidebar">
+                        <div>
+                            <img src="assets/imgs/Sir-scaled-1-1024x683.jpg" alt="">
+                            <p class="text-center">Medically Reviewed By <br>
+                                <strong>Dr. Shaiil Gupta</strong>
+                            </p>
+                        </div>
+                        <div>
+                            <h6><strong>Category</strong></h6>
+                            <ul class="list-unstyled">
+                                <li>Hair Loss</li>
+                                <li>Hair Transplant</li>
+                            </ul>
+                        </div>
+                        <div class="post">
+                            <h6><strong>Popular Post</strong></h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <a href="blog-details.html"><img src="assets/imgs/blog/Skin-Specialist-MD.jpg"
+                                            alt="blog" /></a>
+                                </div>
+                                <div class="col-md-8 entry-meta">
+                                    <h6 class="loop_post_title"><a href="blog-details.html">Lorem, ipsum dolor</a></h6>
+                                    Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="blog-details.html"><img src="assets/imgs/blog/Skin-Specialist-MD.jpg"
+                                            alt="blog" /></a>
+                                </div>
+                                <div class="col-md-8 entry-meta">
+                                    <h6 class="loop_post_title"><a href="blog-details.html">Lorem, ipsum dolor</a></h6>
+                                    Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="blog-details.html"><img src="assets/imgs/blog/Skin-Specialist-MD.jpg"
+                                            alt="blog" /></a>
+                                </div>
+                                <div class="col-md-8 entry-meta">
+                                    <h6 class="loop_post_title"><a href="blog-details.html">Lorem, ipsum dolor</a></h6>
+                                    Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="blog-details.html"><img src="assets/imgs/blog/Skin-Specialist-MD.jpg"
+                                            alt="blog" /></a>
+                                </div>
+                                <div class="col-md-8 entry-meta">
+                                    <h6 class="loop_post_title"><a href="blog-details.html">Lorem, ipsum dolor</a></h6>
+                                    Posted on <strong>April 22, 2021</strong> | By <strong>admin</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <h6><strong>Popular Tags</strong></h6>
+                            <div class="blog-tag">
+                                <a href="#"> Hair Regrowth Treatment For Hair</a>
+                                <a href="#">average cost of hair transplant</a>
+                                <a href="#">best hair transplant clinic in
+                                    India</a>
+                                <a href="#">best solution for women's hair
+                                    loss</a>
+                                <a href="#">Best Surgeons </a>
+                                <a href="#">Care After Hair Transplant
+                                    Surgery</a>
 
-					<div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
-						<div class="loop_feature_image_wrapper">
-							<a href="#"><img class="loop_feature_image"
-									src="assets/imgs/blog/Skin-Specialist-MD.jpg"
-									alt="Everything You Need To Know About Laser Tattoo Removal &#038; Its Aftercare!" /></a>
-						</div>
+                                <a href="#">celebrity hair transplant cost</a>
 
-						<h2 class="loop_post_title"><a href="#">Everything
-								You Need To Know About Laser Tattoo Removal &#038; Its Aftercare!</a></h2>
-						<div class="entry-meta">
-							Posted on <strong>March 25, 2020</strong> | By <strong>admin</strong>
-						</div><!-- .entry-meta -->
-						<p>We all make mistakes, but no one wants to see evidence of the same printed on their bodies!
-							Thankfully, you<a class="gmd-read-more"
-								href="#">Read More</a></p>
-					</div>
-
-					<div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
-						<div class="loop_feature_image_wrapper">
-							<a href="#"><img class="loop_feature_image"
-									src="assets/imgs/blog/Skin-Specialist-MD.jpg"
-									alt="Everything You Need To Know about Vitiligo" /></a>
-						</div>
-
-						<h2 class="loop_post_title"><a href="#">Everything You
-								Need To Know about Vitiligo</a></h2>
-						<div class="entry-meta">
-							Posted on <strong>January 15, 2020</strong> | By <strong>admin</strong>
-						</div><!-- .entry-meta -->
-						<p>Vitiligo is a common skin condition in which your skin cells stop producing melanin, leading
-							to the loss of colour.<a class="gmd-read-more"
-								href="#">Read More</a></p>
-					</div>
-
-					<div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
-						<div class="loop_feature_image_wrapper">
-							<a href="#"><img class="loop_feature_image"
-									src="assets/imgs/blog/Skin-Specialist-MD.jpg"
-									alt="5 Winter Skin Problems That Everyone Faces &#038; How to Combat Them!" /></a>
-						</div>
-
-						<h2 class="loop_post_title"><a href="#">5 Winter Skin
-								Problems That Everyone Faces &#038; How to Combat Them!</a></h2>
-						<div class="entry-meta">
-							Posted on <strong>October 12, 2019</strong> | By <strong>admin</strong>
-						</div><!-- .entry-meta -->
-						<p>Now that the winter season is knocking on your door, you must be dreading the skin problems
-							it brings along<a class="gmd-read-more"
-								href="#">Read More</a></p>
-					</div>
-
-					<div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
-						<div class="loop_feature_image_wrapper">
-							<a href="#"><img class="loop_feature_image"
-									src="assets/imgs/blog/Skin-Specialist-MD.jpg"
-									alt="Wondering how to get rid of dark spots on the face? We’ve got you covered!" /></a>
-						</div>
-
-						<h2 class="loop_post_title"><a href="#">Wondering how to
-								get rid of dark spots on the face? We’ve got you covered!</a></h2>
-						<div class="entry-meta">
-							Posted on <strong>September 12, 2019</strong> | By <strong>admin</strong>
-						</div><!-- .entry-meta -->
-						<p>When you’re getting ready to go out, nothing can ruin your mood (and your look) the way a
-							random dark<a class="gmd-read-more" href="#">Read
-								More</a></p>
-					</div>
-
-					<div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
-						<div class="loop_feature_image_wrapper">
-							<a href="#"><img
-									class="loop_feature_image"
-									src="assets/imgs/blog/Skin-Specialist-MD.jpg"
-									alt="Side Effects of Laser Hair Removal on Face and a Sure-Shot Way to Prevent Them!" /></a>
-						</div>
-
-						<h2 class="loop_post_title"><a href="#">Side
-								Effects of Laser Hair Removal on Face and a Sure-Shot Way to Prevent Them!</a></h2>
-						<div class="entry-meta">
-							Posted on <strong>August 14, 2019</strong> | By <strong>admin</strong>
-						</div><!-- .entry-meta -->
-						<p>With so many people aspiring to be ‘selfie-ready’ at all times, cosmetic procedures have
-							skyrocketed in their popularity. Of the<a class="gmd-read-more"
-								href="#">Read More</a></p>
-					</div>
-
-					<div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
-						<div class="loop_feature_image_wrapper">
-							<a href="#"><img class="loop_feature_image"
-									src="assets/imgs/blog/Skin-Specialist-MD.jpg"
-									alt="Simple and Effective Tips for Oily Skin Care in Summer" /></a>
-						</div>
-
-						<h2 class="loop_post_title"><a href="#">Simple and Effective
-								Tips for Oily Skin Care in Summer</a></h2>
-						<div class="entry-meta">
-							Posted on <strong>June 11, 2019</strong> | By <strong>admin</strong>
-						</div><!-- .entry-meta -->
-						<p>The summer season in India can be searing, with the air itself ready to burn your skin off.
-							With the<a class="gmd-read-more" href="#">Read More</a>
-						</p>
-					</div>
-
-				</div>
-				<nav class="navigation posts-navigation" aria-label="Posts">
-					<h2 class="screen-reader-text">Posts navigation</h2>
-					<div class="nav-links">
-						<div class="nav-previous"><a href="#">Older posts</a></div>
-					</div>
-				</nav>
-			</div>
-		</section>
-
-	</main><!-- #main -->
+                            </div>
+                        </div>
+                    </div>
 
 
-	<!-- Footer -->
-	<footer class="footer">
-		<div class="footer-top">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-3 text-center ">
-						<img src="assets/imgs/Satya-Final-logo-Bamboo.png" class="w-50 " alt="">
-					</div>
-					<div class="col-md-3">
-						<div class="footer-column footer-contact">
-							<h3 class="footer-title">Contact</h3>
-							<h4 class="footer-title" style="font-size:18px">Gurugram</h4>
-							<p class="footer-contact-text">4301, Galleria Boulevard, opposite DLF Club,<br> DLF Phase
-								IV, Sector 27,<br> Gurugram, Haryana 122002<span style="padding-top: 10px;
-font-weight: bold!important;color: #fff;font-size:17px"> <span class="flaticon-call"></span> <a
-										href="tel:9667684409">+919910094945</a> | Satya@gmail.com</span></p>
+                </div>
+
+            </div>
+        </section>
+
+    </main><!-- #main -->
 
 
-							<h4 class="footer-title" style="font-size:18px">Delhi Clinic</h4>
-							<p class="footer-contact-text" style="padding-bottom:0">ED 38 /A Pitampura, Near Pitampura,
-								<br> Madhuban Chowk, Delhi, 110034, India<span style="padding-top: 10px;
-font-weight: bold!important;color: #fff;font-size:17px"> <span class="flaticon-call"></span> <a
-										href="tel:9599491986">+919910094945</a> | Satya@gmail.com</span>
-							</p>
-							<!--<div class="footer-contact-info">
-							<p class="footer-contact-phone" style="font-size:19px"><span class="flaticon-call"></span> <a href="tel:9205639140">92056 39140</a> | <span class="flaticon-email"></span> drsgarekar@gmail.com</p>-->
-							<!--<p class="footer-contact-mail">drsgarekar@gmail.com</p>-->
-							<!--</div>-->
-							<div class="footer-about-social-list">
-								<a href="#"><i class="ti-instagram"></i></a>
-								<a href="#"><i class="ti-twitter"></i></a>
-								<a href="#"><i class="ti-youtube"></i></a>
-								<a href="#"><i class="ti-facebook"></i></a>
-								<a href="#"><i class="ti-pinterest"></i></a>
-								<a href="#"><i class="ti-linkedin"></i></a>
-								<a href="#"><i class="ti-google"></i></a>
-							</div>
-							<!--<br/> 5 stars – based on 2622 reviews on Practo, Facebook, and Google-->
 
-						</div>
-					</div>
-					<div class="col-md-2">
-						<div class="footer-column footer-explore clearfix">
-							<h3 class="footer-title">Quick Link</h3>
-							<ul class="footer-explore-list list-unstyled">
-								<li><a href="#">Home</a></li>
-								<li><a href="#">About Us</a></li>
-								<li><a href="#">Services</a></li>
-								<li><a href="#">Products</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="footer-column footer-about">
-							<h3 class="footer-title">Blogs</h3>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 text-center ">
+                        <img src="assets/imgs/Satya-logo-Gold.png" class="w-50 " alt="">
+                    </div>
+                    <div class="col-md-3">
+                        <div class="footer-column footer-contact">
+                            <h3 class="footer-title">Contact</h3>
+                            <h4 class="footer-title" style="font-size:18px">Gurugram</h4>
+                            <p class="footer-contact-text">4301, Galleria Boulevard, opposite DLF Club,<br> DLF Phase
+                                IV, Sector 27,<br> Gurugram, Haryana 122002<span style="padding-top: 10px;
+    font-weight: bold!important;color: #fff;font-size:17px"> <span class="flaticon-call"></span> <a
+                                        href="tel:9667684409">+919910094945</a> | Satya@gmail.com</span></p>
 
-							<ul class="footer-explore-list list-unstyled">
-								<li><a href="#">7 Vows to help
-										brides craft a Good Skin Care Routine</a></li>
-								<li><a href="#">Visit
-										a Dermatologist to Get the most efficient Solutions for Skin Problems</a></li>
-								<li><a href="#">Turn to Hair Removal
-										Treatment to Unleash your Beauty!</a></li>
-								<li><a href="#">Get a Radiant Glass Skin Treatment
-										with </a></li>
-								<li><a href="#">How Often Should You Get A
-										HydraFacial?</a></li>
-								<li><a href="#">Side Effects of Laser
-										Hair Removal on Face and a Sure-Shot Way to Prevent Them!</a></li>
-								<li><a href="#">Wondering how to get rid of dark
-										spots on the face? We’ve got you covered!</a></li>
-							</ul>
 
-						</div>
-					</div>
+                            <h4 class="footer-title" style="font-size:18px">Delhi Clinic</h4>
+                            <p class="footer-contact-text" style="padding-bottom:0">ED 38 /A Pitampura, Near Pitampura,
+                                <br> Madhuban Chowk, Delhi, 110034, India<span style="padding-top: 10px;
+    font-weight: bold!important;color: #fff;font-size:17px"> <span class="flaticon-call"></span> <a
+                                        href="tel:9599491986">+919910094945</a> | Satya@gmail.com</span>
+                            </p>
+                            <!--<div class="footer-contact-info">
+                                <p class="footer-contact-phone" style="font-size:19px"><span class="flaticon-call"></span> <a href="tel:9205639140">92056 39140</a> | <span class="flaticon-email"></span> drsgarekar@gmail.com</p>-->
+                            <!--<p class="footer-contact-mail">drsgarekar@gmail.com</p>-->
+                            <!--</div>-->
+                            <div class="footer-about-social-list">
+                                <a href="#"><i class="ti-instagram"></i></a>
+                                <a href="#"><i class="ti-twitter"></i></a>
+                                <a href="#"><i class="ti-youtube"></i></a>
+                                <a href="#"><i class="ti-facebook"></i></a>
+                                <a href="#"><i class="ti-pinterest"></i></a>
+                                <a href="#"><i class="ti-linkedin"></i></a>
+                                <a href="#"><i class="ti-google"></i></a>
+                            </div>
+                            <!--<br/> 5 stars – based on 2622 reviews on Practo, Facebook, and Google-->
 
-				</div>
-			</div>
-		</div>
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="footer-bottom-inner">
-							<p class="footer-bottom-copy-right">Copyright © 2022 <a href="index.html"> Satyaclinic</a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="footer-column footer-explore clearfix">
+                            <h3 class="footer-title">Quick Link</h3>
+                            <ul class="footer-explore-list list-unstyled">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Services</a></li>
+                                <li><a href="#">Products</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="footer-column footer-about">
+                            <a href="blog.html">
+                                <h3 class="footer-title">Blogs</h3>
+                            </a>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-		crossorigin="anonymous"></script>
-	<!-- jQuery -->
-	<script type="rocketlazyloadscript" src="assets/js/jquery-3.6.0.min.js" defer></script>
-	<script type="rocketlazyloadscript" src="assets/js/jquery-migrate-3.0.0.min.js" defer></script>
-	<script type="rocketlazyloadscript" src="assets/js/popper.min.js" defer></script>
-	<script type="rocketlazyloadscript" src="assets/js/scrollIt.min.js" defer></script>
-	<script type="rocketlazyloadscript" src="assets/js/jquery.waypoints.min.js" defer></script>
-	<script type="rocketlazyloadscript" src="assets/js/owl.carousel.min.js" defer></script>
-	<script type="rocketlazyloadscript" src="assets/js/jquery.stellar.min.js" defer></script>
-	<script type="rocketlazyloadscript" data-minify="1" src="assets/js/jquery.magnific-popup.js"></script>
-	<script type="rocketlazyloadscript" data-minify="1" src="assets/js/YouTubePopUp.js" defer></script>
-	<script type="rocketlazyloadscript" src="assets/js/smooth-scroll.min.js" defer></script>
-	<script type="rocketlazyloadscript" src="assets/js/custom-min.js" defer></script>
+                            <ul class="footer-explore-list list-unstyled">
+                                <li><a href="#">7 Vows to help
+                                        brides craft a Good Skin Care Routine</a></li>
+                                <li><a href="#">Visit
+                                        a Dermatologist to Get the most efficient Solutions for Skin Problems</a></li>
+                                <li><a href="#">Turn to Hair Removal
+                                        Treatment to Unleash your Beauty!</a></li>
+                                <li><a href="#">Get a Radiant Glass Skin Treatment
+                                        with </a></li>
+                                <li><a href="#">How Often Should You Get A
+                                        HydraFacial?</a></li>
+                                <li><a href="#">Side Effects of Laser
+                                        Hair Removal on Face and a Sure-Shot Way to Prevent Them!</a></li>
+                                <li><a href="#">Wondering how to get rid of dark
+                                        spots on the face? We’ve got you covered!</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="footer-bottom-inner">
+                            <p class="footer-bottom-copy-right">Copyright © 2022 <a href="index.html"> Satyaclinic</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script type="rocketlazyloadscript" src="assets/js/jquery-3.6.0.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/jquery-migrate-3.0.0.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/popper.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/scrollIt.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/jquery.waypoints.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/owl.carousel.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/jquery.stellar.min.js" defer></script>
+    <script type="rocketlazyloadscript" data-minify="1" src="assets/js/jquery.magnific-popup.js"></script>
+    <script type="rocketlazyloadscript" data-minify="1" src="assets/js/YouTubePopUp.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/smooth-scroll.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/custom-min.js" defer></script>
 </body>
 
 </html>

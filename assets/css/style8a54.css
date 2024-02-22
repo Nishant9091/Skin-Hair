@@ -45,7 +45,7 @@ div#comments {margin-top: 50px;}
 .nav-links .nav-next{display:inline; margin-left:20px}
 .gmd-read-more, .gmd-read-more:hover{    display: block;font-weight: bold;    margin-top: 10px;}
 h2.loop_post_title{    font-size: 25px!important; margin:0}
-.loop_feature_image_wrapper {overflow: hidden;    height: 185px;    width: 100%;    margin-bottom: 15px;}
+.loop_feature_image_wrapper {overflow: hidden;   width: 100%;    margin-bottom: 15px;}
 .single-post .entry-meta {color: #fff;}
 .blog .entry-meta {color: unset; margin-bottom: 15px!important;}
 .blog .entry-meta span{font-weight:bold}

@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="assets/imgs/Satya-Final-logo-Bamboo.png " type="image/x-icon">
+    <link rel="shortcut icon" href="assets/imgs/Satya-logo-Gold.png " type="image/x-icon">
     <script>class RocketLazyLoadScripts { constructor(e) { this.triggerEvents = e, this.eventOptions = { passive: !0 }, this.userEventListener = this.triggerListener.bind(this), this.delayedScripts = { normal: [], async: [], defer: [] }, this.allJQueries = [] } _addUserInteractionListener(e) { this.triggerEvents.forEach((t => window.addEventListener(t, e.userEventListener, e.eventOptions))) } _removeUserInteractionListener(e) { this.triggerEvents.forEach((t => window.removeEventListener(t, e.userEventListener, e.eventOptions))) } triggerListener() { this._removeUserInteractionListener(this), "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", this._loadEverythingNow.bind(this)) : this._loadEverythingNow() } async _loadEverythingNow() { this._delayEventListeners(), this._delayJQueryReady(this), this._handleDocumentWrite(), this._registerAllDelayedScripts(), this._preloadAllScripts(), await this._loadScriptsFromList(this.delayedScripts.normal), await this._loadScriptsFromList(this.delayedScripts.defer), await this._loadScriptsFromList(this.delayedScripts.async), await this._triggerDOMContentLoaded(), await this._triggerWindowLoad(), window.dispatchEvent(new Event("rocket-allScriptsLoaded")) } _registerAllDelayedScripts() { document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e => { e.hasAttribute("src") ? e.hasAttribute("async") && !1 !== e.async ? this.delayedScripts.async.push(e) : e.hasAttribute("defer") && !1 !== e.defer || "module" === e.getAttribute("data-rocket-type") ? this.delayedScripts.defer.push(e) : this.delayedScripts.normal.push(e) : this.delayedScripts.normal.push(e) })) } async _transformScript(e) { return await this._requestAnimFrame(), new Promise((t => { const n = document.createElement("script"); let r;[...e.attributes].forEach((e => { let t = e.nodeName; "type" !== t && ("data-rocket-type" === t && (t = "type", r = e.nodeValue), n.setAttribute(t, e.nodeValue)) })), e.hasAttribute("src") ? (n.addEventListener("load", t), n.addEventListener("error", t)) : (n.text = e.text, t()), e.parentNode.replaceChild(n, e) })) } async _loadScriptsFromList(e) { const t = e.shift(); return t ? (await this._transformScript(t), this._loadScriptsFromList(e)) : Promise.resolve() } _preloadAllScripts() { var e = document.createDocumentFragment();[...this.delayedScripts.normal, ...this.delayedScripts.defer, ...this.delayedScripts.async].forEach((t => { const n = t.getAttribute("src"); if (n) { const t = document.createElement("link"); t.href = n, t.rel = "preload", t.as = "script", e.appendChild(t) } })), document.head.appendChild(e) } _delayEventListeners() { let e = {}; function t(t, n) { !function (t) { function n(n) { return e[t].eventsToRewrite.indexOf(n) >= 0 ? "rocket-" + n : n } e[t] || (e[t] = { originalFunctions: { add: t.addEventListener, remove: t.removeEventListener }, eventsToRewrite: [] }, t.addEventListener = function () { arguments[0] = n(arguments[0]), e[t].originalFunctions.add.apply(t, arguments) }, t.removeEventListener = function () { arguments[0] = n(arguments[0]), e[t].originalFunctions.remove.apply(t, arguments) }) }(t), e[t].eventsToRewrite.push(n) } function n(e, t) { let n = e[t]; Object.defineProperty(e, t, { get: () => n || function () { }, set(r) { e["rocket" + t] = n = r } }) } t(document, "DOMContentLoaded"), t(window, "DOMContentLoaded"), t(window, "load"), t(window, "pageshow"), t(document, "readystatechange"), n(document, "onreadystatechange"), n(window, "onload"), n(window, "onpageshow") } _delayJQueryReady(e) { let t = window.jQuery; Object.defineProperty(window, "jQuery", { get: () => t, set(n) { if (n && n.fn && !e.allJQueries.includes(n)) { n.fn.ready = n.fn.init.prototype.ready = function (t) { e.domReadyFired ? t.bind(document)(n) : document.addEventListener("rocket-DOMContentLoaded", (() => t.bind(document)(n))) }; const t = n.fn.on; n.fn.on = n.fn.init.prototype.on = function () { if (this[0] === window) { function e(e) { return e.split(" ").map((e => "load" === e || 0 === e.indexOf("load.") ? "rocket-jquery-load" : e)).join(" ") } "string" == typeof arguments[0] || arguments[0] instanceof String ? arguments[0] = e(arguments[0]) : "object" == typeof arguments[0] && Object.keys(arguments[0]).forEach((t => { delete Object.assign(arguments[0], { [e(t)]: arguments[0][t] })[t] })) } return t.apply(this, arguments), this }, e.allJQueries.push(n) } t = n } }) } async _triggerDOMContentLoaded() { this.domReadyFired = !0, await this._requestAnimFrame(), document.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._requestAnimFrame(), window.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._requestAnimFrame(), document.dispatchEvent(new Event("rocket-readystatechange")), await this._requestAnimFrame(), document.rocketonreadystatechange && document.rocketonreadystatechange() } async _triggerWindowLoad() { await this._requestAnimFrame(), window.dispatchEvent(new Event("rocket-load")), await this._requestAnimFrame(), window.rocketonload && window.rocketonload(), await this._requestAnimFrame(), this.allJQueries.forEach((e => e(window).trigger("rocket-jquery-load"))), window.dispatchEvent(new Event("rocket-pageshow")), await this._requestAnimFrame(), window.rocketonpageshow && window.rocketonpageshow() } _handleDocumentWrite() { const e = new Map; document.write = document.writeln = function (t) { const n = document.currentScript, r = document.createRange(), i = n.parentElement; let o = e.get(n); void 0 === o && (o = n.nextSibling, e.set(n, o)); const a = document.createDocumentFragment(); r.setStart(a, 0), a.appendChild(r.createContextualFragment(t)), i.insertBefore(a, o) } } async _requestAnimFrame() { return new Promise((e => requestAnimationFrame(e))) } static run() { const e = new RocketLazyLoadScripts(["keydown", "mousemove", "touchmove", "touchstart", "touchend", "wheel"]); e._addUserInteractionListener(e) } } RocketLazyLoadScripts.run();</script>
 
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
@@ -21,21 +21,20 @@
     <link data-minify="1" rel='stylesheet' id='dashicons-css' href='assets/css/dashicons.min138c.css?ver=1708005023'
         media='all' />
     <link rel='stylesheet' id='style-css' href='assets/css/style8a54.css' media='all' />
+    <link rel="stylesheet" href="assets/css/animate.min.css">
 
 </head>
-
-
 
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
-        <div class="container">
+        <div class="container-fluid">
             <!-- Logo -->
             <div class="logo-wrapper navbar-brand valign">
                 <div class="logo">
-                    <a href="index.html" class="custom-logo-link" rel="home" aria-current="page"><img width="300"
-                            height="124" src="assets/imgs/Satya-Final-logo-Bamboo.png" class="custom-logo w-50"
-                            alt="Satya_Logo" decoding="async" /></a>
+                    <a href="index.html" class="custom-logo-link" rel="home" aria-current="page"><img height="124"
+                            src="assets/imgs/Satya-logo-Gold.png" class="custom-logo w-50 w-md-100 " alt="Satya_Logo"
+                            decoding="async" /></a>
                 </div>
             </div>
 
@@ -63,22 +62,25 @@
                     data-hover-intent-timeout="300" data-hover-intent-interval="100">
                     <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-home mega-current-menu-item mega-page_item mega-page-item-9 mega-current_page_item mega-align-bottom-left mega-menu-flyout mega-menu-item-86'
                         id='mega-menu-item-86'><a class="mega-menu-link" href="index.html" aria-current="page"
-                            tabindex="0">Hair</a></li>
+                            tabindex="0">Home</a></li>
                     <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-3165'
-                        id='mega-menu-item-3165'><a class="mega-menu-link" href="#" aria-haspopup="true"
-                            aria-expanded="false" tabindex="0">Non-surgical<span class="mega-indicator"></span></a>
+                        id='mega-menu-item-3165'><a class="mega-menu-link" href="About.html" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">About<span class="mega-indicator"></span></a>
                         <ul class="mega-sub-menu">
                             <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-87'
                                 id='mega-menu-item-87'><a class="mega-menu-link"
-                                    href="dr-gurveen-waraich-garekar/index.html">Dr. Gurveen Waraich Garekar</a></li>
+                                    href="dr-gurveen-waraich-garekar/index.html">About Satya</a></li>
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-87'
+                                id='mega-menu-item-87'><a class="mega-menu-link"
+                                    href="dr-gurveen-waraich-garekar/index.html">Dr. Shaiil Gupta</a></li>
                             <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-3166'
                                 id='mega-menu-item-3166'><a class="mega-menu-link"
-                                    href="dr-siddharth-garekar/index.html">Dr. Siddharth Garekar</a></li>
+                                    href="dr-siddharth-garekar/index.html">Dr. Ruchi Agarwal</a></li>
                         </ul>
                     </li>
                     <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-88 dropdown'
                         id='mega-menu-item-88'><a class="mega-menu-link" href="#" aria-haspopup="true"
-                            aria-expanded="false" tabindex="0">Results<span class="mega-indicator"></span></a>
+                            aria-expanded="false" tabindex="0">Skin Treatments<span class="mega-indicator"></span></a>
                         <ul class="mega-sub-menu">
                             <li class='mega-menu-row mega-garekar-mega-menu garekar-mega-menu' id='mega-menu-88-0'>
                                 <ul class="mega-sub-menu">
@@ -173,120 +175,107 @@
                     </li>
                     <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-89 dropdown'
                         id='mega-menu-item-89'><a class="mega-menu-link" href="#" aria-haspopup="true"
-                            aria-expanded="false" tabindex="0">Why Satya<span class="mega-indicator"></span></a>
+                            aria-expanded="false" tabindex="0">Hair Transplant<span class="mega-indicator"></span></a>
                         <ul class="mega-sub-menu">
                             <li class='mega-menu-row' id='mega-menu-89-0'>
                                 <ul class="mega-sub-menu">
-                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-89-0-0'>
-                                        <ul class="mega-sub-menu">
+                                    <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-0'>
+                                        <ul class="mega-sub-menu" style="column-count: 2;">
                                             <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
                                                 id='mega-menu-item-2661'><a class="mega-menu-link"
-                                                    href="concerns/aging/index.html">Aging</a></li>
+                                                    href="concerns/aging/index.html"> <strong style="color: #C78853;">
+                                                        Hair
+                                                        Transplant</strong></a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
+                                                id='mega-menu-item-2661'><a class="mega-menu-link"
+                                                    href="concerns/aging/index.html"> FUT</a></li>
                                             <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2665'
                                                 id='mega-menu-item-2665'><a class="mega-menu-link"
-                                                    href="concerns/fine-lines-wrinkles/index.html">Fine
-                                                    lines/wrinkles</a></li>
+                                                    href="concerns/fine-lines-wrinkles/index.html">FUE</a></li>
                                             <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
                                                 id='mega-menu-item-2657'><a class="mega-menu-link"
-                                                    href="concerns/under-eye-darkening-hollows/index.html">Under eye
-                                                    darkening/hollows</a></li>
+                                                    href="concerns/under-eye-darkening-hollows/index.html">MHT</a></li>
                                             <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
                                                 id='mega-menu-item-2668'><a class="mega-menu-link"
-                                                    href="concerns/laugh-lines/index.html">Laugh lines</a></li>
+                                                    href="concerns/laugh-lines/index.html"> Balanced Hair Transplant</a>
+                                            </li>
                                             <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
                                                 id='mega-menu-item-2656'><a class="mega-menu-link"
-                                                    href="concerns/thin-lips/index.html">Thin lips</a></li>
+                                                    href="concerns/thin-lips/index.html">Beard Restoration</a></li>
                                             <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
                                                 id='mega-menu-item-2669'><a class="mega-menu-link"
-                                                    href="concerns/neck-lines/index.html">Neck lines</a></li>
+                                                    href="concerns/neck-lines/index.html">Synthetic Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
+                                                id='mega-menu-item-2657'><a class="mega-menu-link"
+                                                    href="concerns/under-eye-darkening-hollows/index.html">Long Hair
+                                                    Transplant</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
+                                                id='mega-menu-item-2668'><a class="mega-menu-link"
+                                                    href="concerns/laugh-lines/index.html"> Body Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
+                                                id='mega-menu-item-2656'><a class="mega-menu-link"
+                                                    href="concerns/thin-lips/index.html"> Female Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
+                                                id='mega-menu-item-2669'><a class="mega-menu-link"
+                                                    href="concerns/neck-lines/index.html">Repair Hair Transplant</a>
+                                            </li>
                                         </ul>
                                     </li>
-                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-89-0-1'>
-                                        <ul class="mega-sub-menu">
+                                    <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-1'>
+                                        <ul class="mega-sub-menu" style="column-count: 2;">
                                             <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2653'
                                                 id='mega-menu-item-2653'><a class="mega-menu-link"
-                                                    href="concerns/sagging/index.html">Sagging</a></li>
+                                                    href="concerns/sagging/index.html"><strong
+                                                        style="color: #C78853;">NON SURGICAL</strong></a></li>
                                             <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2658'
                                                 id='mega-menu-item-2658'><a class="mega-menu-link"
-                                                    href="concerns/uneven-skin-tone/index.html">Uneven skin tone</a>
+                                                    href="concerns/uneven-skin-tone/index.html">PRP</a>
                                             </li>
                                             <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2672'
                                                 id='mega-menu-item-2672'><a class="mega-menu-link"
-                                                    href="concerns/patchy-skin/index.html">Patchy skin</a></li>
+                                                    href="concerns/patchy-skin/index.html">Mesotherapy</a></li>
                                             <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2654'
                                                 id='mega-menu-item-2654'><a class="mega-menu-link"
-                                                    href="concerns/sensitive-skin/index.html">Sensitive skin</a></li>
+                                                    href="concerns/sensitive-skin/index.html">Stem Cell Therapy</a></li>
                                             <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2652'
                                                 id='mega-menu-item-2652'><a class="mega-menu-link"
-                                                    href="concerns/rosacea/index.html">Rosacea</a></li>
+                                                    href="concerns/rosacea/index.html">Hair Weaving</a></li>
                                             <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
                                                 id='mega-menu-item-2659'><a class="mega-menu-link"
-                                                    href="concerns/acne/index.html">Acne</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-89-0-2'>
-                                        <ul class="mega-sub-menu">
-                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2660'
-                                                id='mega-menu-item-2660'><a class="mega-menu-link"
-                                                    href="concerns/acne-scars/index.html">Acne scars</a></li>
-                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2663'
-                                                id='mega-menu-item-2663'><a class="mega-menu-link"
-                                                    href="concerns/dull-skin/index.html">Dull skin</a></li>
-                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2671'
-                                                id='mega-menu-item-2671'><a class="mega-menu-link"
-                                                    href="concerns/open-pores/index.html">Open pores</a></li>
-                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2670'
-                                                id='mega-menu-item-2670'><a class="mega-menu-link"
-                                                    href="concerns/oily-skin/index.html">Oily skin</a></li>
-                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2655'
-                                                id='mega-menu-item-2655'><a class="mega-menu-link"
-                                                    href="concerns/stretch-marks/index.html">Stretch marks</a></li>
-                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2666'
-                                                id='mega-menu-item-2666'><a class="mega-menu-link"
-                                                    href="concerns/hair-loss-thinning/index.html">Hair loss/
-                                                    thinning</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-89-0-3'>
-                                        <ul class="mega-sub-menu">
-                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2667'
-                                                id='mega-menu-item-2667'><a class="mega-menu-link"
-                                                    href="concerns/hands-wrinkles-pigmentation/index.html">Hands:
-                                                    wrinkles/ pigmentation</a></li>
-                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2662'
-                                                id='mega-menu-item-2662'><a class="mega-menu-link"
-                                                    href="concerns/double-chin/index.html">Double chin</a></li>
-                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2664'
-                                                id='mega-menu-item-2664'><a class="mega-menu-link"
-                                                    href="concerns/facial-hair/index.html">Facial hair</a></li>
+                                                    href="concerns/acne/index.html">Laser Comb</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
+                                                id='mega-menu-item-2659'><a class="mega-menu-link"
+                                                    href="concerns/acne/index.html">Scalp Micro Pigmentation</a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
-                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2581'
-                        id='mega-menu-item-2581'><a class="mega-menu-link" href="laser-hair-removal/index.html"
-                            tabindex="0">Location</a></li>
-                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2431'
-                        id='mega-menu-item-2431'><a class="mega-menu-link"
-                            href="best-pre-bridal-skin-packages/index.html" tabindex="0">Shop</a></li>
-                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-3392'
-                        id='mega-menu-item-3392'><a class="mega-menu-link" href="blog/index.html"
-                            tabindex="0">Careers</a>
-                    </li>
                     <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-91 dropdown'
                         id='mega-menu-item-91'><a class="mega-menu-link" href="#" aria-haspopup="true"
-                            aria-expanded="false" tabindex="0">Consultation<span class="mega-indicator"></span></a>
-                        <ul class="mega-sub-menu">
+                            aria-expanded="false" tabindex="0">Concerns<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu w-100">
                             <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-110'
-                                id='mega-menu-item-110'><a class="mega-menu-link" href="get-appointment/index.html">Get
-                                    Appointment</a></li>
+                                id='mega-menu-item-110'><a class="mega-menu-link"
+                                    href="get-appointment/index.html">Hair</a></li>
                             <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-109'
                                 id='mega-menu-item-109'><a class="mega-menu-link"
-                                    href="register-yourself/index.html">Register Yourself</a></li>
+                                    href="register-yourself/index.html">Skin</a></li>
                         </ul>
                     </li>
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-3392'
+                        id='mega-menu-item-3392'><a class="mega-menu-link" href="blog/index.html"
+                            tabindex="0">Result</a>
+                    </li>
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2431'
+                        id='mega-menu-item-2431'><a class="mega-menu-link" href="blog.html" tabindex="0">Blog</a></li>
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2581'
+                        id='mega-menu-item-2581'><a class="mega-menu-link" href="laser-hair-removal/index.html"
+                            tabindex="0">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -439,67 +428,11 @@
             <!-- Treatments -->
             <section id="Treatments">
                 <div class="container">
-                    <h2 class="fw-bold pt-3 d-none d-md-block" style="position: relative;
-                    font-size: 3rem;
-                    height: 0rem;
-                    left: -36.5rem;
-                    top: -23rem;
-                    transform: matrix(1, 0, 0, 1, 0, 0);
-                    transform: rotate(270deg);">HAIR</h2>
+                    <h2 class="fw-bold pt-5 m-0" style="border-bottom: 1px solid #36312E;">SKIN</h2>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="card-tr my-2">
-                                <img src="assets/imgs/treatments/female-with-tangled-hair.jpg" alt="" width="300">
-                                <h6 class="fw-bold text-center mt-3">Hair Transplant</h6>
-                                <div class="cont bg-white w-100 px-3 py-3 text-justify">Lorem ipsum dolor sit amet
-                                    consectetur adipisicing elit. Eaque
-                                    iste, esse illo enim sed ab illum facilis provident facere blanditiis.</div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card-tr my-2">
-                                <img src="assets/imgs/treatments/man-getting-hair-loss-treatment.jpg" alt=""
-                                    width="300">
-                                <h6 class="fw-bold text-center mt-3">Hairloss Treatments</h6>
-                                <div class="cont bg-white w-100 px-3 py-3 text-justify">Lorem ipsum dolor sit amet
-                                    consectetur adipisicing elit. Eaque
-                                    iste, esse illo enim sed ab illum facilis provident facere blanditiis.</div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card-tr my-2">
-                                <img src="assets/imgs/treatments/mature-man-having-balding-problems.jpg" alt=""
-                                    width="300">
-                                <h6 class="fw-bold text-center mt-3">Corrective Transplant</h6>
-                                <div class="cont bg-white w-100 px-3 py-3 text-justify">Lorem ipsum dolor sit amet
-                                    consectetur adipisicing elit. Eaque
-                                    iste, esse illo enim sed ab illum facilis provident facere blanditiis.</div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card-tr my-2">
-                                <img src="assets/imgs/treatments/close-up-hands-holding-injection.jpg" alt=""
-                                    width="300">
-                                <h6 class="fw-bold text-center mt-3">Synthetic Hair Implant</h6>
-                                <div class="cont bg-white w-100 px-3 py-3 text-justify">Lorem ipsum dolor sit amet
-                                    consectetur adipisicing elit. Eaque
-                                    iste, esse illo enim sed ab illum facilis provident facere blanditiis.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container pb-4">
-                    <h2 class="fw-bold pt-3 d-none d-md-block" style="position: relative;
-                    font-size: 3rem;
-                    height: 0rem;
-                    left: -36.5rem;
-                    top: -23rem;
-                    transform: matrix(1, 0, 0, 1, 0, 0);
-                    transform: rotate(270deg);">SKIN</h2>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="card-tr my-2">
-                                <img src="assets/imgs/treatments/person-dealing-with-rosacea.jpg" alt="" width="300">
+                                <img src="assets/imgs/treatments/Anti Ageing.png" alt="" width="300">
                                 <h6 class="fw-bold text-center mt-3">Anti Aging</h6>
                                 <div class="cont bg-white w-100 px-3 py-3 text-justify">Lorem ipsum dolor sit amet
                                     consectetur adipisicing elit. Eaque
@@ -508,8 +441,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="card-tr my-2">
-                                <img src="assets/imgs/treatments/before-after-portrait-mature-woman-retouched.jpg"
-                                    alt="" width="300">
+                                <img src="assets/imgs/treatments/Medi facial.png" alt="" width="300">
                                 <h6 class="fw-bold text-center mt-3">Medi Facial</h6>
                                 <div class="cont bg-white w-100 px-3 py-3 text-justify">Lorem ipsum dolor sit amet
                                     consectetur adipisicing elit. Eaque
@@ -518,8 +450,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="card-tr my-2">
-                                <img src="assets/imgs/treatments/cosmetologist-using-syringe-fill-female-lips.jpg"
-                                    alt="" width="300">
+                                <img src="assets/imgs/treatments/Laser-HairReduction-banner.webp" alt="" width="300">
                                 <h6 class="fw-bold text-center mt-3">Laser Hair Reduction</h6>
                                 <div class="cont bg-white w-100 px-3 py-3 text-justify">Lorem ipsum dolor sit amet
                                     consectetur adipisicing elit. Eaque
@@ -528,8 +459,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="card-tr my-2">
-                                <img src="assets/imgs/treatments/young-woman-lying-cosmetologist-s-table-during-rejuvenation-procedure (1).jpg"
-                                    alt="" width="300">
+                                <img src="assets/imgs/treatments/Acne & acne marks.png" alt="" width="300">
                                 <h6 class="fw-bold text-center mt-3">Acne & Scar</h6>
                                 <div class="cont bg-white w-100 px-3 py-3 text-justify">Lorem ipsum dolor sit amet
                                     consectetur adipisicing elit. Eaque
@@ -538,6 +468,48 @@
                         </div>
                     </div>
                 </div>
+                <div class="container pb-4">
+                    <h2 class="fw-bold pt-4 m-0" style="border-bottom: 1px solid #36312E;">HAIR</h2>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card-tr my-2">
+                                <img src="assets/imgs/treatments/Hair transplant.png" alt="" width="300">
+                                <h6 class="fw-bold text-center mt-3">Hair Transplant</h6>
+                                <div class="cont bg-white w-100 px-3 py-3 text-justify">Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Eaque
+                                    iste, esse illo enim sed ab illum facilis provident facere blanditiis.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-tr my-2">
+                                <img src="assets/imgs/treatments/Hairloss treatments.png" alt="" width="300">
+                                <h6 class="fw-bold text-center mt-3">Hairloss Treatments</h6>
+                                <div class="cont bg-white w-100 px-3 py-3 text-justify">Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Eaque
+                                    iste, esse illo enim sed ab illum facilis provident facere blanditiis.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-tr my-2">
+                                <img src="assets/imgs/treatments/Corrective hair transplant.png" alt="" width="300">
+                                <h6 class="fw-bold text-center mt-3">Corrective Transplant</h6>
+                                <div class="cont bg-white w-100 px-3 py-3 text-justify">Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Eaque
+                                    iste, esse illo enim sed ab illum facilis provident facere blanditiis.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-tr my-2">
+                                <img src="assets/imgs/treatments/Synthetic hair transplant.png" alt="" width="300">
+                                <h6 class="fw-bold text-center mt-3">Synthetic Hair Implant</h6>
+                                <div class="cont bg-white w-100 px-3 py-3 text-justify">Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Eaque
+                                    iste, esse illo enim sed ab illum facilis provident facere blanditiis.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </section>
 
             <!-- About Satya -->
@@ -546,18 +518,16 @@
                     data-overlay-dark="3">
                     <div class="blur-overlay"></div>
                     <div class="container">
-                        <div class="text-center"><img src="assets/imgs/Satya-Final-logo-Bamboo.png" alt=""></div>
+                        <div class="text-center"><img src="assets/imgs/Satya-logo-Gold.png" alt=""></div>
                         <!-- <h2 class="text-center">About Us</h2> -->
-                        <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae
-                            omnis, libero inventore
-                            commodi expedita sit debitis amet, fugit molestias laborum distinctio dignissimos quam
-                            ducimus. Ipsam nihil molestiae tempora delectus eius esse beatae, quam, laborum neque,
-                            facilis cupiditate. Libero quia vitae suscipit a, doloremque, numquam tempore veritatis rem
-                            dolor deleniti quis! Optio nihil illo natus facilis, qui provident architecto repellat,
-                            incidunt temporibus sequi enim veritatis alias placeat id voluptate officia fugiat tempore.
-                            Voluptate ad ratione neque eum corporis necessitatibus, reprehenderit maxime nihil deserunt
-                            vel explicabo rem quidem dolorem molestiae cumque cum! Voluptatem iure nesciunt perferendis
-                            est vel atque, obcaecati culpa consequuntur.</p>
+                        <p class="text-center">Satya Aesthetics & Hair Solutions, established in 2005 stands as a global
+                            leader in medical dermatology and hair restoration. It’s a premier institute, renowned for
+                            its international state-of-the-art facility & specialises in skin lasers, anti-aging
+                            treatments, and both surgical and non-surgical hair restorations, with a particular
+                            expertise in corrective/repair hair transplant surgeries. Founded with the mission to
+                            deliver world-class, cutting-edge anti-aging and hair restoration treatments, Satya is
+                            driven by a highly skilled and trained team. Satya’s guiding principles have always been
+                            honesty, truth, artistic imagination, expertise, and compassion. </p>
                         <div class='gform_footer top_label text-center'> <input type='submit' id='gform_submit_button_1'
                                 class='gform_button button' value='Know More' />
                         </div>
@@ -570,22 +540,50 @@
             <section id="abt_drs">
                 <div class="container">
                     <div class="row py-5">
+                        <h2 class="text-center fw-bold" style="color: #36312E;">Our Founders:</h2>
                         <div class="col-md-6 my-4">
-                            <img src="assets/imgs/Sir-scaled-1-1024x683.jpg" alt="">
-                            <div style="background-color: #36312E;" class="py-1 m-2 hid">
-                                <h4 class="text-center mt-2 fw-bold fs-4 m-0" style="color: #C78853;">Dr. Shaiil Gupta
-                                </h4>
-                                <h6 class="text-center mb-2 text-white m-0">MD, Dermatologist, Hair Transplant Surgeon
-                                </h6>
+                            <img src="assets/imgs/Sir-scaled-1-1024x683.jpg" alt="" style="    object-fit: cover;
+                            height: 40rem;">
+                            <div style="background-color: #00000073;" class="py-1 m-2 hid">
+                                <div class="border">
+                                    <h4 class="text-center text-white mt-2 fw-bold  m-0">Dr. Shaiil Gupta
+                                    </h4>
+                                    <p class="text-center mb-2 text-white m-0" style="font-size: 12px;">MD,
+                                        Dermatologist, Hair Transplant
+                                        Surgeon
+                                    </p>
+                                    <p class="text-white" style="font-size: 12px; margin-left: 10px;">Dr. Shaiil Gupta,
+                                        is a board-certified dermatologist and
+                                        esteemed hair transplant expert & founder of Satya Aesthetics & Hair Solutions.
+                                        Dr. Gupta focuses on holistic treatment, addressing both physical and emotional
+                                        health in his consultations. Beyond his clinic, he educates and advocates for
+                                        skin and hair care on social media, sharing his knowledge widely. His
+                                        multifaceted talents as a musician, artist, singer, writer, composer, and
+                                        sportsman, along with his role as a subconscious healer, allow him to motivate
+                                        patients and society at large, establishing him as a global authority in
+                                        dermatology and hair restoration. </p>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6 my-4">
-                            <img src="assets/imgs/IMG_3607-2-scaled-1-1024x683.jpg" alt="">
-                            <div style="background-color: #36312E;" class="py-1 m-2 hid">
-                                <h4 class="text-center mt-2 fw-bold fs-4 m-0" style="color: #C78853;">Dr. Ruchi Agarwal
-                                </h4>
-                                <h6 class="text-center mb-2 text-white m-0">MD, Dermatologist, Hair Transplant Surgeon
-                                </h6>
+                            <img src="assets/imgs/IMG_3607-2-scaled-1-1024x683.jpg" alt="" style="    object-fit: cover;
+                            height: 40rem;">
+                            <div style="background-color: #00000073;" class="py-1 m-2 hid">
+                                <div class="border">
+                                    <h4 class="text-center text-white mt-2 fw-bold m-0">Dr. Ruchi Agarwal
+                                    </h4>
+                                    <p class="text-center mb-2 text-white m-0" style="font-size: 12px;">MD,
+                                        Dermatologist, Hair Transplant
+                                        Surgeon
+                                    </p>
+                                    <p class="text-white" style="font-size: 12px; margin-left: 10px;">Dr. Ruchi Agarwal,
+                                        board-certified dermatologist and
+                                        co-founder of Satya Aesthetics & Hair Solutions, boasts over 20 years in
+                                        clinical and cosmetic dermatology. She excels in dermato-surgical and aesthetic
+                                        procedures, backed by world-class training. Known for her patient-focused
+                                        approach & listening skills, Dr. Ruchi emphasises personalised treatment plans
+                                        and compassionately, blending patient needs with expectations. </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -596,7 +594,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 p-4">
-                            <div class="m-md-5 bg-white rounded p-5">
+                            <div class="m-md-5 bg-white rounded py-4 px-5">
                                 <h4 class="fw-bold">Instant Video Consultations Now Available</h4>
                                 <p>Don’t want to wait? Schedule an instant video consultation with a Satya specialist
                                     today.</p>
@@ -607,32 +605,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 p-0">
-                            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="assets/imgs/blog-detail-one-6.webp" class="d-block w-100 h-100"
-                                            alt="...">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="assets/imgs/blog-detail-one-6.webp" class="d-block w-100 h-100"
-                                            alt="...">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="assets/imgs/blog-detail-one-6.webp" class="d-block w-100 h-100"
-                                            alt="...">
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
+                            <img src="assets/imgs/Untitled design.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -661,10 +634,10 @@
                                                 <img src="assets/imgs/ron-successstory-image.jpg" alt="">
                                             </div>
                                             <div class="col-md-8">
-                                                <p class="text-white">"Lorem ipsum dolor sit, amet consectetur
-                                                    adipisicing elit. Odit
-                                                    maiores nisi laborum consequatur exercitationem ea nemo, deleniti at
-                                                    quae magni?"</p>
+                                                <p class="text-white">My research about hair transplant started from
+                                                    Sweden, travelled across the world including Europe, turkey etc. but
+                                                    thankfully ended beautifully at Satya Clinic. After meeting Dr Shail
+                                                    I could not have wished for a better clinic & doctor.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -674,10 +647,9 @@
                                                 <img src="assets/imgs/ron-successstory-image.jpg" alt="">
                                             </div>
                                             <div class="col-md-8">
-                                                <p class="text-dark">"Lorem ipsum dolor sit, amet consectetur
-                                                    adipisicing elit. Odit
-                                                    maiores nisi laborum consequatur exercitationem ea nemo, deleniti at
-                                                    quae magni?"</p>
+                                                <p class="text-dark">I had a done a transplant earlier in UK, it was
+                                                    horrible & had almost ruined my life. Dr Gupta is a real saviour, he
+                                                    created the magic & I have a very natural looking hairline now.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -687,10 +659,10 @@
                                                 <img src="assets/imgs/ron-successstory-image.jpg" alt="">
                                             </div>
                                             <div class="col-md-8">
-                                                <p class="text-dark">"Lorem ipsum dolor sit, amet consectetur
-                                                    adipisicing elit. Odit
-                                                    maiores nisi laborum consequatur exercitationem ea nemo, deleniti at
-                                                    quae magni?"</p>
+                                                <p class="text-dark">While every clinic was suggesting me 5000+ grafts &
+                                                    daily dose of medicine, only Dr Ruchi Agarwal, gave me clarity about
+                                                    the actual number of grafts and micro-dosing of medicine. With just
+                                                    2500 grafts & twice a week medicine, I got wonderful results.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -732,7 +704,7 @@
 
             </section>
 
-            <!-- News -->
+            <!-- Insta -->
             <section class="news home-ig-section">
                 <div class="background bg-img bg-fixed section-padding" data-background="assets/imgs/_DSC5915.jpg"
                     data-overlay-dark="3">
@@ -749,8 +721,7 @@
                                 <div class="owl-carousel owl-theme">
                                     <div class="item">
                                         <div class="position-re o-hidden"> <img decoding="async"
-                                                src="assets/imgs/insta/Only-HydraFacial-uses-patented-technology-to-cleanse-extract-and-hydrate.-1.jpg"
-                                                alt="">
+                                                src="assets/imgs/insta/pew-bridal-ig.png" alt="">
 
                                         </div>
                                         <div class="con">
@@ -759,7 +730,7 @@
                                     </div>
                                     <div class="item">
                                         <div class="position-re o-hidden"> <img decoding="async"
-                                                src="assets/imgs/insta/touch-of-dermal-filler.jpg" alt="">
+                                                src="assets/imgs/insta/touch-of-dermal-filler.png" alt="">
 
                                         </div>
                                         <div class="con">
@@ -768,16 +739,35 @@
                                     </div>
                                     <div class="item">
                                         <div class="position-re o-hidden"> <img decoding="async"
-                                                src="assets/imgs/insta/pew-bridal-ig.jpg" alt="">
+                                                src="assets/imgs/insta/Carbon-Peel-Laser-.png" alt="">
 
                                         </div>
                                         <div class="con">
                                             <h5><a target="_blank" href="#" rel="noopener">Pre Bridal</a></h5>
                                         </div>
                                     </div>
+                                    <!--  -->
                                     <div class="item">
                                         <div class="position-re o-hidden"> <img decoding="async"
-                                                src="assets/imgs/insta/Carbon-Peel-Laser-.jpg" alt="">
+                                                src="assets/imgs/insta/4.png" alt="">
+
+                                        </div>
+                                        <div class="con">
+                                            <h5><a target="_blank" href="#" rel="noopener">Carbon Peel Laser</a></h5>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="position-re o-hidden"> <img decoding="async"
+                                                src="assets/imgs/insta/5.png" alt="">
+
+                                        </div>
+                                        <div class="con">
+                                            <h5><a target="_blank" href="#" rel="noopener">Carbon Peel Laser</a></h5>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="position-re o-hidden"> <img decoding="async"
+                                                src="assets/imgs/insta/6.png" alt="">
 
                                         </div>
                                         <div class="con">
@@ -787,8 +777,53 @@
 
                                 </div>
 
-                                <div class="butn-dark"> <a target="_blank" href="#" rel="noopener"><span>Join Our Insta
-                                            Family</span></a> </div>
+                                <div class="butn-dark d-flex justify-content-around align-items-center">
+                                    <a target="_blank" href="#" rel="noopener"><span><svg
+                                                xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30"
+                                                height="30" viewBox="0 0 48 48">
+                                                <linearGradient id="MFoA17TcOTNFaYeFzUCyHa_V5rVzStr5qA9_gr1" x1="11.195"
+                                                    x2="38.591" y1="11.196" y2="38.592" gradientUnits="userSpaceOnUse">
+                                                    <stop offset="0" stop-color="#f44f5a"></stop>
+                                                    <stop offset=".443" stop-color="#ee3d4a"></stop>
+                                                    <stop offset="1" stop-color="#e52030"></stop>
+                                                </linearGradient>
+                                                <path fill="url(#MFoA17TcOTNFaYeFzUCyHa_V5rVzStr5qA9_gr1)"
+                                                    d="M29.103,2.631c4.217-2.198,9.438-0.597,11.658,3.577c2.22,4.173,0.6,9.337-3.617,11.534	l-3.468,1.823c2.987,0.109,5.836,1.75,7.328,4.555c2.22,4.173,0.604,9.337-3.617,11.534L18.897,45.37	c-4.217,2.198-9.438,0.597-11.658-3.577s-0.6-9.337,3.617-11.534l3.468-1.823c-2.987-0.109-5.836-1.75-7.328-4.555	c-2.22-4.173-0.6-9.337,3.617-11.534C10.612,12.346,29.103,2.631,29.103,2.631z">
+                                                </path>
+                                                <path
+                                                    d="M19.804,31.558c-0.928,0-1.682-0.754-1.682-1.681V18.152c0-0.927,0.754-1.681,1.681-1.681	c0.312,0,0.616,0.087,0.883,0.252l9.518,5.875c0.5,0.31,0.798,0.844,0.797,1.431c0,0.586-0.299,1.121-0.801,1.429l-9.518,5.848	C20.416,31.472,20.112,31.558,19.804,31.558z"
+                                                    opacity=".05"></path>
+                                                <path
+                                                    d="M19.804,31.058c-0.651,0-1.182-0.53-1.182-1.181V18.152c0-0.651,0.53-1.181,1.181-1.181	c0.218,0,0.432,0.061,0.619,0.177l9.519,5.876c0.351,0.217,0.561,0.592,0.56,1.005c0,0.413-0.211,0.788-0.562,1.004l-9.518,5.848	C20.232,30.998,20.02,31.058,19.804,31.058z"
+                                                    opacity=".07"></path>
+                                                <path fill="#fff"
+                                                    d="M19.122,18.152v11.725c0,0.532,0.583,0.857,1.036,0.579l9.518-5.848	c0.431-0.265,0.432-0.892,0.001-1.158l-9.518-5.876C19.706,17.295,19.122,17.62,19.122,18.152z">
+                                                </path>
+                                            </svg>Skin </span></a>
+                                    <a target="_blank" href="#" rel="noopener"><span>Join Our Insta Family</span></a>
+                                    <a target="_blank" href="#" rel="noopener"><span><svg
+                                                xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30"
+                                                height="30" viewBox="0 0 48 48">
+                                                <linearGradient id="MFoA17TcOTNFaYeFzUCyHa_V5rVzStr5qA9_gr1" x1="11.195"
+                                                    x2="38.591" y1="11.196" y2="38.592" gradientUnits="userSpaceOnUse">
+                                                    <stop offset="0" stop-color="#f44f5a"></stop>
+                                                    <stop offset=".443" stop-color="#ee3d4a"></stop>
+                                                    <stop offset="1" stop-color="#e52030"></stop>
+                                                </linearGradient>
+                                                <path fill="url(#MFoA17TcOTNFaYeFzUCyHa_V5rVzStr5qA9_gr1)"
+                                                    d="M29.103,2.631c4.217-2.198,9.438-0.597,11.658,3.577c2.22,4.173,0.6,9.337-3.617,11.534	l-3.468,1.823c2.987,0.109,5.836,1.75,7.328,4.555c2.22,4.173,0.604,9.337-3.617,11.534L18.897,45.37	c-4.217,2.198-9.438,0.597-11.658-3.577s-0.6-9.337,3.617-11.534l3.468-1.823c-2.987-0.109-5.836-1.75-7.328-4.555	c-2.22-4.173-0.6-9.337,3.617-11.534C10.612,12.346,29.103,2.631,29.103,2.631z">
+                                                </path>
+                                                <path
+                                                    d="M19.804,31.558c-0.928,0-1.682-0.754-1.682-1.681V18.152c0-0.927,0.754-1.681,1.681-1.681	c0.312,0,0.616,0.087,0.883,0.252l9.518,5.875c0.5,0.31,0.798,0.844,0.797,1.431c0,0.586-0.299,1.121-0.801,1.429l-9.518,5.848	C20.416,31.472,20.112,31.558,19.804,31.558z"
+                                                    opacity=".05"></path>
+                                                <path
+                                                    d="M19.804,31.058c-0.651,0-1.182-0.53-1.182-1.181V18.152c0-0.651,0.53-1.181,1.181-1.181	c0.218,0,0.432,0.061,0.619,0.177l9.519,5.876c0.351,0.217,0.561,0.592,0.56,1.005c0,0.413-0.211,0.788-0.562,1.004l-9.518,5.848	C20.232,30.998,20.02,31.058,19.804,31.058z"
+                                                    opacity=".07"></path>
+                                                <path fill="#fff"
+                                                    d="M19.122,18.152v11.725c0,0.532,0.583,0.857,1.036,0.579l9.518-5.848	c0.431-0.265,0.432-0.892,0.001-1.158l-9.518-5.876C19.706,17.295,19.122,17.62,19.122,18.152z">
+                                                </path>
+                                            </svg>Hair</span></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -807,6 +842,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="owl-carousel owl-theme">
+                                <!-- skin -->
                                 <div class="item">
                                     <div class="position-re o-hidden"> <img decoding="async"
                                             src="assets/imgs/blog/Post-7-Vows-to-help-brides-craft-a-Good-Skin-Care-Routine.jpg"
@@ -817,8 +853,7 @@
                                         </div>
                                     </div>
                                     <div class="con">
-                                        <h5><a href="#">7 Vows
-                                                to help brides craft a Good Skin Care Routine</a></h5>
+                                        <h5><a href="#">11 Ways Dermal Filler Treatment Can Improve Your Appearance</a></h5>
                                     </div>
                                 </div>
                                 <div class="item">
@@ -831,10 +866,7 @@
                                         </div>
                                     </div>
                                     <div class="con">
-                                        <h5><a href="#">Turn to Hair
-                                                Removal Treatment to Unleash your Beauty!
-
-                                            </a></h5>
+                                        <h5><a href="#">Best Treatments for Facial Acne Scars</a></h5>
                                     </div>
                                 </div>
                                 <div class="item">
@@ -847,8 +879,7 @@
                                         </div>
                                     </div>
                                     <div class="con">
-                                        <h5><a href="#">Is Laser Hair Removal
-                                                A Temporary or Permanent Fix?</a></h5>
+                                        <h5><a href="#">What is laser hair reduction everything you need to know?</a></h5>
                                     </div>
                                 </div>
                                 <div class="item">
@@ -860,8 +891,59 @@
                                         </div>
                                     </div>
                                     <div class="con">
-                                        <h5><a href="#">Simple and Effective Tips for
-                                                Oily Skin Care in Summer </a></h5>
+                                        <h5><a href="#">Acne : What you need to know about</a></h5>
+                                    </div>
+                                </div>
+                                <!-- hair -->
+                                <div class="item">
+                                    <div class="position-re o-hidden"> <img decoding="async"
+                                            src="assets/imgs/blog/Post-7-Vows-to-help-brides-craft-a-Good-Skin-Care-Routine.jpg"
+                                            alt="">
+                                        <div class="date">
+                                            <a href="#">
+                                                <span>Apr</span> <i>22</i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="con">
+                                        <h5><a href="#">Wrong Hair Transplant: What Should Be Done In This Situation?</a></h5>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="position-re o-hidden"> <img decoding="async"
+                                            src="assets/imgs/blog/Post-Turn-to-Hair-Removal-Treatment-to-Unleash-your-Beauty.jpg"
+                                            alt="">
+                                        <div class="date">
+                                            <a href="#">
+                                                <span>Mar</span> <i>5</i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="con">
+                                        <h5><a href="#">The Norwood Scale: Stages & More of Hair Loss</a></h5>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="position-re o-hidden"> <img decoding="async"
+                                            src="assets/imgs/blog/Post-Is-Laser-Hair-Removal-A-Temporary-or-Permanent-Fix-.jpg"
+                                            alt="">
+                                        <div class="date">
+                                            <a href="#"> <span>May</span>
+                                                <i>13</i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="con">
+                                        <h5><a href="#">Why You Should Never Choose a Cheap Beard Transplant</a></h5>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="position-re o-hidden"> <img decoding="async"
+                                            src="assets/imgs/blog/Post-Simple-and-Effective-Tips-for-Oily-Skin-Care-in-Summer-.jpg"
+                                            alt="">
+                                        <div class="date">
+                                            <a href="#"> <span>Jun</span> <i>11</i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="con">
+                                        <h5><a href="#">For A Hair Transplant, How Many Grafts Are Required For Men?</a></h5>
                                     </div>
                                 </div>
 
@@ -971,14 +1053,13 @@
         </div>
     </main>
 
-
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-top">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-3 text-center ">
-                        <img src="assets/imgs/Satya-Final-logo-Bamboo.png" class="w-50 " alt="">
+                        <img src="assets/imgs/Satya-logo-Gold.png" class="w-50 " alt="">
                     </div>
                     <div class="col-md-3">
                         <div class="footer-column footer-contact">
@@ -1067,10 +1148,10 @@
         </div>
     </footer>
 
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+
     <!-- jQuery -->
     <script type="rocketlazyloadscript" src="assets/js/jquery-3.6.0.min.js" defer></script>
     <script type="rocketlazyloadscript" src="assets/js/jquery-migrate-3.0.0.min.js" defer></script>
