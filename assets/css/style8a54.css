@@ -34,7 +34,7 @@ div#comments {margin-top: 50px;}
 
 /*Appointment FORM*/
 .booking-box .gfield_select{background: none; border-color: #ececec;}
-.booking-box input#gform_submit_button_1 {background: #C78853;    color: #fff!important;}
+.booking-box input#gform_submit_button_1 {background: #36312E;    color: #fff!important;}
 .booking-box .ginput_container.ginput_container_date ::placeholder {color:#fff!important}
 .booking-box .ginput_container.ginput_container_select select{    height: 42px; padding: 0 5px; border-radius: 0;}
 
