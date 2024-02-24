@@ -454,3 +454,38 @@ form.submit(function (a) {
       1e3: { items: 3 },
     },
   });
+
+
+
+  $(document).ready(function(){
+    $(".ytb-vdn .owl-carousel").owlCarousel({
+      loop: -1,
+      margin: 30,
+      mouseDrag: !0,
+      autoplay: -1,
+      navigation:true,
+      navText: [
+        "<span class='lnr ti-angle-left'></span>",
+        "<span class='lnr ti-angle-right'></span>",
+      ],
+      responsiveClass: !0,
+      responsive: {
+        0: { items: 1, dots: !0, nav: !1 },
+        600: { items: 2, dots: !0, nav: !1 },
+        1e3: { items: 2 },
+      },
+    });
+    $(".treat-res .owl-carousel").owlCarousel({
+      loop: -1,
+      margin: 30,
+      mouseDrag: !0,
+      autoplay: -1,
+      navigation: true,
+      navText: [
+        "<span class='lnr ti-angle-left'></span>",
+        "<span class='lnr ti-angle-right'></span>",
+      ],
+      responsiveClass: !0,
+      responsive: { 0: { items: 1 }, 600: { items: 2 }, 1e3: { items: 3 } },
+    });
+  });
