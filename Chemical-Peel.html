@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="assets/imgs/Satya-logo-Gold.png " type="image/x-icon">
+    <script>class RocketLazyLoadScripts { constructor(e) { this.triggerEvents = e, this.eventOptions = { passive: !0 }, this.userEventListener = this.triggerListener.bind(this), this.delayedScripts = { normal: [], async: [], defer: [] }, this.allJQueries = [] } _addUserInteractionListener(e) { this.triggerEvents.forEach((t => window.addEventListener(t, e.userEventListener, e.eventOptions))) } _removeUserInteractionListener(e) { this.triggerEvents.forEach((t => window.removeEventListener(t, e.userEventListener, e.eventOptions))) } triggerListener() { this._removeUserInteractionListener(this), "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", this._loadEverythingNow.bind(this)) : this._loadEverythingNow() } async _loadEverythingNow() { this._delayEventListeners(), this._delayJQueryReady(this), this._handleDocumentWrite(), this._registerAllDelayedScripts(), this._preloadAllScripts(), await this._loadScriptsFromList(this.delayedScripts.normal), await this._loadScriptsFromList(this.delayedScripts.defer), await this._loadScriptsFromList(this.delayedScripts.async), await this._triggerDOMContentLoaded(), await this._triggerWindowLoad(), window.dispatchEvent(new Event("rocket-allScriptsLoaded")) } _registerAllDelayedScripts() { document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e => { e.hasAttribute("src") ? e.hasAttribute("async") && !1 !== e.async ? this.delayedScripts.async.push(e) : e.hasAttribute("defer") && !1 !== e.defer || "module" === e.getAttribute("data-rocket-type") ? this.delayedScripts.defer.push(e) : this.delayedScripts.normal.push(e) : this.delayedScripts.normal.push(e) })) } async _transformScript(e) { return await this._requestAnimFrame(), new Promise((t => { const n = document.createElement("script"); let r;[...e.attributes].forEach((e => { let t = e.nodeName; "type" !== t && ("data-rocket-type" === t && (t = "type", r = e.nodeValue), n.setAttribute(t, e.nodeValue)) })), e.hasAttribute("src") ? (n.addEventListener("load", t), n.addEventListener("error", t)) : (n.text = e.text, t()), e.parentNode.replaceChild(n, e) })) } async _loadScriptsFromList(e) { const t = e.shift(); return t ? (await this._transformScript(t), this._loadScriptsFromList(e)) : Promise.resolve() } _preloadAllScripts() { var e = document.createDocumentFragment();[...this.delayedScripts.normal, ...this.delayedScripts.defer, ...this.delayedScripts.async].forEach((t => { const n = t.getAttribute("src"); if (n) { const t = document.createElement("link"); t.href = n, t.rel = "preload", t.as = "script", e.appendChild(t) } })), document.head.appendChild(e) } _delayEventListeners() { let e = {}; function t(t, n) { !function (t) { function n(n) { return e[t].eventsToRewrite.indexOf(n) >= 0 ? "rocket-" + n : n } e[t] || (e[t] = { originalFunctions: { add: t.addEventListener, remove: t.removeEventListener }, eventsToRewrite: [] }, t.addEventListener = function () { arguments[0] = n(arguments[0]), e[t].originalFunctions.add.apply(t, arguments) }, t.removeEventListener = function () { arguments[0] = n(arguments[0]), e[t].originalFunctions.remove.apply(t, arguments) }) }(t), e[t].eventsToRewrite.push(n) } function n(e, t) { let n = e[t]; Object.defineProperty(e, t, { get: () => n || function () { }, set(r) { e["rocket" + t] = n = r } }) } t(document, "DOMContentLoaded"), t(window, "DOMContentLoaded"), t(window, "load"), t(window, "pageshow"), t(document, "readystatechange"), n(document, "onreadystatechange"), n(window, "onload"), n(window, "onpageshow") } _delayJQueryReady(e) { let t = window.jQuery; Object.defineProperty(window, "jQuery", { get: () => t, set(n) { if (n && n.fn && !e.allJQueries.includes(n)) { n.fn.ready = n.fn.init.prototype.ready = function (t) { e.domReadyFired ? t.bind(document)(n) : document.addEventListener("rocket-DOMContentLoaded", (() => t.bind(document)(n))) }; const t = n.fn.on; n.fn.on = n.fn.init.prototype.on = function () { if (this[0] === window) { function e(e) { return e.split(" ").map((e => "load" === e || 0 === e.indexOf("load.") ? "rocket-jquery-load" : e)).join(" ") } "string" == typeof arguments[0] || arguments[0] instanceof String ? arguments[0] = e(arguments[0]) : "object" == typeof arguments[0] && Object.keys(arguments[0]).forEach((t => { delete Object.assign(arguments[0], { [e(t)]: arguments[0][t] })[t] })) } return t.apply(this, arguments), this }, e.allJQueries.push(n) } t = n } }) } async _triggerDOMContentLoaded() { this.domReadyFired = !0, await this._requestAnimFrame(), document.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._requestAnimFrame(), window.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._requestAnimFrame(), document.dispatchEvent(new Event("rocket-readystatechange")), await this._requestAnimFrame(), document.rocketonreadystatechange && document.rocketonreadystatechange() } async _triggerWindowLoad() { await this._requestAnimFrame(), window.dispatchEvent(new Event("rocket-load")), await this._requestAnimFrame(), window.rocketonload && window.rocketonload(), await this._requestAnimFrame(), this.allJQueries.forEach((e => e(window).trigger("rocket-jquery-load"))), window.dispatchEvent(new Event("rocket-pageshow")), await this._requestAnimFrame(), window.rocketonpageshow && window.rocketonpageshow() } _handleDocumentWrite() { const e = new Map; document.write = document.writeln = function (t) { const n = document.currentScript, r = document.createRange(), i = n.parentElement; let o = e.get(n); void 0 === o && (o = n.nextSibling, e.set(n, o)); const a = document.createDocumentFragment(); r.setStart(a, 0), a.appendChild(r.createContextualFragment(t)), i.insertBefore(a, o) } } async _requestAnimFrame() { return new Promise((e => requestAnimationFrame(e))) } static run() { const e = new RocketLazyLoadScripts(["keydown", "mousemove", "touchmove", "touchstart", "touchend", "wheel"]); e._addUserInteractionListener(e) } } RocketLazyLoadScripts.run();</script>
+
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="assets/css/themify-icons.css" />
+    <link rel="stylesheet" href="assets/css/flaticon.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/custom.css" />
+    <title>Satya Skin Solutions</title>
+    <link rel='stylesheet' id='megamenu-css' href='assets/css/stylef82d.css' media='all' />
+    <link data-minify="1" rel='stylesheet' id='dashicons-css' href='assets/css/dashicons.min138c.css?ver=1708005023'
+        media='all' />
+    <link rel='stylesheet' id='style-css' href='assets/css/style8a54.css' media='all' />
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <div class="logo-wrapper navbar-brand valign">
+                <div class="logo">
+                    <a href="index.html" class="custom-logo-link" rel="home" aria-current="page"><img height="124"
+                            src="assets/imgs/Satya-logo-Gold.png" class="custom-logo w-50 w-md-100 " alt="Satya_Logo"
+                            decoding="async" /></a>
+                </div>
+            </div>
+
+            <!-- Navbar links -->
+            <div id="mega-menu-wrap-main" class="mega-menu-wrap">
+                <div class="mega-menu-toggle">
+                    <div class="mega-toggle-blocks-left"></div>
+                    <div class="mega-toggle-blocks-center"></div>
+                    <div class="mega-toggle-blocks-right">
+                        <div class='mega-toggle-block mega-menu-toggle-animated-block mega-toggle-block-0'
+                            id='mega-toggle-block-0'><button aria-label="Toggle Menu"
+                                class="mega-toggle-animated mega-toggle-animated-slider" type="button"
+                                aria-expanded="false">
+                                <span class="mega-toggle-animated-box">
+                                    <span class="mega-toggle-animated-inner"></span>
+                                </span>
+                            </button></div>
+                    </div>
+                </div>
+                <ul id="mega-menu-main" class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js"
+                    data-event="hover_intent" data-effect="fade_up" data-effect-speed="200"
+                    data-effect-mobile="disabled" data-effect-speed-mobile="0" data-mobile-force-width="false"
+                    data-second-click="go" data-document-click="collapse" data-vertical-behaviour="standard"
+                    data-breakpoint="768" data-unbind="true" data-mobile-state="collapse_all"
+                    data-hover-intent-timeout="300" data-hover-intent-interval="100">
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-home mega-current-menu-item mega-page_item mega-page-item-9 mega-current_page_item mega-align-bottom-left mega-menu-flyout mega-menu-item-86'
+                        id='mega-menu-item-86'><a class="mega-menu-link" href="index.html" aria-current="page"
+                            tabindex="0">Home</a></li>
+                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-3165'
+                        id='mega-menu-item-3165'><a class="mega-menu-link" href="About.html" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">About<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-87'
+                                id='mega-menu-item-87'><a class="mega-menu-link"
+                                    href="dr-gurveen-waraich-garekar/index.html">About Satya</a></li>
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-87'
+                                id='mega-menu-item-87'><a class="mega-menu-link"
+                                    href="dr-gurveen-waraich-garekar/index.html">Dr. Shaiil Gupta</a></li>
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-3166'
+                                id='mega-menu-item-3166'><a class="mega-menu-link"
+                                    href="dr-siddharth-garekar/index.html">Dr. Ruchi Agarwal</a></li>
+                        </ul>
+                    </li>
+                    <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-88 dropdown'
+                        id='mega-menu-item-88'><a class="mega-menu-link" href="#" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">Skin Treatments<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-row mega-garekar-mega-menu garekar-mega-menu' id='mega-menu-88-0'>
+                                <ul class="mega-sub-menu">
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-0'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2432'
+                                                id='mega-menu-item-2432'><a class="mega-menu-link"
+                                                    href="fillers-treatment-gurgaon/index.html">Fillers</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2433'
+                                                id='mega-menu-item-2433'><a class="mega-menu-link"
+                                                    href="botox-treatment-gurgaon/index.html">Botox</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2434'
+                                                id='mega-menu-item-2434'><a class="mega-menu-link"
+                                                    href="thread-lift-treatment-gurgaon/index.html">Thread Lift</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2435'
+                                                id='mega-menu-item-2435'><a class="mega-menu-link"
+                                                    href="photofacial/index.html">Photofacial</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2535'
+                                                id='mega-menu-item-2535'><a class="mega-menu-link"
+                                                    href="clear-lift/index.html">Clear Lift</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2536'
+                                                id='mega-menu-item-2536'><a class="mega-menu-link"
+                                                    href="carbon-laser/index.html">Carbon laser</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-1'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2537'
+                                                id='mega-menu-item-2537'><a class="mega-menu-link"
+                                                    href="laser-toning/index.html">Laser toning</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2439'
+                                                id='mega-menu-item-2439'><a class="mega-menu-link"
+                                                    href="prp-hair-treatment/index.html">Prp hair</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2538'
+                                                id='mega-menu-item-2538'><a class="mega-menu-link"
+                                                    href="prp-face/index.html">PRP face</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2441'
+                                                id='mega-menu-item-2441'><a class="mega-menu-link"
+                                                    href="endymed-mnrf/index.html">Endymed MNRF</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2539'
+                                                id='mega-menu-item-2539'><a class="mega-menu-link"
+                                                    href="endymed-sculpt/index.html">Endymed sculpt</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2443'
+                                                id='mega-menu-item-2443'><a class="mega-menu-link"
+                                                    href="hydrafacial-in-gurgaon/index.html">Hydrafacial</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-2'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2563'
+                                                id='mega-menu-item-2563'><a class="mega-menu-link"
+                                                    href="mirapeel/index.html">Mirapeel</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2445'
+                                                id='mega-menu-item-2445'><a class="mega-menu-link"
+                                                    href="hair-mesotherapy-treatment-gurgaon/index.html">Mesotherapy</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2448'
+                                                id='mega-menu-item-2448'><a class="mega-menu-link"
+                                                    href="laser-hair-removal-delhi/index.html">Laser Hair Removal</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2562'
+                                                id='mega-menu-item-2562'><a class="mega-menu-link"
+                                                    href="skin-boosters-glass-skin/index.html">Skin Boosters/Glass
+                                                    skin</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2561'
+                                                id='mega-menu-item-2561'><a class="mega-menu-link"
+                                                    href="profhilo/index.html">Profhilo</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2549'
+                                                id='mega-menu-item-2549'><a class="mega-menu-link"
+                                                    href="facials/index.html">Medi Facials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-3'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2541'
+                                                id='mega-menu-item-2541'><a class="mega-menu-link"
+                                                    href="microneedling/index.html">Microneedling</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2546'
+                                                id='mega-menu-item-2546'><a class="mega-menu-link"
+                                                    href="pixel-erbium-laser/index.html">Pixel erbium laser</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2689'
+                                                id='mega-menu-item-2689'><a class="mega-menu-link"
+                                                    href="chemical-peeling/index.html">Chemical peeling</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2587'
+                                                id='mega-menu-item-2587'><a class="mega-menu-link"
+                                                    href="tattoo-removal-in-gurgaon/index.html">Tattoo Removal</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-89 dropdown'
+                        id='mega-menu-item-89'><a class="mega-menu-link" href="#" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">Hair Transplant<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-row' id='mega-menu-89-0'>
+                                <ul class="mega-sub-menu">
+                                    <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-0'>
+                                        <ul class="mega-sub-menu" style="column-count: 2;">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
+                                                id='mega-menu-item-2661'><a class="mega-menu-link"
+                                                    href="concerns/aging/index.html"> <strong style="color: #C78853;">
+                                                        Hair
+                                                        Transplant</strong></a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
+                                                id='mega-menu-item-2661'><a class="mega-menu-link"
+                                                    href="concerns/aging/index.html"> FUT</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2665'
+                                                id='mega-menu-item-2665'><a class="mega-menu-link"
+                                                    href="concerns/fine-lines-wrinkles/index.html">FUE</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
+                                                id='mega-menu-item-2657'><a class="mega-menu-link"
+                                                    href="concerns/under-eye-darkening-hollows/index.html">MHT</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
+                                                id='mega-menu-item-2668'><a class="mega-menu-link"
+                                                    href="concerns/laugh-lines/index.html"> Balanced Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
+                                                id='mega-menu-item-2656'><a class="mega-menu-link"
+                                                    href="concerns/thin-lips/index.html">Beard Restoration</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
+                                                id='mega-menu-item-2669'><a class="mega-menu-link"
+                                                    href="concerns/neck-lines/index.html">Synthetic Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
+                                                id='mega-menu-item-2657'><a class="mega-menu-link"
+                                                    href="concerns/under-eye-darkening-hollows/index.html">Long Hair
+                                                    Transplant</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
+                                                id='mega-menu-item-2668'><a class="mega-menu-link"
+                                                    href="concerns/laugh-lines/index.html"> Body Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
+                                                id='mega-menu-item-2656'><a class="mega-menu-link"
+                                                    href="concerns/thin-lips/index.html"> Female Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
+                                                id='mega-menu-item-2669'><a class="mega-menu-link"
+                                                    href="concerns/neck-lines/index.html">Repair Hair Transplant</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-1'>
+                                        <ul class="mega-sub-menu" style="column-count: 2;">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2653'
+                                                id='mega-menu-item-2653'><a class="mega-menu-link"
+                                                    href="concerns/sagging/index.html"><strong
+                                                        style="color: #C78853;">NON SURGICAL</strong></a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2658'
+                                                id='mega-menu-item-2658'><a class="mega-menu-link"
+                                                    href="concerns/uneven-skin-tone/index.html">PRP</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2672'
+                                                id='mega-menu-item-2672'><a class="mega-menu-link"
+                                                    href="concerns/patchy-skin/index.html">Mesotherapy</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2654'
+                                                id='mega-menu-item-2654'><a class="mega-menu-link"
+                                                    href="concerns/sensitive-skin/index.html">Stem Cell Therapy</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2652'
+                                                id='mega-menu-item-2652'><a class="mega-menu-link"
+                                                    href="concerns/rosacea/index.html">Hair Weaving</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
+                                                id='mega-menu-item-2659'><a class="mega-menu-link"
+                                                    href="concerns/acne/index.html">Laser Comb</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
+                                                id='mega-menu-item-2659'><a class="mega-menu-link"
+                                                    href="concerns/acne/index.html">Scalp Micro Pigmentation</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-91 dropdown'
+                        id='mega-menu-item-91'><a class="mega-menu-link" href="#" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">Concerns<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu w-100">
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-110'
+                                id='mega-menu-item-110'><a class="mega-menu-link"
+                                    href="get-appointment/index.html">Hair</a></li>
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-109'
+                                id='mega-menu-item-109'><a class="mega-menu-link"
+                                    href="register-yourself/index.html">Skin</a></li>
+                        </ul>
+                    </li>
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-3392'
+                        id='mega-menu-item-3392'><a class="mega-menu-link" href="blog/index.html"
+                            tabindex="0">Result</a>
+                    </li>
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2431'
+                        id='mega-menu-item-2431'><a class="mega-menu-link" href="blog.html" tabindex="0">Blog</a></li>
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2581'
+                        id='mega-menu-item-2581'><a class="mega-menu-link" href="laser-hair-removal/index.html"
+                            tabindex="0">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Banner -->
+    <div class="banner-header section-padding valign bg-img bg-fixed" data-overlay-dark="4"
+        data-background="assets/imgs/DSC09861.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 caption mt-90">
+                    <h1>Chemical Peel
+                        /Glow Peel
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main id="primary1" class="site-main1">
+        <div class="entry-content">
+
+            <!-- About -->
+            <section class="about section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 mb-30 ">
+                            <span>
+                                <i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i
+                                    class="star-rating"></i> <i class="star-rating"></i>
+                            </span>
+                            <div class="section-subtitle">Satya</div>
+                            <div class="section-title">
+                                <h2>What are chemical peels?</h2>
+                            </div>
+                            <p>Chemical peels are mildly acidic lotions, gels or creams which contain a single or a
+                                combination of active ingredients that help rejuvenate the skin surface. They are an
+                                easy and effective way to keep your skin looking its best. The active ingredients
+                                present in the peel penetrate your skin and create an even and controlled shedding of
+                                the superficial layers of damaged skin cells. This allows new layers to be exposed and
+                                creates a fresh appearance to the skin surface. In addition, new cells and collagen are
+                                stimulated, creating a more even tone. After just one session, you will notice a visible
+                                improvement in your skin’s brightness, clarity, and overall health.
+                            </p>
+                            <!-- reservation -->
+
+                        </div>
+                        <div class="col col-md-6 "> <img decoding="async" src="assets/imgs/service/Chemical peels.png"
+                                style="height: 21rem; object-fit: cover;" alt="botox treatment in gurgaon"> </div>
+                        <div class="col-md-12">
+                            <h4>Why do we need this treatment?</h4>
+                            <p>Our skin is the largest organ of the body and it is always in contact with the
+                                environment. So obviously it comes in contact with the environmental allergens &
+                                pollutants which can have a detrimental effect on the skin. These stimuli can cause
+                                damage to the skin in the form of </p>
+                            <ul>
+                                <li> Tanning or pigmentation</li>
+                                <li> Premature ageing</li>
+                                <li> Fine lines or wrinkles</li>
+                                <li> Sensitivity of the skin</li>
+                                <li> Dull or lustreless skin</li>
+                                <li>Rough & dehydrated skin</li>
+                            </ul>
+                            <p>Chemical peels can really help you to revert all these changes on your skin and get the
+                                youthfulness and suppleness of your skin back.</p>
+                            <div class="reservations d-flex justify-content-center align-items-center mt-5">
+                                <div class="butn-dark"> <a href="contact-us.html"><span>Get
+                                            appointment</span></a> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="treat-res ">
+                <div class="background bg-img bg-fixed section-padding " data-background="assets/imgs/infra/1.jpeg"
+                    data-overlay-dark="2">
+                    <div class="blur-overlay"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="owl-carousel owl-theme">
+                                    <div> <iframe width="560" height="315"
+                                            src="https://www.youtube.com/embed/WFZvfqZT21g?si=j-siC1GA8OXuK4rs"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowfullscreen></iframe> </div>
+                                    <div> <iframe width="560" height="315"
+                                            src="https://www.youtube.com/embed/Ro59KDuUfbQ?si=M0Np7sp0YYdvLZbh"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowfullscreen></iframe> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Faqs -->
+            <section class="section-padding bg-cream">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-subtitle">Things to Know</div>
+                            <div class="section-title">
+                                <h3>Chemical-Peel</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <ul class="accordion-box clearfix">
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">How frequently should chemical peel be done?</h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> It depends on the indication and the type of peel done. For example
+                                                    Salicylic acid peel is done for acne once in 7- 10 days and
+                                                    generally 2-3 sessions are good enough to control the outburst of
+                                                    acne easily, which even fails to respond to antibiotics. On the
+                                                    other hand yellow peel is usually done once in a month. It also
+                                                    depends on the strength of the peels done.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">Who needs it, at what age group should it be done?</h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text"> Chemical peels are very safe when done under the
+                                                supervision of a dermatologist. One should always consult a
+                                                dermatologist first before going for a peel. Depending upon the
+                                                indication peels can be done from teenage to older age group. Mostly
+                                                Salicylic acid peel or black peel are used for acne control in
+                                                teenagers.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo"> What is the mechanism of action?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> Peels come under a category called collagen induction treatment or
+                                                    CIT. Here we give a controlled injury to the skin and in response to
+                                                    the injury skin heals, by forming new cells, collagen and elastin.
+                                                    It also induces Neo vascularisation i.e formation of new blood
+                                                    vessels, which improves blood circulation and improves the quality
+                                                    of your skin. The nature of the injury in this treatment is
+                                                    chemical, but this injury is a controlled injury so it is very safe
+                                                    and doesn’t cause any damage to your skin.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">How safe is the treatment?</h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> Chemical peels are very safe treatments as the nature of the injury
+                                                    which we give is controlled. The only risk in the treatment is post
+                                                    inflammatory hyperpigmentation, which is temporary and can be cured
+                                                    with medication.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo"> Any side effects?</h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> Post inflammatory hyperpigmentation is a rare side effect which can
+                                                    happen after chemical peels. This happens when patients fail to
+                                                    follow proper instructions especially regarding the use of
+                                                    sunscreen. This responds well to treatment and is temporary. Some
+                                                    patients can have milia or dry skin as well after the peels. So it
+                                                    is always advisable to get peels done under the supervision of a
+                                                    qualified and experienced dermatologist. Usually people get these
+                                                    treatments done at parlours and cosmetic clinics these days, which
+                                                    obviously can lead to trouble. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">What will happen if I stop taking this treatment?</h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> The effects of chemical peel is lasting and whatever collagen it
+                                                    induces is going to stay there, but yes ageing is an ongoing process
+                                                    and for maintenance of the results you need to repeat these
+                                                    treatments as advised by your dermatologist.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">Does repeated peeling make my skin weak or thin?</h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> This is a myth, in fact chemical peels increase the strength of your
+                                                    skin and it also reduces the sensitivity of the skin. It should only
+                                                    be done when it is indicated and the procedure should always be done
+                                                    under the guidance of a qualified and experienced dermatologist.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">What do experts say about this treatment?</h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>According to Dr. Ruchi Agarwal, MD, chemical peels have so many
+                                                    benefits and multiple indications that they fit in almost every skin
+                                                    care regimen. This is one of her favourite treatments as it gives
+                                                    her the flexibility to treat different skin types & multiple skin
+                                                    issues in one go. Dr. Agarwal is a leading dermatologist with almost
+                                                    two decades of experience and she had done her thesis in chemical
+                                                    peels itself and has published research papers in international
+                                                    journals on this topic.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">Can this treatment be combined with other treatments? </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> Yes, usually skin problems like dullness, open pores, pigmentation,
+                                                    acne & scars need different types of treatments and it is advisable
+                                                    to combine different treatments to achieve optimal results. Usually,
+                                                    we at Satya combine chemical peels with derma roller or derma pen in
+                                                    the same session. It improves the end result. Other treatments like
+                                                    fractional laser, PRP, microdermabrasion, hydra facial, MNRF or
+                                                    Carbon facial can also be combined on the advise of your
+                                                    dermatologist. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">Can we use make up after getting the treatment?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> Use of make should be avoided for a couple of days. But in most of
+                                                    the peels light make up can be used after the procedure, depending
+                                                    upon the type of peel being done. You need to consult your
+                                                    dermatologist for this.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">What is the downtime of the treatment?</h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> Depending upon the type of peel used the downtime of the procedure
+                                                    differs. In most of the peels there is little shedding of the skin
+                                                    for a couple of days, which is mostly unnoticeable. In some peels,
+                                                    like yellow peel (depending upon the strength used), sometimes there
+                                                    is massive peeling of the skin for 4-5 days.
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">Is the treatment painful?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> Chemical peel is a painless procedure and some times you can have a
+                                                    mild tingling sensation after or during the procedure. No
+                                                    anaesthesia or numbing is required prior to the procedure.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">What is the duration of one session?</h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>For most the chemical peel procedures you need only 5-10 minutes. So
+                                                    the procedure is pretty quick and frequently done as a lunch time
+                                                    quick procedure. However some peels like pumpkin peel takes around
+                                                    1-1.5 hours time.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">How early can I resume my routine activities after the
+                                            procedure?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> You can resume your activities immediately after the procedure. You
+                                                    may also go out in sun, but use of sunscreen is mandatory. Even if
+                                                    you are not going out in sun, you have to apply sunscreen.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo"> How is this treatment better than the conventional facials
+                                            at parlours? </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>Chemical peel is a very scientific and medically proven treatment,
+                                                    which is a very effective solution for so many skin issues.
+                                                    Depending upon the strength of the compound used, it is superficial
+                                                    or deep. This treatment doesn’t involve use of any bleaching agent
+                                                    unlike the facials done at parlours.
+                                                    <br>
+                                                    Many parlours & cosmetic chain clinics are doing chemical peels
+                                                    these days, which is very risky and is not advised at all. One
+                                                    should always consult a dermatologist for chemical peels.
+                                                    .
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">How do peels help? What are the indications of peels? </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> We have been using peeling agents for almost 2 decades to correct
+                                                    flaws in the skin. Peels are helpful to
+
+                                                    <br> Bring a youthful glow to the skin
+                                                    <br> Restore skin smoothness & elasticity
+                                                    <br> Decrease fine lines, wrinkles and open pores
+                                                    <br> Reduce acne and blemishes
+                                                    <br> Balance uneven skin tone
+                                                    <br> Remove tan
+                                                    <br> Reduce open pores
+                                                    <br> Helps in removing pigmentation & also useful in treating
+                                                    melasma
+                                                    <br> Removes the effects of pollution from the skin
+                                                    <br> Some peels help in reducing acne & acne spots
+                                                    <br> Some peels also help in reducing acne scars and other types of
+                                                    scars
+                                                    <br> Peels can also be combined with other treatments like derma
+                                                    roller or derma pen to improve the penetration and the effects.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo"> What are the different chemical peel options at Satya?</h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> There are several types of chemical peels available at Satya
+                                                    clinics. Our experts decide the peel which would suit you best as
+                                                    per the indication. The strength and depth of the chemical peel used
+                                                    depends on the condition being treated as well as the amount of
+                                                    improvement desired. Salicylic acid peel, Yellow peel, Black peel,
+                                                    pumpkin peel, phenol peel, phytic peel, glycolic peel & TCA peel are
+                                                    some important peels amongst many others which we do at Satya
+                                                    clinic.
+                                                    <br>
+                                                    We use our own peels made by Dr. Shail Gupta & Dr. Ruchi Agarwal,
+                                                    MD. These are unique peels made with years of experience and we have
+                                                    treated more than 10000 patients over a span of almost two decades.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">Which areas of the body can be treated? </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> Chemical peels remove the damaged outer layer of skin and allow
+                                                    healthy new skin to form in its place. They leave the skin looking
+                                                    smoother and more uniform in color. Chemical peels can be used over
+                                                    any part of the body including face, neck, chest, back, arms,
+                                                    forearms and hands to improve sun damage, mild scarring and fine
+                                                    lines, and irregular pigmentation. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">What would I experience during and after the procedure?</h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> Your skin is first thoroughly cleansed, and then 1-2 coats of the
+                                                    peeling agent are applied on the skin uniformly. You may experience
+                                                    mild tingling or burning sensation during the procedure. Depending
+                                                    on the kind of peels we are using, it is either neutralised after a
+                                                    few minutes or left on the face for a few hours.
+                                                    <br>
+                                                    After the peel, some patients may have mild redness which settles in
+                                                    a few hours. The skin may feel a little tighter & mild peeling may
+                                                    be noticed in a few days following the peel.
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">What is the after care for this treatment?</h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <ul>
+                                                   <li> You can wash your face with a mild cleanser and water twice daily, then gently pat dry and apply moisturiser. </li>
+                                                   <li> Do not pick off any flakes or scabs. Apply moisturiser liberally and as often as required to keep the treated skin moist.</li>
+                                                   <li> Keep applying sunscreens 3-4 times a day, avoid any sun exposure without applying sunscreen while the skin is peeling, not even five minutes.</li>
+                                                   <li> During the healing process, it is normal to feel occasional itching and burning.</li>
+                                                   <li> Avoid strenuous exercise and hot, humid conditions, as these may irritate the healing skin.</li>
+                                                   <li> After all the skin has peeled, continue to use sun protection and sun avoidance measures  </li>                                                  
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <br><br>
+                        </div>
+
+                        <div class="p-5 text-white" style="background-color: #C78853;">
+                            <p class="text-white">Call on us for a free consultation at &#8211; </p>
+
+                            <div class="col-md-6 mb-30 ">
+                                <strong>Gurgaon</strong>
+                                <p class="text-white"> Satya Clinic<br>
+                                    4301, Galleria Boulevard, opposite DLF Club, <br>
+                                    DLF Phase IV, Sector 27,<br>
+                                    Gurugram, Haryana 122002
+
+                                </p>
+                            </div>
+                            <div class="col-md-6 mb-30 ">
+                                <strong>Delhi</strong>
+                                <p class="text-white"> Satya Clinic<br>
+                                    ED 38 /A Pitampura, Near Pitampura,<br>
+                                    Madhuban Chowk, Delhi, 110034, India
+                                </p>
+
+                            </div>
+                            <div class="res-wrapper common-cta">
+
+                                <!-- call -->
+                                <div class="reservations block11">
+                                    <div class="icon"><span class="flaticon-call text-white"></span></div>
+                                    <div class="text">
+                                        <p class="text-white">Get Appointment at Our Gurgaon Clinic</p> <a
+                                            href="tel:9667684409 " class="text-white">9910094945
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="reservations block22">
+                                    <div class="icon"><span class="flaticon-call text-white"></span></div>
+                                    <div class="text">
+                                        <p class="text-white">Get Appointment at Our Delhi Clinic</p> <a
+                                            href="tel:9599491986 " class="text-white">9910094945</a>
+                                    </div>
+                                </div>
+                                <div class="butn-dark block33">
+                                    <a href="contact-us.html"><span> Get appointment</span></a>
+                                </div>
+                            </div><!-- END res-wrapper -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 text-center ">
+                        <img src="assets/imgs/Satya-logo-Gold.png" class="w-50 " alt="">
+                    </div>
+                    <div class="col-md-3">
+                        <div class="footer-column footer-contact">
+                            <h3 class="footer-title">Contact</h3>
+                            <h4 class="footer-title" style="font-size:18px">Gurugram</h4>
+                            <p class="footer-contact-text">4301, Galleria Boulevard, opposite DLF Club,<br> DLF Phase
+                                IV, Sector 27,<br> Gurugram, Haryana 122002<span style="padding-top: 10px;
+font-weight: bold!important;color: #fff;font-size:17px"> <span class="flaticon-call"></span> <a
+                                        href="tel:9667684409">+919910094945</a> | Satya@gmail.com</span></p>
+
+
+                            <h4 class="footer-title" style="font-size:18px">Delhi Clinic</h4>
+                            <p class="footer-contact-text" style="padding-bottom:0">ED 38 /A Pitampura, Near Pitampura,
+                                <br> Madhuban Chowk, Delhi, 110034, India<span style="padding-top: 10px;
+font-weight: bold!important;color: #fff;font-size:17px"> <span class="flaticon-call"></span> <a
+                                        href="tel:9599491986">+919910094945</a> | Satya@gmail.com</span>
+                            </p>
+                            <!--<div class="footer-contact-info">
+                            <p class="footer-contact-phone" style="font-size:19px"><span class="flaticon-call"></span> <a href="tel:9205639140">92056 39140</a> | <span class="flaticon-email"></span> drsgarekar@gmail.com</p>-->
+                            <!--<p class="footer-contact-mail">drsgarekar@gmail.com</p>-->
+                            <!--</div>-->
+                            <div class="footer-about-social-list">
+                                <a href="#"><i class="ti-instagram"></i></a>
+                                <a href="#"><i class="ti-twitter"></i></a>
+                                <a href="#"><i class="ti-youtube"></i></a>
+                                <a href="#"><i class="ti-facebook"></i></a>
+                                <a href="#"><i class="ti-pinterest"></i></a>
+                                <a href="#"><i class="ti-linkedin"></i></a>
+                                <a href="#"><i class="ti-google"></i></a>
+                            </div>
+                            <!--<br/> 5 stars – based on 2622 reviews on Practo, Facebook, and Google-->
+
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="footer-column footer-explore clearfix">
+                            <h3 class="footer-title">Quick Link</h3>
+                            <ul class="footer-explore-list list-unstyled">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Skin Treatment</a></li>
+                                <li><a href="#">Hair Treatment</a></li>
+                                <li><a href="#">Concerns</a></li>
+                                <li><a href="#">Result</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="footer-column footer-about">
+                            <h3 class="footer-title">Blogs</h3>
+
+                            <ul class="footer-explore-list list-unstyled">
+                                <li><a href="#">Skin clinic near me</a></li>
+                                <li><a href="#">Skin care clinic</a></li>
+                                <li><a href="#">Skin clinic in delhi</a></li>
+                                <li><a href="#">Best skin care clinic in delhi</a></li>
+                                <li><a href="#">Best skin whitening clinic in delhi</a></li>
+                                <li><a href="#">Skin treatment clinic</a></li>
+                                <li><a href="#">Skin specialist clinic near me</a></li>
+                                <li><a href="#">Skin clinic in gurgaon</a></li>
+                                <li><a href="#">Skin care clinic in gurgaon</a></li>
+                                <li><a href="#">Best skin clinic in delhi ncr</a></li>
+                                <li><a href="#">Best skin and hair clinic in delhi ncr</a></li>
+                                <li><a href="#">Skin clinic in noida</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="footer-bottom-inner">
+                            <p class="footer-bottom-copy-right">Copyright © 2022 <a href="index.html"> Satyaclinic</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- jQuery -->
+    <script type="rocketlazyloadscript" src="assets/js/jquery-3.6.0.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/jquery-migrate-3.0.0.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/popper.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/scrollIt.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/jquery.waypoints.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/owl.carousel.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/jquery.stellar.min.js" defer></script>
+    <script type="rocketlazyloadscript" data-minify="1" src="assets/js/jquery.magnific-popup.js"></script>
+    <script type="rocketlazyloadscript" data-minify="1" src="assets/js/YouTubePopUp.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/smooth-scroll.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/custom-min.js" defer></script>
+
+</body>
+
+</html>

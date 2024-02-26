@@ -478,7 +478,7 @@ form.submit(function (a) {
     $(".treat-res .owl-carousel").owlCarousel({
       loop: -1,
       margin: 30,
-      mouseDrag: !0,
+      mouseDrag: 1,
       autoplay: -1,
       navigation: true,
       navText: [
@@ -486,6 +486,6 @@ form.submit(function (a) {
         "<span class='lnr ti-angle-right'></span>",
       ],
       responsiveClass: !0,
-      responsive: { 0: { items: 1 }, 600: { items: 2 }, 1e3: { items: 3 } },
+      responsive: { 0: { items: 1 }, 600: { items: 2 }, 1e3: { items: 2 } },
     });
   });

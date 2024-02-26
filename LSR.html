@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="assets/imgs/Satya-logo-Gold.png " type="image/x-icon">
+    <script>class RocketLazyLoadScripts { constructor(e) { this.triggerEvents = e, this.eventOptions = { passive: !0 }, this.userEventListener = this.triggerListener.bind(this), this.delayedScripts = { normal: [], async: [], defer: [] }, this.allJQueries = [] } _addUserInteractionListener(e) { this.triggerEvents.forEach((t => window.addEventListener(t, e.userEventListener, e.eventOptions))) } _removeUserInteractionListener(e) { this.triggerEvents.forEach((t => window.removeEventListener(t, e.userEventListener, e.eventOptions))) } triggerListener() { this._removeUserInteractionListener(this), "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", this._loadEverythingNow.bind(this)) : this._loadEverythingNow() } async _loadEverythingNow() { this._delayEventListeners(), this._delayJQueryReady(this), this._handleDocumentWrite(), this._registerAllDelayedScripts(), this._preloadAllScripts(), await this._loadScriptsFromList(this.delayedScripts.normal), await this._loadScriptsFromList(this.delayedScripts.defer), await this._loadScriptsFromList(this.delayedScripts.async), await this._triggerDOMContentLoaded(), await this._triggerWindowLoad(), window.dispatchEvent(new Event("rocket-allScriptsLoaded")) } _registerAllDelayedScripts() { document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e => { e.hasAttribute("src") ? e.hasAttribute("async") && !1 !== e.async ? this.delayedScripts.async.push(e) : e.hasAttribute("defer") && !1 !== e.defer || "module" === e.getAttribute("data-rocket-type") ? this.delayedScripts.defer.push(e) : this.delayedScripts.normal.push(e) : this.delayedScripts.normal.push(e) })) } async _transformScript(e) { return await this._requestAnimFrame(), new Promise((t => { const n = document.createElement("script"); let r;[...e.attributes].forEach((e => { let t = e.nodeName; "type" !== t && ("data-rocket-type" === t && (t = "type", r = e.nodeValue), n.setAttribute(t, e.nodeValue)) })), e.hasAttribute("src") ? (n.addEventListener("load", t), n.addEventListener("error", t)) : (n.text = e.text, t()), e.parentNode.replaceChild(n, e) })) } async _loadScriptsFromList(e) { const t = e.shift(); return t ? (await this._transformScript(t), this._loadScriptsFromList(e)) : Promise.resolve() } _preloadAllScripts() { var e = document.createDocumentFragment();[...this.delayedScripts.normal, ...this.delayedScripts.defer, ...this.delayedScripts.async].forEach((t => { const n = t.getAttribute("src"); if (n) { const t = document.createElement("link"); t.href = n, t.rel = "preload", t.as = "script", e.appendChild(t) } })), document.head.appendChild(e) } _delayEventListeners() { let e = {}; function t(t, n) { !function (t) { function n(n) { return e[t].eventsToRewrite.indexOf(n) >= 0 ? "rocket-" + n : n } e[t] || (e[t] = { originalFunctions: { add: t.addEventListener, remove: t.removeEventListener }, eventsToRewrite: [] }, t.addEventListener = function () { arguments[0] = n(arguments[0]), e[t].originalFunctions.add.apply(t, arguments) }, t.removeEventListener = function () { arguments[0] = n(arguments[0]), e[t].originalFunctions.remove.apply(t, arguments) }) }(t), e[t].eventsToRewrite.push(n) } function n(e, t) { let n = e[t]; Object.defineProperty(e, t, { get: () => n || function () { }, set(r) { e["rocket" + t] = n = r } }) } t(document, "DOMContentLoaded"), t(window, "DOMContentLoaded"), t(window, "load"), t(window, "pageshow"), t(document, "readystatechange"), n(document, "onreadystatechange"), n(window, "onload"), n(window, "onpageshow") } _delayJQueryReady(e) { let t = window.jQuery; Object.defineProperty(window, "jQuery", { get: () => t, set(n) { if (n && n.fn && !e.allJQueries.includes(n)) { n.fn.ready = n.fn.init.prototype.ready = function (t) { e.domReadyFired ? t.bind(document)(n) : document.addEventListener("rocket-DOMContentLoaded", (() => t.bind(document)(n))) }; const t = n.fn.on; n.fn.on = n.fn.init.prototype.on = function () { if (this[0] === window) { function e(e) { return e.split(" ").map((e => "load" === e || 0 === e.indexOf("load.") ? "rocket-jquery-load" : e)).join(" ") } "string" == typeof arguments[0] || arguments[0] instanceof String ? arguments[0] = e(arguments[0]) : "object" == typeof arguments[0] && Object.keys(arguments[0]).forEach((t => { delete Object.assign(arguments[0], { [e(t)]: arguments[0][t] })[t] })) } return t.apply(this, arguments), this }, e.allJQueries.push(n) } t = n } }) } async _triggerDOMContentLoaded() { this.domReadyFired = !0, await this._requestAnimFrame(), document.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._requestAnimFrame(), window.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._requestAnimFrame(), document.dispatchEvent(new Event("rocket-readystatechange")), await this._requestAnimFrame(), document.rocketonreadystatechange && document.rocketonreadystatechange() } async _triggerWindowLoad() { await this._requestAnimFrame(), window.dispatchEvent(new Event("rocket-load")), await this._requestAnimFrame(), window.rocketonload && window.rocketonload(), await this._requestAnimFrame(), this.allJQueries.forEach((e => e(window).trigger("rocket-jquery-load"))), window.dispatchEvent(new Event("rocket-pageshow")), await this._requestAnimFrame(), window.rocketonpageshow && window.rocketonpageshow() } _handleDocumentWrite() { const e = new Map; document.write = document.writeln = function (t) { const n = document.currentScript, r = document.createRange(), i = n.parentElement; let o = e.get(n); void 0 === o && (o = n.nextSibling, e.set(n, o)); const a = document.createDocumentFragment(); r.setStart(a, 0), a.appendChild(r.createContextualFragment(t)), i.insertBefore(a, o) } } async _requestAnimFrame() { return new Promise((e => requestAnimationFrame(e))) } static run() { const e = new RocketLazyLoadScripts(["keydown", "mousemove", "touchmove", "touchstart", "touchend", "wheel"]); e._addUserInteractionListener(e) } } RocketLazyLoadScripts.run();</script>
+
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="assets/css/themify-icons.css" />
+    <link rel="stylesheet" href="assets/css/flaticon.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/custom.css" />
+    <title>Satya Skin Solutions</title>
+    <link rel='stylesheet' id='megamenu-css' href='assets/css/stylef82d.css' media='all' />
+    <link data-minify="1" rel='stylesheet' id='dashicons-css' href='assets/css/dashicons.min138c.css?ver=1708005023'
+        media='all' />
+    <link rel='stylesheet' id='style-css' href='assets/css/style8a54.css' media='all' />
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <div class="logo-wrapper navbar-brand valign">
+                <div class="logo">
+                    <a href="index.html" class="custom-logo-link" rel="home" aria-current="page"><img height="124"
+                            src="assets/imgs/Satya-logo-Gold.png" class="custom-logo w-50 w-md-100 " alt="Satya_Logo"
+                            decoding="async" /></a>
+                </div>
+            </div>
+
+            <!-- Navbar links -->
+            <div id="mega-menu-wrap-main" class="mega-menu-wrap">
+                <div class="mega-menu-toggle">
+                    <div class="mega-toggle-blocks-left"></div>
+                    <div class="mega-toggle-blocks-center"></div>
+                    <div class="mega-toggle-blocks-right">
+                        <div class='mega-toggle-block mega-menu-toggle-animated-block mega-toggle-block-0'
+                            id='mega-toggle-block-0'><button aria-label="Toggle Menu"
+                                class="mega-toggle-animated mega-toggle-animated-slider" type="button"
+                                aria-expanded="false">
+                                <span class="mega-toggle-animated-box">
+                                    <span class="mega-toggle-animated-inner"></span>
+                                </span>
+                            </button></div>
+                    </div>
+                </div>
+                <ul id="mega-menu-main" class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js"
+                    data-event="hover_intent" data-effect="fade_up" data-effect-speed="200"
+                    data-effect-mobile="disabled" data-effect-speed-mobile="0" data-mobile-force-width="false"
+                    data-second-click="go" data-document-click="collapse" data-vertical-behaviour="standard"
+                    data-breakpoint="768" data-unbind="true" data-mobile-state="collapse_all"
+                    data-hover-intent-timeout="300" data-hover-intent-interval="100">
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-home mega-current-menu-item mega-page_item mega-page-item-9 mega-current_page_item mega-align-bottom-left mega-menu-flyout mega-menu-item-86'
+                        id='mega-menu-item-86'><a class="mega-menu-link" href="index.html" aria-current="page"
+                            tabindex="0">Home</a></li>
+                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-3165'
+                        id='mega-menu-item-3165'><a class="mega-menu-link" href="About.html" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">About<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-87'
+                                id='mega-menu-item-87'><a class="mega-menu-link"
+                                    href="dr-gurveen-waraich-garekar/index.html">About Satya</a></li>
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-87'
+                                id='mega-menu-item-87'><a class="mega-menu-link"
+                                    href="dr-gurveen-waraich-garekar/index.html">Dr. Shaiil Gupta</a></li>
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-3166'
+                                id='mega-menu-item-3166'><a class="mega-menu-link"
+                                    href="dr-siddharth-garekar/index.html">Dr. Ruchi Agarwal</a></li>
+                        </ul>
+                    </li>
+                    <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-88 dropdown'
+                        id='mega-menu-item-88'><a class="mega-menu-link" href="#" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">Skin Treatments<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-row mega-garekar-mega-menu garekar-mega-menu' id='mega-menu-88-0'>
+                                <ul class="mega-sub-menu">
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-0'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2432'
+                                                id='mega-menu-item-2432'><a class="mega-menu-link"
+                                                    href="fillers-treatment-gurgaon/index.html">Fillers</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2433'
+                                                id='mega-menu-item-2433'><a class="mega-menu-link"
+                                                    href="botox-treatment-gurgaon/index.html">Botox</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2434'
+                                                id='mega-menu-item-2434'><a class="mega-menu-link"
+                                                    href="thread-lift-treatment-gurgaon/index.html">Thread Lift</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2435'
+                                                id='mega-menu-item-2435'><a class="mega-menu-link"
+                                                    href="photofacial/index.html">Photofacial</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2535'
+                                                id='mega-menu-item-2535'><a class="mega-menu-link"
+                                                    href="clear-lift/index.html">Clear Lift</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2536'
+                                                id='mega-menu-item-2536'><a class="mega-menu-link"
+                                                    href="carbon-laser/index.html">Carbon laser</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-1'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2537'
+                                                id='mega-menu-item-2537'><a class="mega-menu-link"
+                                                    href="laser-toning/index.html">Laser toning</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2439'
+                                                id='mega-menu-item-2439'><a class="mega-menu-link"
+                                                    href="prp-hair-treatment/index.html">Prp hair</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2538'
+                                                id='mega-menu-item-2538'><a class="mega-menu-link"
+                                                    href="prp-face/index.html">PRP face</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2441'
+                                                id='mega-menu-item-2441'><a class="mega-menu-link"
+                                                    href="endymed-mnrf/index.html">Endymed MNRF</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2539'
+                                                id='mega-menu-item-2539'><a class="mega-menu-link"
+                                                    href="endymed-sculpt/index.html">Endymed sculpt</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2443'
+                                                id='mega-menu-item-2443'><a class="mega-menu-link"
+                                                    href="hydrafacial-in-gurgaon/index.html">Hydrafacial</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-2'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2563'
+                                                id='mega-menu-item-2563'><a class="mega-menu-link"
+                                                    href="mirapeel/index.html">Mirapeel</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2445'
+                                                id='mega-menu-item-2445'><a class="mega-menu-link"
+                                                    href="hair-mesotherapy-treatment-gurgaon/index.html">Mesotherapy</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2448'
+                                                id='mega-menu-item-2448'><a class="mega-menu-link"
+                                                    href="laser-hair-removal-delhi/index.html">Laser Hair Removal</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2562'
+                                                id='mega-menu-item-2562'><a class="mega-menu-link"
+                                                    href="skin-boosters-glass-skin/index.html">Skin Boosters/Glass
+                                                    skin</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2561'
+                                                id='mega-menu-item-2561'><a class="mega-menu-link"
+                                                    href="profhilo/index.html">Profhilo</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2549'
+                                                id='mega-menu-item-2549'><a class="mega-menu-link"
+                                                    href="facials/index.html">Medi Facials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-3'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2541'
+                                                id='mega-menu-item-2541'><a class="mega-menu-link"
+                                                    href="microneedling/index.html">Microneedling</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2546'
+                                                id='mega-menu-item-2546'><a class="mega-menu-link"
+                                                    href="pixel-erbium-laser/index.html">Pixel erbium laser</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2689'
+                                                id='mega-menu-item-2689'><a class="mega-menu-link"
+                                                    href="chemical-peeling/index.html">Chemical peeling</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2587'
+                                                id='mega-menu-item-2587'><a class="mega-menu-link"
+                                                    href="tattoo-removal-in-gurgaon/index.html">Tattoo Removal</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-89 dropdown'
+                        id='mega-menu-item-89'><a class="mega-menu-link" href="#" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">Hair Transplant<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-row' id='mega-menu-89-0'>
+                                <ul class="mega-sub-menu">
+                                    <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-0'>
+                                        <ul class="mega-sub-menu" style="column-count: 2;">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
+                                                id='mega-menu-item-2661'><a class="mega-menu-link"
+                                                    href="concerns/aging/index.html"> <strong style="color: #C78853;">
+                                                        Hair
+                                                        Transplant</strong></a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
+                                                id='mega-menu-item-2661'><a class="mega-menu-link"
+                                                    href="concerns/aging/index.html"> FUT</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2665'
+                                                id='mega-menu-item-2665'><a class="mega-menu-link"
+                                                    href="concerns/fine-lines-wrinkles/index.html">FUE</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
+                                                id='mega-menu-item-2657'><a class="mega-menu-link"
+                                                    href="concerns/under-eye-darkening-hollows/index.html">MHT</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
+                                                id='mega-menu-item-2668'><a class="mega-menu-link"
+                                                    href="concerns/laugh-lines/index.html"> Balanced Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
+                                                id='mega-menu-item-2656'><a class="mega-menu-link"
+                                                    href="concerns/thin-lips/index.html">Beard Restoration</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
+                                                id='mega-menu-item-2669'><a class="mega-menu-link"
+                                                    href="concerns/neck-lines/index.html">Synthetic Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
+                                                id='mega-menu-item-2657'><a class="mega-menu-link"
+                                                    href="concerns/under-eye-darkening-hollows/index.html">Long Hair
+                                                    Transplant</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
+                                                id='mega-menu-item-2668'><a class="mega-menu-link"
+                                                    href="concerns/laugh-lines/index.html"> Body Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
+                                                id='mega-menu-item-2656'><a class="mega-menu-link"
+                                                    href="concerns/thin-lips/index.html"> Female Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
+                                                id='mega-menu-item-2669'><a class="mega-menu-link"
+                                                    href="concerns/neck-lines/index.html">Repair Hair Transplant</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-1'>
+                                        <ul class="mega-sub-menu" style="column-count: 2;">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2653'
+                                                id='mega-menu-item-2653'><a class="mega-menu-link"
+                                                    href="concerns/sagging/index.html"><strong
+                                                        style="color: #C78853;">NON SURGICAL</strong></a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2658'
+                                                id='mega-menu-item-2658'><a class="mega-menu-link"
+                                                    href="concerns/uneven-skin-tone/index.html">PRP</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2672'
+                                                id='mega-menu-item-2672'><a class="mega-menu-link"
+                                                    href="concerns/patchy-skin/index.html">Mesotherapy</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2654'
+                                                id='mega-menu-item-2654'><a class="mega-menu-link"
+                                                    href="concerns/sensitive-skin/index.html">Stem Cell Therapy</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2652'
+                                                id='mega-menu-item-2652'><a class="mega-menu-link"
+                                                    href="concerns/rosacea/index.html">Hair Weaving</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
+                                                id='mega-menu-item-2659'><a class="mega-menu-link"
+                                                    href="concerns/acne/index.html">Laser Comb</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
+                                                id='mega-menu-item-2659'><a class="mega-menu-link"
+                                                    href="concerns/acne/index.html">Scalp Micro Pigmentation</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-91 dropdown'
+                        id='mega-menu-item-91'><a class="mega-menu-link" href="#" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">Concerns<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu w-100">
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-110'
+                                id='mega-menu-item-110'><a class="mega-menu-link"
+                                    href="get-appointment/index.html">Hair</a></li>
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-109'
+                                id='mega-menu-item-109'><a class="mega-menu-link"
+                                    href="register-yourself/index.html">Skin</a></li>
+                        </ul>
+                    </li>
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-3392'
+                        id='mega-menu-item-3392'><a class="mega-menu-link" href="blog/index.html"
+                            tabindex="0">Result</a>
+                    </li>
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2431'
+                        id='mega-menu-item-2431'><a class="mega-menu-link" href="blog.html" tabindex="0">Blog</a></li>
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2581'
+                        id='mega-menu-item-2581'><a class="mega-menu-link" href="laser-hair-removal/index.html"
+                            tabindex="0">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Banner -->
+    <div class="banner-header section-padding valign bg-img bg-fixed" data-overlay-dark="4"
+        data-background="assets/imgs/DSC09861.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 caption mt-90">
+                    <h1>Laser hair Removal</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main id="primary1" class="site-main1">
+        <div class="entry-content">
+
+            <!-- About -->
+            <section class="about section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 mb-30 ">
+                            <span>
+                                <i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i
+                                    class="star-rating"></i> <i class="star-rating"></i>
+                            </span>
+                            <div class="section-subtitle">Satya</div>
+                            <div class="section-title">
+                                <h2>What is a laser hair reduction treatment?</h2>
+                            </div>
+                            <p>Laser hair removal or Laser Hair Reduction in Delhi is the most sought after treatment in
+                                a dermatologist’s office. Laser hair reduction is a safe, effective and long term
+                                solution in reducing unwanted hair on any part of the body in both males & females.
+                                Satya Skin & Hair Clinic under the guidance of our top skin specialists & founder
+                                doctors, Dr. Ruchi Agarwal & Dr. Shail Gupta, has been among the pioneers to use this
+                                technology in Delhi.
+                            </p>
+                            <!-- reservation -->
+
+                        </div>
+                        <div class="col col-md-6 "> <img decoding="async" src="assets/imgs/service/Laser hair removal.png"
+                                style="height: 21rem; object-fit: cover;" alt="botox treatment in gurgaon"> </div>
+                        <div class="col-md-12">
+                            <h4>Who needs Laser Hair Reduction treatment in Delhi?</h4>
+                            <p>Laser Hair Reduction(LHR) can be done for both medical and aesthetic indications.
+                                The medical indications for LHR are:</p>
+                            <ul>
+                                <li> Hirsutism</li>
+                                <li>Hypertrichosis</li>
+                                <li> Pilonidal sinus</li>
+                                <li>Acne Keloidalis Nuchae</li>
+                                <li> Ingrown Hairs</li>
+                                <li> Pseudofolliculitis barbae</li>
+                            </ul>
+                            <p>However, LHR can be done for aesthetic reasons alone. It is a much more effective & long
+                                term solution for getting rid of unwanted hair on any part of the body: face, neck,
+                                chest, back, arms, legs, underarms or bikini area.
+
+                                A great number of males are also opting Laser hair reduction in Delhi for beard
+                                reshaping, unibrow treatment, removal of unwanted hair from ear pinna as well as full
+                                body laser hair removal.</p>
+                            <h4>How does Laser remove hair/ what is the mechanism of action of Laser hair reduction?
+                            </h4>
+                            <p>Lasers in dermatology work on the principle of ‘Selective Photothermolysis’. In Laser
+                                hair reduction, the melanin pigment present in the hair works as the chromophore and
+                                absorbs light between 600-1200 nm. The laser light is absorbed by the melanin in the
+                                hair and it gets converted to heat. This heat destroys the growing cells in the hair
+                                follicle.</p>
+                            <h4>Which is the correct term ‘ Permanent Laser Hair Removal’ or ‘Long term Hair Reduction’?
+                            </h4>
+                            <p>The correct term is ‘Long term hair reduction’. Laser technology is the best way to get
+                                rid of unwanted hair and no other hair removal method matches the results of laser hair
+                                reduction. <br>
+
+                                We can only achieve approximately 70-80% reduction in hair growth in an area even after
+                                completing the required number of LHR sessions. <br>
+
+                                In patients who have or develop hormonal imbalance later, there can be some regrowth of
+                                hair in areas which had achieved good reduction earlier. <br>
+                            </p>
+                            <div class="reservations d-flex justify-content-center align-items-center mt-5">
+                                <div class="butn-dark"> <a href="contact-us.html"><span>Get
+                                            appointment</span></a> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="treat-res ">
+                <div class="background bg-img bg-fixed section-padding " data-background="assets/imgs/infra/1.jpeg"
+                    data-overlay-dark="2">
+                    <div class="blur-overlay"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="owl-carousel owl-theme">
+                                    <div> <iframe width="560" height="315"
+                                            src="https://www.youtube.com/embed/09GmVv3fhTk?si=OZYDNCe_fqtoSeqr"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowfullscreen></iframe> </div>
+                                    <div> <iframe width="560" height="315"
+                                            src="https://www.youtube.com/embed/Y9CAwl_P65Y?si=kcLC942I9qER7pj0"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowfullscreen></iframe> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Faqs -->
+            <section class="section-padding bg-cream">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-subtitle">Things to Know</div>
+                            <div class="section-title">
+                                <h3>Laser hair reduction</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <ul class="accordion-box clearfix">
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">What are the various lasers used in Laser hair reduction
+                                            treatment?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>The most effective and gold standard laser in Laser Hair Reduction is
+                                                    810 nm Diode laser as it is safe for all skin types including dark
+                                                    skin. Satya Skin & Hair Clinic is using Diode laser for LHR in most
+                                                    of its patients.</p>
+                                                <p>The other effective lasers for Laser Hair reduction are:</p>
+                                                <ul>
+                                                    <li> 1064 nm Nd:Yag laser</li>
+                                                    <li>694 nm Ruby Laser</li>
+                                                    <li> 755 nm Alexandrite Laser</li>
+                                                    <li> IPLZ</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">What is the importance of consultation with a dermatologist
+                                            before starting Laser Hair Reduction treatment in Delhi?</h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">Laser hair reduction should always be done under the
+                                                supervision of an experienced dermatologist. Prior to starting the
+                                                treatment sessions, our dermatologists take a detailed history to find
+                                                out if there is any medical reason for excess hair and also rule out any
+                                                contra-indications for laser treatment. Certain blood investigations and
+                                                ultrasound may also be suggested by the doctor, if required. They also
+                                                help to clear any doubts which you might have about LHR & guide you
+                                                regarding the precautions and aftercare required with this treatment.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">What is the minimum age to start Laser hair reduction
+                                            treatment in Delhi?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>The minimum age to start Laser hair reduction at Satya Skin & Hair
+                                                    Clinic in Delhi is 15 years.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">Why do we need repeat sessions of Laser Hair Reduction
+                                            Treatment in Delhi?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>The hair follicle is sensitive to LHR only during the anagen/ growth
+                                                    phase of the hair cycle. As all hairs are not in the anagen phase of
+                                                    the hair cycle at the same time, we need repeat sessions to target
+                                                    all the hairs.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">What is the number of sessions required for Laser Hair
+                                            Reduction?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>An average of 8 sessions is required for effective hair reduction by
+                                                    laser. Some body areas respond faster while other areas may respond
+                                                    at a slower pace. Patients with underlying hormonal imbalance like
+                                                    PCOS may need a higher number of sessions.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">What is the gap between Laser Hair reduction treatment
+                                            sessions?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> A session of Laser hair reduction is needed every 4-6 weeks for the
+                                                    initial 4-5 sessions. Later, this gap usually increases to once in
+                                                    8-10 weeks in most patients. The repeat session is done only when
+                                                    the patient experiences regrowth of hair in the treated areas.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">How long does the effect of Laser hair reduction treatment
+                                            last?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>The effect of Laser hair reduction may last for a few months or few
+                                                    years or it may last lifelong. The results vary in different
+                                                    individuals and also vary with different areas of the body treated.
+                                                    Females with hirsutism and PCOS may need maintenance sessions once
+                                                    in 3-6 months even after completing the initial regular monthly
+                                                    sessions of LHR.
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">Is Laser hair reduction a safe treatment?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p> The laser technologies used in hair reduction are approved by USFDA,
+                                                    so there is no risk from the laser itself. But you have to be sure
+                                                    that the person who is doing your laser hair removal treatment has
+                                                    appropriate training and expertise to handle the laser machine. It
+                                                    is always safer to get Laser hair removal at a dermatologist’s
+                                                    clinic rather than going to a salon or spa.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">What are the possible side effects of laser hair removal
+                                            treatment?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>The most common side effects expected after an LHR session is mild
+                                                    redness, swelling and discomfort of the treated area. This usually
+                                                    subsides in less than 24 hours. Bacterial infection of hair roots
+                                                    called folliculitis might occur in a few patients if proper hygiene
+                                                    is not maintained during the treatment or by the patient after the
+                                                    treatment. A very less common side effect which might occur is
+                                                    burning or blistering of the treated area leading to pigmentary
+                                                    changes and/or scarring. This occurs only if incorrect parameters
+                                                    are chosen for the treatment. Paradoxical hypertrichosis may occur
+                                                    in a few patients after LHR using IPL technology.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">When should an LHR treatment be avoided?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>Laser hair removal treatment sessions should be avoided in following
+                                                    conditions: <br>
+                                                    Pregnancy
+
+                                                    Active infections in the areas to be treated <br>
+
+                                                    Skin disease like psoriasis, lichen planus, vitiligo <br>
+
+                                                    If the area to be treated has a tattoo <br>
+
+                                                    Unrealistic expectations of the patient <br>
+
+                                                    Recent tan or sunburn of the area to be treated <br>
+
+                                                    Patient is taking photosensitizing or immunosuppressive medicines
+                                                    <br>
+
+                                                    Keloidal tendency in the patient <br>
+
+                                                    Personal or family history of skin cancer <br>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">What is the downtime of Laser hair removal treatment?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>Laser hair reduction has practically no downtime, a few patients may
+                                                    have mild redness and swelling which usually subsides in less than
+                                                    24 hours.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">Is the Laser hair removal treatment painful?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>Laser hair removal treatment is not painful at all, you may only feel
+                                                    some heat during the treatment. The handpiece of the laser machine
+                                                    which comes in contact with the skin has an inbuilt cooling
+                                                    mechanism so that the treatment becomes a very comfortable and pain
+                                                    free experience.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">What is the duration of one session of laser hair reduction
+                                            in Delhi?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>The duration of a session depends on the area to be treated, a small
+                                                    area like upper lip may take only 5 minutes while full body laser
+                                                    hair removal may need upto 3 hours.
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">Which areas of the body can be treated by laser hair
+                                            reduction?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>Laser hair reduction can be done for any part of the body from where
+                                                    you would like to get rid of hair permanently. A large number of
+                                                    patients now opt for full body laser hair removal in Delhi. Beard
+                                                    reshaping by Laser and unibrow/ monobrow treatment is very common
+                                                    treatment sought by our male clients. Laser hair reduction for
+                                                    bikini area and laser hair reduction for underarms are also becoming
+                                                    increasingly popular in Delhi.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">Is laser hair reduction effective on all types of hair?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>A hair needs to have melanin pigment for a laser to work on it. Laser
+                                                    hair reduction works best on dark, coarse hair as these have the
+                                                    highest amount of melanin. White hair, recently bleached hair, very
+                                                    fine light hair (peach fuzz) may not respond to lasers.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">Is the radiation from a laser harmful?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>Lasers used for hair reduction do not emit any harmful ionizing rays
+                                                    like X-rays or UV rays. The laser light is proven to be safe, the
+                                                    only precaution is to use protective eyewear by both patient and the
+                                                    therapist.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <br><br>
+                        </div>
+
+                        <div class="p-5 text-white" style="background-color: #C78853;">
+                            <p class="text-white">Call on us for a free consultation at &#8211; </p>
+
+                            <div class="col-md-6 mb-30 ">
+                                <strong>Gurgaon</strong>
+                                <p class="text-white"> Satya Clinic<br>
+                                    4301, Galleria Boulevard, opposite DLF Club, <br>
+                                    DLF Phase IV, Sector 27,<br>
+                                    Gurugram, Haryana 122002
+
+                                </p>
+                            </div>
+                            <div class="col-md-6 mb-30 ">
+                                <strong>Delhi</strong>
+                                <p class="text-white"> Satya Clinic<br>
+                                    ED 38 /A Pitampura, Near Pitampura,<br>
+                                    Madhuban Chowk, Delhi, 110034, India
+                                </p>
+
+                            </div>
+                            <div class="res-wrapper common-cta">
+
+                                <!-- call -->
+                                <div class="reservations block11">
+                                    <div class="icon"><span class="flaticon-call text-white"></span></div>
+                                    <div class="text">
+                                        <p class="text-white">Get Appointment at Our Gurgaon Clinic</p> <a
+                                            href="tel:9667684409 " class="text-white">9910094945
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="reservations block22">
+                                    <div class="icon"><span class="flaticon-call text-white"></span></div>
+                                    <div class="text">
+                                        <p class="text-white">Get Appointment at Our Delhi Clinic</p> <a
+                                            href="tel:9599491986 " class="text-white">9910094945</a>
+                                    </div>
+                                </div>
+                                <div class="butn-dark block33">
+                                    <a href="contact-us.html"><span> Get appointment</span></a>
+                                </div>
+                            </div><!-- END res-wrapper -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 text-center ">
+                        <img src="assets/imgs/Satya-logo-Gold.png" class="w-50 " alt="">
+                    </div>
+                    <div class="col-md-3">
+                        <div class="footer-column footer-contact">
+                            <h3 class="footer-title">Contact</h3>
+                            <h4 class="footer-title" style="font-size:18px">Gurugram</h4>
+                            <p class="footer-contact-text">4301, Galleria Boulevard, opposite DLF Club,<br> DLF Phase
+                                IV, Sector 27,<br> Gurugram, Haryana 122002<span style="padding-top: 10px;
+font-weight: bold!important;color: #fff;font-size:17px"> <span class="flaticon-call"></span> <a
+                                        href="tel:9667684409">+919910094945</a> | Satya@gmail.com</span></p>
+
+
+                            <h4 class="footer-title" style="font-size:18px">Delhi Clinic</h4>
+                            <p class="footer-contact-text" style="padding-bottom:0">ED 38 /A Pitampura, Near Pitampura,
+                                <br> Madhuban Chowk, Delhi, 110034, India<span style="padding-top: 10px;
+font-weight: bold!important;color: #fff;font-size:17px"> <span class="flaticon-call"></span> <a
+                                        href="tel:9599491986">+919910094945</a> | Satya@gmail.com</span>
+                            </p>
+                            <!--<div class="footer-contact-info">
+                            <p class="footer-contact-phone" style="font-size:19px"><span class="flaticon-call"></span> <a href="tel:9205639140">92056 39140</a> | <span class="flaticon-email"></span> drsgarekar@gmail.com</p>-->
+                            <!--<p class="footer-contact-mail">drsgarekar@gmail.com</p>-->
+                            <!--</div>-->
+                            <div class="footer-about-social-list">
+                                <a href="#"><i class="ti-instagram"></i></a>
+                                <a href="#"><i class="ti-twitter"></i></a>
+                                <a href="#"><i class="ti-youtube"></i></a>
+                                <a href="#"><i class="ti-facebook"></i></a>
+                                <a href="#"><i class="ti-pinterest"></i></a>
+                                <a href="#"><i class="ti-linkedin"></i></a>
+                                <a href="#"><i class="ti-google"></i></a>
+                            </div>
+                            <!--<br/> 5 stars – based on 2622 reviews on Practo, Facebook, and Google-->
+
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="footer-column footer-explore clearfix">
+                            <h3 class="footer-title">Quick Link</h3>
+                            <ul class="footer-explore-list list-unstyled">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Skin Treatment</a></li>
+                                <li><a href="#">Hair Treatment</a></li>
+                                <li><a href="#">Concerns</a></li>
+                                <li><a href="#">Result</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="footer-column footer-about">
+                            <h3 class="footer-title">Blogs</h3>
+
+                            <ul class="footer-explore-list list-unstyled">
+                                <li><a href="#">Skin clinic near me</a></li>
+                                <li><a href="#">Skin care clinic</a></li>
+                                <li><a href="#">Skin clinic in delhi</a></li>
+                                <li><a href="#">Best skin care clinic in delhi</a></li>
+                                <li><a href="#">Best skin whitening clinic in delhi</a></li>
+                                <li><a href="#">Skin treatment clinic</a></li>
+                                <li><a href="#">Skin specialist clinic near me</a></li>
+                                <li><a href="#">Skin clinic in gurgaon</a></li>
+                                <li><a href="#">Skin care clinic in gurgaon</a></li>
+                                <li><a href="#">Best skin clinic in delhi ncr</a></li>
+                                <li><a href="#">Best skin and hair clinic in delhi ncr</a></li>
+                                <li><a href="#">Skin clinic in noida</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="footer-bottom-inner">
+                            <p class="footer-bottom-copy-right">Copyright © 2022 <a href="index.html"> Satyaclinic</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- jQuery -->
+    <script type="rocketlazyloadscript" src="assets/js/jquery-3.6.0.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/jquery-migrate-3.0.0.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/popper.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/scrollIt.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/jquery.waypoints.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/owl.carousel.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/jquery.stellar.min.js" defer></script>
+    <script type="rocketlazyloadscript" data-minify="1" src="assets/js/jquery.magnific-popup.js"></script>
+    <script type="rocketlazyloadscript" data-minify="1" src="assets/js/YouTubePopUp.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/smooth-scroll.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/custom-min.js" defer></script>
+
+</body>
+
+</html>
