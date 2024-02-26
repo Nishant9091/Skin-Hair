@@ -38,8 +38,6 @@ div#comments {margin-top: 50px;}
 .booking-box .ginput_container.ginput_container_date ::placeholder {color:#fff!important}
 .booking-box .ginput_container.ginput_container_select select{    height: 42px; padding: 0 5px; border-radius: 0;}
 
-/*PAGE: BLOG *********************************************/
-/* .blog .banner-header { background: url(../../uploads/2023/08/garekars-page-header.jpg);background-size: cover;} */
 /* BLOG NAVIGATION*/
 .nav-links .nav-previous{display:inline}
 .nav-links .nav-next{display:inline; margin-left:20px}
@@ -94,7 +92,7 @@ body div .dropdown-menu,body div  .sub-menu{ width: 280px!important;}
 
 /*MEGA MENU***********************************************************/
 body div#navbarSupportedContent,body div#mega-menu-wrap-main { width: 100%!important;}
-.garekar-mega-menu a {  text-transform:  none !important;}
+.satya-mega-menu a {  text-transform:  none !important;}
 
 .mega-menu-toggle{
 	    background: none;
