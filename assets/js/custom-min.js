@@ -507,3 +507,18 @@ function toggleMenu() {
       ? "block"
       : "none";
 }
+
+$(document).ready(function() {
+  $('.mega-menu-link').click(function() {
+      // Toggle mega indicator when clicking on a mega menu link
+      $(this).siblings('.mega-indicator').toggleClass('mega-indicator-open');
+      
+      // Toggle mega menu
+      $(this).parent('.mega-menu-item-has-children').children('.mega-sub-menu').slideToggle();
+  });
+  
+  $('.mega-toggle-animated-slider').click(function() {
+      // Toggle mega indicator when clicking on the menu toggle button
+      $('.mega-indicator').toggleClass('mega-indicator-open');
+  });
+});
