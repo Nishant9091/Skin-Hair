@@ -66,6 +66,7 @@ p {
   line-height: 1.75em;
   color: #666;
   margin-bottom: 20px;
+  text-align: justify;
 }
 h1,
 h2,
@@ -4754,6 +4755,7 @@ select {
 .ite .row p {
   color: white !important;
   /* padding-top: 1rem; */
+  font-size: 12px;
 }
 
 .sidebar {
@@ -4812,4 +4814,12 @@ body {
   .mega-menu {
       display: block; /* Show the menu in mobile view */
   }
+}
+
+.footer-contact p
+{
+  text-align: start;
+}
+.footer-bottom p{
+  text-align: center;
 }
