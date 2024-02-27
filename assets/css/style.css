@@ -4749,7 +4749,7 @@ select {
 .ite .row {
   backdrop-filter: blur(15px);
   background-color: #00000040 !important;
-  height: 19.5rem;
+  /* height: 19.5rem; */
 }
 .ite .row p {
   color: white !important;
@@ -4799,4 +4799,17 @@ body {
   top: 10px;
   right: 10px;
   cursor: pointer;
+}
+
+
+/* Your existing styles */
+.mega-menu {
+  display: none; /* Initially hide the menu */
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  .mega-menu {
+      display: block; /* Show the menu in mobile view */
+  }
 }

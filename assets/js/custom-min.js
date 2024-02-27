@@ -157,17 +157,29 @@ $(function () {
       margin: 30,
       mouseDrag: !0,
       autoplay: !1,
-      dots: !1,
-      nav: !0,
+      dots: false,
+      nav: true,
       navText: [
         "<span class='lnr ti-angle-left'></span>",
         "<span class='lnr ti-angle-right'></span>",
       ],
       responsiveClass: !0,
       responsive: {
-        0: { items: 1, dots: !0, nav: !1 },
-        600: { items: 2, dots: !0, nav: !1 },
-        1e3: { items: 3 },
+        0: {
+          items: 1,
+          dots: false,
+          nav: true,
+        },
+        600: {
+          items: 2,
+          dots: false,
+          nav: true,
+        },
+        1000: {
+          items: 3,
+          dots: false,
+          nav: true,
+        },
       },
     }),
     $(".team .owl-carousel").owlCarousel({
@@ -455,37 +467,43 @@ form.submit(function (a) {
     },
   });
 
-
-
-  $(document).ready(function(){
-    $(".ytb-vdn .owl-carousel").owlCarousel({
-      loop: -1,
-      margin: 30,
-      mouseDrag: !0,
-      autoplay: -1,
-      navigation:true,
-      navText: [
-        "<span class='lnr ti-angle-left'></span>",
-        "<span class='lnr ti-angle-right'></span>",
-      ],
-      responsiveClass: !0,
-      responsive: {
-        0: { items: 1, dots: !0, nav: !1 },
-        600: { items: 2, dots: !0, nav: !1 },
-        1e3: { items: 2 },
-      },
-    });
-    $(".treat-res .owl-carousel").owlCarousel({
-      loop: -1,
-      margin: 30,
-      mouseDrag: 1,
-      autoplay: -1,
-      navigation: true,
-      navText: [
-        "<span class='lnr ti-angle-left'></span>",
-        "<span class='lnr ti-angle-right'></span>",
-      ],
-      responsiveClass: !0,
-      responsive: { 0: { items: 1 }, 600: { items: 2 }, 1e3: { items: 2 } },
-    });
+$(document).ready(function () {
+  $(".ytb-vdn .owl-carousel").owlCarousel({
+    loop: -1,
+    margin: 30,
+    mouseDrag: !0,
+    autoplay: -1,
+    navigation: true,
+    navText: [
+      "<span class='lnr ti-angle-left'></span>",
+      "<span class='lnr ti-angle-right'></span>",
+    ],
+    responsiveClass: !0,
+    responsive: {
+      0: { items: 1, dots: !0, nav: !1 },
+      600: { items: 2, dots: !0, nav: !1 },
+      1e3: { items: 2 },
+    },
   });
+  $(".treat-res .owl-carousel").owlCarousel({
+    loop: -1,
+    margin: 30,
+    mouseDrag: 1,
+    autoplay: -1,
+    navigation: true,
+    navText: [
+      "<span class='lnr ti-angle-left'></span>",
+      "<span class='lnr ti-angle-right'></span>",
+    ],
+    responsiveClass: !0,
+    responsive: { 0: { items: 1 }, 600: { items: 2 }, 1e3: { items: 2 } },
+  });
+});
+
+function toggleMenu() {
+  var menu = document.querySelector(".mega-menu");
+  menu.style.display =
+    menu.style.display === "none" || menu.style.display === ""
+      ? "block"
+      : "none";
+}
