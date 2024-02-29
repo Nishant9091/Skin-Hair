@@ -22,345 +22,376 @@
         media='all' />
     <link rel='stylesheet' id='style-css' href='assets/css/style8a54.css' media='all' />
     <link rel="stylesheet" href="assets/css/animate.min.css">
+    <style>
+        .lsq-form-wrapper .field-control-group {
+            margin-bottom: 18px;
+        }
 
+        .lsq-form-wrapper .label-placement.inside .field-control-group {
+            min-height: 65px !important;
+        }
+
+        .lsq-form-wrapper .label-placement.inside .field-control-group input[type="text"],
+        .lsq-form-wrapper .label-placement.inside .field-control-group textarea {
+            -webkit-box-shadow: none !important;
+            -moz-box-shadow: none !important;
+            box-shadow: none !important;
+            border: none !important;
+            border-bottom: 1px solid white !important;
+        }
+
+        .lsq-form-wrapper .lp-form {
+            width: 100% !important;
+            margin: 0 !important;
+        }
+
+        ::placeholder {
+            color: #fff !important;
+        }
+
+        .lsq-form-wrapper .label-placement.inside .field-control-group textarea {
+            height: 100px !important;
+        }
+    </style>
 </head>
 
 <body>
-   <!-- Navbar -->
-   <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <!-- Logo -->
-        <div class="logo-wrapper navbar-brand valign">
-            <div class="logo">
-                <a href="index.html" class="custom-logo-link" rel="home" aria-current="page"><img height="124"
-                        src="assets/imgs/Satya-logo-Gold.png" class="custom-logo w-50 w-md-100 " alt="Satya_Logo"
-                        decoding="async" /></a>
-            </div>
-        </div>
-
-        <!-- Navbar links -->
-        <div id="mega-menu-wrap-main" class="mega-menu-wrap">
-            <div class="mega-menu-toggle">
-                <div class="mega-toggle-blocks-left"></div>
-                <div class="mega-toggle-blocks-center"></div>
-                <div class="mega-toggle-blocks-right">
-                    <div class='mega-toggle-block mega-menu-toggle-animated-block mega-toggle-block-0'
-                        id='mega-toggle-block-0'>
-                        <button aria-label="Toggle Menu" class="mega-toggle-animated mega-toggle-animated-slider"
-                            type="button" aria-expanded="false" onclick="toggleMenu()">
-                            <span class="mega-toggle-animated-box">
-                                <span class="mega-toggle-animated-inner"></span>
-                            </span>
-                        </button>
-                    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <div class="logo-wrapper navbar-brand valign">
+                <div class="logo">
+                    <a href="index.html" class="custom-logo-link" rel="home" aria-current="page"><img height="124"
+                            src="assets/imgs/Satya-logo-Gold.png" class="custom-logo w-50 w-md-100 " alt="Satya_Logo"
+                            decoding="async" /></a>
                 </div>
             </div>
 
-            <ul id="mega-menu-main" class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js"
-                data-event="hover_intent" data-effect="fade_up" data-effect-speed="200"
-                data-effect-mobile="disabled" data-effect-speed-mobile="0" data-mobile-force-width="false"
-                data-second-click="go" data-document-click="collapse" data-vertical-behaviour="standard"
-                data-breakpoint="768" data-unbind="true" data-mobile-state="collapse_all"
-                data-hover-intent-timeout="300" data-hover-intent-interval="100">
-                <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-home mega-current-menu-item mega-page_item mega-page-item-9 mega-current_page_item mega-align-bottom-left mega-menu-flyout mega-menu-item-86'
-                    id='mega-menu-item-86'><a class="mega-menu-link" href="index.html" aria-current="page"
-                        tabindex="0">Home</a></li>
-                <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-3165'
-                    id='mega-menu-item-3165'><a class="mega-menu-link" href="#" aria-haspopup="true"
-                        aria-expanded="false" tabindex="0">About<span class="mega-indicator"></span></a>
-                    <ul class="mega-sub-menu">
-                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-87'
-                            id='mega-menu-item-87'><a class="mega-menu-link" href="About.html">About Satya</a></li>
-                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-87'
-                            id='mega-menu-item-87'><a class="mega-menu-link" href="#">Dr. Shaiil Gupta</a></li>
-                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-3166'
-                            id='mega-menu-item-3166'><a class="mega-menu-link" href="#">Dr. Ruchi Agarwal</a></li>
-                    </ul>
-                </li>
-                <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-88 dropdown'
-                    id='mega-menu-item-88'><a class="mega-menu-link" href="#Treatments" aria-haspopup="true"
-                        aria-expanded="false" tabindex="0">Skin Treatments<span class="mega-indicator"></span></a>
-                    <ul class="mega-sub-menu">
-                        <li class='mega-menu-row mega-satya-mega-menu satya-mega-menu' id='mega-menu-88-0'>
-                            <ul class="mega-sub-menu">
-                                <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-0'>
-                                    <ul class="mega-sub-menu">
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2432'
-                                            id='mega-menu-item-2432'><a class="mega-menu-link"
-                                                href="5D-facial.html">5d facial</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2433'
-                                            id='mega-menu-item-2433'><a class="mega-menu-link"
-                                                href="Carbon-facial.html">Carbon facial</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2434'
-                                            id='mega-menu-item-2434'><a class="mega-menu-link"
-                                                href="Fractional-Laser.html">Fractional co2
-                                                laser</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2435'
-                                            id='mega-menu-item-2435'><a class="mega-menu-link" href="LSR.html">Laser
-                                                hair reduction </a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2535'
-                                            id='mega-menu-item-2535'><a class="mega-menu-link" href="MNRF.html">MNRF
-                                                (Morpheus) </a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2536'
-                                            id='mega-menu-item-2536'><a class="mega-menu-link"
-                                                href="HIFU.html">HIFU</a></li>
-                                    </ul>
-                                </li>
-                                <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-1'>
-                                    <ul class="mega-sub-menu">
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2537'
-                                            id='mega-menu-item-2537'><a class="mega-menu-link"
-                                                href="Vampire-Facelift.html">Vampire Facelift </a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2439'
-                                            id='mega-menu-item-2439'><a class="mega-menu-link"
-                                                href="Mesotheraphy.html">Mesotheraphy</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2441'
-                                            id='mega-menu-item-2441'><a class="mega-menu-link" href="LIP.html">LIP
-                                                enhancement</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2539'
-                                            id='mega-menu-item-2539'><a class="mega-menu-link"
-                                                href="Chemical-Peel.html">Chemical Peel/ Glow Peel</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2443'
-                                            id='mega-menu-item-2443'><a class="mega-menu-link"
-                                                href="Dermal-Fillers.html">Dermal Fillers</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2563'
-                                            id='mega-menu-item-2563'><a class="mega-menu-link"
-                                                href="Mole-Removal.html">Mole Removal</a></li>
-                                    </ul>
-                                </li>
-                                <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-2'>
-                                    <ul class="mega-sub-menu">
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2562'
-                                            id='mega-menu-item-2562'><a class="mega-menu-link"
-                                                href="AFT-SSR.html">AFT-SSR</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2561'
-                                            id='mega-menu-item-2561'><a class="mega-menu-link"
-                                                href="PRP.html">PRP</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2549'
-                                            id='mega-menu-item-2549'><a class="mega-menu-link"
-                                                href="FORMA.html">FORMA Facial</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2541'
-                                            id='mega-menu-item-2541'><a class="mega-menu-link"
-                                                href="Clearlift-Laser.html">Clearlift Laser</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2546'
-                                            id='mega-menu-item-2546'><a class="mega-menu-link"
-                                                href="Clearskin-pro.html">CLEARSKIN PRO</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2689'
-                                            id='mega-menu-item-2689'><a class="mega-menu-link"
-                                                href="Botulinum-Toxin.html">Botulinum Toxin</a></li>
-                                    </ul>
-                                </li>
-                                <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-3'>
-                                    <ul class="mega-sub-menu">
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2546'
-                                            id='mega-menu-item-2546'><a class="mega-menu-link"
-                                                href="Microdermabrasion.html">Skin Polishing/ Microdermabrasion</a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2689'
-                                            id='mega-menu-item-2689'><a class="mega-menu-link" href="IPL.html">IPL
-                                                Photofacial</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2546'
-                                            id='mega-menu-item-2546'><a class="mega-menu-link"
-                                                href="Toning.html">Laser Toning/ Peel</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-89 dropdown'
-                    id='mega-menu-item-89'><a class="mega-menu-link" href="https://satyahairsolutions.com/"
-                        aria-haspopup="true" aria-expanded="false" tabindex="0">Hair Transplant<span
-                            class="mega-indicator"></span></a>
-                    <ul class="mega-sub-menu">
-                        <li class='mega-menu-row' id='mega-menu-89-0'>
-                            <ul class="mega-sub-menu">
-                                <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-0'>
-                                    <ul class="mega-sub-menu" style="column-count: 2;">
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
-                                            id='mega-menu-item-2661'><a class="mega-menu-link"
-                                                href="concerns/aging/index.html"> <strong style="color: #C78853;">
-                                                    HAIR TRANSPLANT</strong></a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
-                                            id='mega-menu-item-2661'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/fut-hair-transplant/"> FUT</a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2665'
-                                            id='mega-menu-item-2665'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/fue-hair-transplant/">FUE</a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
-                                            id='mega-menu-item-2657'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/maximum-harvesting-technique/">MHT</a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
-                                            id='mega-menu-item-2668'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/balanced-hair-transplant/">
-                                                Balanced Hair Transplant</a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
-                                            id='mega-menu-item-2656'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/beard-restoration/">Beard
-                                                Restoration</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
-                                            id='mega-menu-item-2669'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/synthetic-hair-transplant/">Synthetic
-                                                Hair Transplant</a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
-                                            id='mega-menu-item-2657'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/long-hair-transplant/">Long
-                                                Hair
-                                                Transplant</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
-                                            id='mega-menu-item-2668'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/body-hair-transplant/"> Body
-                                                Hair Transplant</a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
-                                            id='mega-menu-item-2656'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/female-hair-transplant/">
-                                                Female Hair Transplant</a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
-                                            id='mega-menu-item-2669'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/repair-hair-transplants/">Repair
-                                                Hair Transplant</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-1'>
-                                    <ul class="mega-sub-menu" style="column-count: 2;">
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2653'
-                                            id='mega-menu-item-2653'><a class="mega-menu-link"
-                                                href="concerns/sagging/index.html"><strong
-                                                    style="color: #C78853;">NON SURGICAL</strong></a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2658'
-                                            id='mega-menu-item-2658'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/platelet-rich-plasma/">PRP</a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2672'
-                                            id='mega-menu-item-2672'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/mesotherapy/">Mesotherapy</a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2654'
-                                            id='mega-menu-item-2654'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/stem-cell-hair-transplant/">Stem
-                                                Cell Therapy</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2652'
-                                            id='mega-menu-item-2652'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/hair-weaving-treatment/">Hair
-                                                Weaving</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
-                                            id='mega-menu-item-2659'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/laser-comb/">Laser Comb</a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
-                                            id='mega-menu-item-2659'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/scalp-micropigmentation/">Scalp
-                                                Micro Pigmentation</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-89 dropdown'
-                    id='mega-menu-item-89'><a class="mega-menu-link" href="#" aria-haspopup="true"
-                        aria-expanded="false" tabindex="0">Concerns<span class="mega-indicator"></span></a>
-                    <ul class="mega-sub-menu">
-                        <li class='mega-menu-row' id='mega-menu-89-0'>
-                            <ul class="mega-sub-menu">
-                                <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-0'>
-                                    <ul class="mega-sub-menu" style="column-count: 2;">
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
-                                            id='mega-menu-item-2661'><a class="mega-menu-link"
-                                                href="concerns/aging/index.html"> <strong style="color: #C78853;">
-                                                    SKIN CONCERN</strong></a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
-                                            id='mega-menu-item-2661'><a class="mega-menu-link"
-                                                href="Acne-Scar.html"> Acne scars </a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2665'
-                                            id='mega-menu-item-2665'><a class="mega-menu-link"
-                                                href="Stretch-Marks.html">Stretch marks</a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
-                                            id='mega-menu-item-2657'><a class="mega-menu-link" href="Acne.html">Acne
-                                            </a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
-                                            id='mega-menu-item-2668'><a class="mega-menu-link"
-                                                href="Pigmentation.html"> Pigmentation/ Dark spots</a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
-                                            id='mega-menu-item-2656'><a class="mega-menu-link"
-                                                href="Pseudo.html">Acanthosis nigricans </a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
-                                            id='mega-menu-item-2669'><a class="mega-menu-link"
-                                                href="Vitiligo.html">Vitiligo </a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
-                                            id='mega-menu-item-2657'><a class="mega-menu-link"
-                                                href="Under-eye.html">Under eye
-                                                circles </a></li>
-                                    </ul>
-                                </li>
-                                <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-1'>
-                                    <ul class="mega-sub-menu" style="column-count: 2;">
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2653'
-                                            id='mega-menu-item-2653'><a class="mega-menu-link"
-                                                href="concerns/sagging/index.html"><strong
-                                                    style="color: #C78853;">HAIR CONCERN</strong></a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2658'
-                                            id='mega-menu-item-2658'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/male-pattern-baldness/">Male
-                                                Pattern
-                                                Baldness</a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2672'
-                                            id='mega-menu-item-2672'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/female-pattern-baldness/">Female
-                                                Pattern Baldness</a>
-                                        </li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2654'
-                                            id='mega-menu-item-2654'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/alopecia-areata/">Alopecia
-                                                Areata</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2652'
-                                            id='mega-menu-item-2652'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/pseudopelade-scarring-alopecia/">Pseudopelade
-                                                Scarring
-                                                Alopecia</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
-                                            id='mega-menu-item-2659'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/telogen-effluvium/">Telogen
-                                                Effluvium</a></li>
-                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
-                                            id='mega-menu-item-2659'><a class="mega-menu-link"
-                                                href="https://satyahairsolutions.com/traction-alopecia/">Traction
-                                                Alopecia</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-3392'
-                    id='mega-menu-item-3392'><a class="mega-menu-link" href="#" tabindex="0">Result</a>
-                </li>
-                <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2431'
-                    id='mega-menu-item-2431'><a class="mega-menu-link" href="blog.html" tabindex="0">Blog</a></li>
-                <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2581'
-                    id='mega-menu-item-2581'><a class="mega-menu-link" href="contact-us.html"
-                        tabindex="0">Contact</a></li>
-            </ul>
+            <!-- Navbar links -->
+            <div id="mega-menu-wrap-main" class="mega-menu-wrap">
+                <div class="mega-menu-toggle">
+                    <div class="mega-toggle-blocks-left"></div>
+                    <div class="mega-toggle-blocks-center"></div>
+                    <div class="mega-toggle-blocks-right">
+                        <div class='mega-toggle-block mega-menu-toggle-animated-block mega-toggle-block-0'
+                            id='mega-toggle-block-0'>
+                            <button aria-label="Toggle Menu" class="mega-toggle-animated mega-toggle-animated-slider"
+                                type="button" aria-expanded="false" onclick="toggleMenu()">
+                                <span class="mega-toggle-animated-box">
+                                    <span class="mega-toggle-animated-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <ul id="mega-menu-main" class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js"
+                    data-event="hover_intent" data-effect="fade_up" data-effect-speed="200"
+                    data-effect-mobile="disabled" data-effect-speed-mobile="0" data-mobile-force-width="false"
+                    data-second-click="go" data-document-click="collapse" data-vertical-behaviour="standard"
+                    data-breakpoint="768" data-unbind="true" data-mobile-state="collapse_all"
+                    data-hover-intent-timeout="300" data-hover-intent-interval="100">
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-home mega-current-menu-item mega-page_item mega-page-item-9 mega-current_page_item mega-align-bottom-left mega-menu-flyout mega-menu-item-86'
+                        id='mega-menu-item-86'><a class="mega-menu-link" href="index.html" aria-current="page"
+                            tabindex="0">Home</a></li>
+                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-3165'
+                        id='mega-menu-item-3165'><a class="mega-menu-link" href="About.html" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">About Us</a>
+                    </li>
+                    <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-88 dropdown'
+                        id='mega-menu-item-88'><a class="mega-menu-link" href="#Treatments" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">Skin Treatments<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-row mega-satya-mega-menu satya-mega-menu' id='mega-menu-88-0'>
+                                <ul class="mega-sub-menu">
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-0'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2432'
+                                                id='mega-menu-item-2432'><a class="mega-menu-link"
+                                                    href="5D-facial.html">5d facial</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2433'
+                                                id='mega-menu-item-2433'><a class="mega-menu-link"
+                                                    href="Carbon-facial.html">Carbon facial</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2434'
+                                                id='mega-menu-item-2434'><a class="mega-menu-link"
+                                                    href="Fractional-Laser.html">Fractional co2
+                                                    laser</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2435'
+                                                id='mega-menu-item-2435'><a class="mega-menu-link" href="LSR.html">Laser
+                                                    hair reduction </a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2535'
+                                                id='mega-menu-item-2535'><a class="mega-menu-link" href="MNRF.html">MNRF
+                                                    (Morpheus) </a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2536'
+                                                id='mega-menu-item-2536'><a class="mega-menu-link"
+                                                    href="HIFU.html">HIFU</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-1'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2537'
+                                                id='mega-menu-item-2537'><a class="mega-menu-link"
+                                                    href="Vampire-Facelift.html">Vampire Facelift </a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2439'
+                                                id='mega-menu-item-2439'><a class="mega-menu-link"
+                                                    href="Mesotheraphy.html">Mesotheraphy</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2441'
+                                                id='mega-menu-item-2441'><a class="mega-menu-link" href="LIP.html">LIP
+                                                    enhancement</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2539'
+                                                id='mega-menu-item-2539'><a class="mega-menu-link"
+                                                    href="Chemical-Peel.html">Chemical Peel/ Glow Peel</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2443'
+                                                id='mega-menu-item-2443'><a class="mega-menu-link"
+                                                    href="Dermal-Fillers.html">Dermal Fillers</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2563'
+                                                id='mega-menu-item-2563'><a class="mega-menu-link"
+                                                    href="Mole-Removal.html">Mole Removal</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-2'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2562'
+                                                id='mega-menu-item-2562'><a class="mega-menu-link"
+                                                    href="AFT-SSR.html">AFT-SSR</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2561'
+                                                id='mega-menu-item-2561'><a class="mega-menu-link"
+                                                    href="PRP.html">PRP</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2549'
+                                                id='mega-menu-item-2549'><a class="mega-menu-link"
+                                                    href="FORMA.html">FORMA Facial</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2541'
+                                                id='mega-menu-item-2541'><a class="mega-menu-link"
+                                                    href="Clearlift-Laser.html">Clearlift Laser</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2546'
+                                                id='mega-menu-item-2546'><a class="mega-menu-link"
+                                                    href="Clearskin-pro.html">CLEARSKIN PRO</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2689'
+                                                id='mega-menu-item-2689'><a class="mega-menu-link"
+                                                    href="Botulinum-Toxin.html">Botulinum Toxin</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-3'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2546'
+                                                id='mega-menu-item-2546'><a class="mega-menu-link"
+                                                    href="Microdermabrasion.html">Skin Polishing/ Microdermabrasion</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2689'
+                                                id='mega-menu-item-2689'><a class="mega-menu-link" href="IPL.html">IPL
+                                                    Photofacial</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2546'
+                                                id='mega-menu-item-2546'><a class="mega-menu-link"
+                                                    href="Toning.html">Laser Toning/ Peel</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-89 dropdown'
+                        id='mega-menu-item-89'><a class="mega-menu-link" href="https://satyahairsolutions.com/"
+                            aria-haspopup="true" aria-expanded="false" tabindex="0">Hair Transplant<span
+                                class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-row' id='mega-menu-89-0'>
+                                <ul class="mega-sub-menu">
+                                    <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-0'>
+                                        <ul class="mega-sub-menu" style="column-count: 2;">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
+                                                id='mega-menu-item-2661'><a class="mega-menu-link"
+                                                    href="concerns/aging/index.html"> <strong style="color: #C78853;">
+                                                        HAIR TRANSPLANT</strong></a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
+                                                id='mega-menu-item-2661'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/fut-hair-transplant/"> FUT</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2665'
+                                                id='mega-menu-item-2665'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/fue-hair-transplant/">FUE</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
+                                                id='mega-menu-item-2657'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/maximum-harvesting-technique/">MHT</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
+                                                id='mega-menu-item-2668'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/balanced-hair-transplant/">
+                                                    Balanced Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
+                                                id='mega-menu-item-2656'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/beard-restoration/">Beard
+                                                    Restoration</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
+                                                id='mega-menu-item-2669'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/synthetic-hair-transplant/">Synthetic
+                                                    Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
+                                                id='mega-menu-item-2657'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/long-hair-transplant/">Long
+                                                    Hair
+                                                    Transplant</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
+                                                id='mega-menu-item-2668'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/body-hair-transplant/"> Body
+                                                    Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
+                                                id='mega-menu-item-2656'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/female-hair-transplant/">
+                                                    Female Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
+                                                id='mega-menu-item-2669'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/repair-hair-transplants/">Repair
+                                                    Hair Transplant</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-1'>
+                                        <ul class="mega-sub-menu" style="column-count: 2;">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2653'
+                                                id='mega-menu-item-2653'><a class="mega-menu-link"
+                                                    href="concerns/sagging/index.html"><strong
+                                                        style="color: #C78853;">NON SURGICAL</strong></a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2658'
+                                                id='mega-menu-item-2658'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/platelet-rich-plasma/">PRP</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2672'
+                                                id='mega-menu-item-2672'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/mesotherapy/">Mesotherapy</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2654'
+                                                id='mega-menu-item-2654'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/stem-cell-hair-transplant/">Stem
+                                                    Cell Therapy</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2652'
+                                                id='mega-menu-item-2652'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/hair-weaving-treatment/">Hair
+                                                    Weaving</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
+                                                id='mega-menu-item-2659'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/laser-comb/">Laser Comb</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
+                                                id='mega-menu-item-2659'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/scalp-micropigmentation/">Scalp
+                                                    Micro Pigmentation</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-89 dropdown'
+                        id='mega-menu-item-89'><a class="mega-menu-link" href="#" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">Concerns<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-row' id='mega-menu-89-0'>
+                                <ul class="mega-sub-menu">
+                                    <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-0'>
+                                        <ul class="mega-sub-menu" style="column-count: 2;">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
+                                                id='mega-menu-item-2661'><a class="mega-menu-link"
+                                                    href="concerns/aging/index.html"> <strong style="color: #C78853;">
+                                                        SKIN CONCERN</strong></a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
+                                                id='mega-menu-item-2661'><a class="mega-menu-link"
+                                                    href="Acne-Scar.html"> Acne scars </a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2665'
+                                                id='mega-menu-item-2665'><a class="mega-menu-link"
+                                                    href="Stretch-Marks.html">Stretch marks</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
+                                                id='mega-menu-item-2657'><a class="mega-menu-link" href="Acne.html">Acne
+                                                </a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
+                                                id='mega-menu-item-2668'><a class="mega-menu-link"
+                                                    href="Pigmentation.html"> Pigmentation/ Dark spots</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
+                                                id='mega-menu-item-2656'><a class="mega-menu-link"
+                                                    href="Pseudo.html">Acanthosis nigricans </a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
+                                                id='mega-menu-item-2669'><a class="mega-menu-link"
+                                                    href="Vitiligo.html">Vitiligo </a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
+                                                id='mega-menu-item-2657'><a class="mega-menu-link"
+                                                    href="Under-eye.html">Under eye
+                                                    circles </a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-1'>
+                                        <ul class="mega-sub-menu" style="column-count: 2;">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2653'
+                                                id='mega-menu-item-2653'><a class="mega-menu-link"
+                                                    href="concerns/sagging/index.html"><strong
+                                                        style="color: #C78853;">HAIR CONCERN</strong></a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2658'
+                                                id='mega-menu-item-2658'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/male-pattern-baldness/">Male
+                                                    Pattern
+                                                    Baldness</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2672'
+                                                id='mega-menu-item-2672'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/female-pattern-baldness/">Female
+                                                    Pattern Baldness</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2654'
+                                                id='mega-menu-item-2654'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/alopecia-areata/">Alopecia
+                                                    Areata</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2652'
+                                                id='mega-menu-item-2652'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/pseudopelade-scarring-alopecia/">Pseudopelade
+                                                    Scarring
+                                                    Alopecia</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
+                                                id='mega-menu-item-2659'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/telogen-effluvium/">Telogen
+                                                    Effluvium</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
+                                                id='mega-menu-item-2659'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/traction-alopecia/">Traction
+                                                    Alopecia</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-3165'
+                        id='mega-menu-item-3165'><a class="mega-menu-link" href="#" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">Result<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-87'
+                                id='mega-menu-item-87'><a class="mega-menu-link" href="image-gallery.html">Image
+                                    Gallery</a></li>
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-3166'
+                                id='mega-menu-item-3166'><a class="mega-menu-link" href="video-gallery.html">Video
+                                    Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2431'
+                        id='mega-menu-item-2431'><a class="mega-menu-link" href="blog.html" tabindex="0">Blog</a></li>
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2581'
+                        id='mega-menu-item-2581'><a class="mega-menu-link" href="contact-us.html"
+                            tabindex="0">Contact</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <!-- Header Banner -->
     <div class="banner-header section-padding valign bg-img bg-fixed" data-overlay-dark="4"
-        data-background="assets/imgs/_DSC5661.jpg">
+        data-background="assets/imgs/DSC09719.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 caption mt-90">
@@ -379,11 +410,19 @@
                 <div class="row pb-5">
                     <div class="col-md-6"><img src="assets/imgs/Untitled design.png" alt=""></div>
                     <div class="col-md-6 ">
-                        <p class="lh-2"> At Satya Hair Solutions, founded by Dr. Shaiil Gupta and Dr. Ruchi Agarwal, the emphasis is on the importance of consultation and planning which provides personalized and effective treatment options according to patient need.
+                        <p class="lh-2"> At Satya Hair Solutions, founded by Dr. Shaiil Gupta and Dr. Ruchi Agarwal, the
+                            emphasis is on the importance of consultation and planning which provides personalized and
+                            effective treatment options according to patient need.
                             <br><br>
-                            Consultation plays a determining role in understanding each patient’s needs and about designing a tailored treatment plan. The team at Satya Hair Solutions recognizes that every individual is different, and a one-size-fits-all approach is inadequate. By offering consultations with experienced doctors like Dr. Shaiil Gupta and Dr. Ruchi Agarwal, patients have the opportunity to benefit from their extensive medical expertise and ethical practices.
+                            Consultation plays a determining role in understanding each patient’s needs and about
+                            designing a tailored treatment plan. The team at Satya Hair Solutions recognizes that every
+                            individual is different, and a one-size-fits-all approach is inadequate. By offering
+                            consultations with experienced doctors like Dr. Shaiil Gupta and Dr. Ruchi Agarwal, patients
+                            have the opportunity to benefit from their extensive medical expertise and ethical
+                            practices.
                             <br><br>
-                            The cost is not for 2 minutes. It is for 25 years of medical experience & ethical practice sharing the honest opinion. 
+                            The cost is not for 2 minutes. It is for 25 years of medical experience & ethical practice
+                            sharing the honest opinion.
                         </p>
                     </div>
                 </div>
@@ -391,17 +430,20 @@
             <div style="background-color: #36312E;">
                 <div class="container">
                     <div class="row py-3 text-center">
-                        <div class="col-md-6 my-2 my-md-0"> <a href="#appoint"> <button class="btn text-white" style="background-color: #C78853;"><i class="ti-mobile mx-2"></i>Get Your Hair Transplant Price </button></a></div>
-                        <div class="col-md-6 my-2 my-md-0"> <a href="#appoint"> <button class="btn text-white" style="background-color: #C78853;"><i class="ti-calendar mx-2"></i>Book Your Free Video Consultation </button></a></div>
+                        <div class="col-md-6 my-2 my-md-0"> <a href="#appoint"> <button class="btn text-white"
+                                    style="background-color: #C78853;"><i class="ti-mobile mx-2"></i>Get Your Hair
+                                    Transplant Price </button></a></div>
+                        <div class="col-md-6 my-2 my-md-0"> <a href="#appoint"> <button class="btn text-white"
+                                    style="background-color: #C78853;"><i class="ti-calendar mx-2"></i>Book Your Free
+                                    Video Consultation </button></a></div>
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <div class="entry-content  bg-img bg-fixed" data-overlay-dark="4"
-        data-background="assets/imgs/DSC09719.jpg">
-        <div class="blur-overlay"></div>
+        <div class="entry-content  bg-img bg-fixed" data-overlay-dark="4" data-background="assets/imgs/DSC09719.jpg">
+            <div class="blur-overlay"></div>
 
             <section class="testimonials">
                 <div class="section-padding">
@@ -417,57 +459,157 @@
                                         <h4>Get Appointment</h4>
                                     </div>
 
-                                    <div class='gf_browser_chrome gform_wrapper gravity-theme' id='gform_wrapper_1'>
-                                        <form id='gform_1' action='#'>
-                                            <div class='gform_body gform-body'>
-                                                <div id='gform_fields_1'
-                                                    class='gform_fields top_label form_sublabel_below description_below'>
-                                                    <div id="field_1_1"
-                                                        class="gfield gfield_contains_required field_sublabel_below field_description_below gfield_visibility_visible"
-                                                        data-js-reload="field_1_1"><label class='gfield_label'
-                                                            for='input_1_1'>Full name<span class="gfield_required"><span
-                                                                    class="gfield_required gfield_required_asterisk">*</span></span></label>
-                                                        <div class='ginput_container ginput_container_text'><input
-                                                                name='input_1' id='input_1_1' type='text' value=''
-                                                                class='large' tabindex='49' aria-required="true"
-                                                                aria-invalid="false" /> </div>
-                                                    </div>
-                                                    <div id="field_1_2"
-                                                        class="gfield gfield--width-half gfield_contains_required field_sublabel_below field_description_below gfield_visibility_visible"
-                                                        data-js-reload="field_1_2"><label class='gfield_label'
-                                                            for='input_1_2'>Phone<span class="gfield_required"><span
-                                                                    class="gfield_required gfield_required_asterisk">*</span></span></label>
-                                                        <div class='ginput_container ginput_container_phone'><input
-                                                                name='input_2' id='input_1_2' type='text' value=''
-                                                                class='large' tabindex='50' aria-required="true"
-                                                                aria-invalid="false" /></div>
-                                                    </div>
-                                                    <div id="field_1_3"
-                                                        class="gfield gfield--width-half gfield_contains_required field_sublabel_below field_description_below gfield_visibility_visible"
-                                                        data-js-reload="field_1_3"><label class='gfield_label'
-                                                            for='input_1_3'>Email<span class="gfield_required"><span
-                                                                    class="gfield_required gfield_required_asterisk">*</span></span></label>
-                                                        <div class='ginput_container ginput_container_email'>
-                                                            <input name='input_3' id='input_1_3' type='text' value=''
-                                                                class='large' tabindex='51' aria-required="true"
-                                                                aria-invalid="false" />
+                                    <script
+                                        src="https://www.google.com/recaptcha/api.js?render=6Ldr9ngnAAAAAFPC_0mV8Iq0DAltggWPGn02U5ZH"
+                                        async defer></script><!-- Fonts -->
+                                    <link id="lnkWebFonts" rel="stylesheet" type="text/css"
+                                        href="https://fonts.googleapis.com/css?family=Roboto">
+                                    <!-- Stylesheet -->
+                                    <link rel="stylesheet" type="text/css"
+                                        href="https://dwmbily8o2kmd.cloudfront.net/common/css/lsq.form.v2.min.css" />
+                                    <!-- Form -->
+                                    <div id="lsq-form-wrapper" class="lsq-form-wrapper">
+                                        <div class="form-block-holder block-inner-content"
+                                            data-hover-bg-color="rgba(79,79,79,0.470588)" data-bg-color-type="solid"
+                                            data-handler-position="0" data-shadow-b="6">
+                                            <style type="text/css">
+                                                #frmrlp-block-4 .lp-form-column ::-webkit-input-placeholder {
+                                                    /* WebKit browsers / 		 color: #4d4d4d; }#frmrlp-block-4 .lp-form-column :-moz-placeholder             { / Mozilla Firefox 4 to 18 /  color: #4d4d4d; opacity: 1; }#frmrlp-block-4 .lp-form-column ::-moz-placeholder            { / Mozilla Firefox 19+ / 	 color: #4d4d4d; opacity: 1;}#frmrlp-block-4 .lp-form-column :-ms-input-placeholder        { / Internet Explorer 10+ */
+                                                    color: #4d4d4d;
+                                                }
+                                            </style>
+                                            <div class="lp-form-header-wrapper">
+                                                <div class="lp-form-header-content-wrapper"
+                                                    style="padding: 1px 10px 4px; filter: none; background: none;"
+                                                    data-hover-bg-color="#474747" data-bg-color-type="none"></div>
+                                            </div>
+                                            <form id="frmrlp-block-4" contenteditable="false" method="Post"
+                                                enctype="multipart/form-data"
+                                                action="https://web-in21.mxradon.com/t/FormTracker.aspx"
+                                                searchkey="EmailAddress" lsq-form-id="lp-form" name="FORM 0"
+                                                data-default-countrycode="91">
+                                                <div id="lp-form" class="lp-form label-placement inside"
+                                                    data-fieldlabel-fontsize="12" data-fieldlabel-fontfamily="Open Sans"
+                                                    data-fieldlabel-fontweight="normal" data-fieldlabel-color="#454444"
+                                                    data-field-height="35" data-field-color="#4d4d4d"
+                                                    data-field-backgroundcolor="#ffffff" data-field-fontfamily="Roboto"
+                                                    data-field-bordercolor="#5e5e5e" data-field-borderwidth="1"
+                                                    data-field-cornerradius="2" data-field-shadow="0"
+                                                    data-buttontext-fontsize="19" data-buttontext-fontfamily="Arial"
+                                                    data-buttontext-fontweight="bold" data-buttontext-color="#ffffff"
+                                                    data-button-color="#0e67c7" data-button-cornerradius="2"
+                                                    data-button-style="plain" data-button-alignment="left"
+                                                    style="width: 92%; margin: 4% 4% 0px;">
+                                                    <div id="sec-message-wrapper"
+                                                        class="lp-form-section sec-message-wrapper"
+                                                        style="display: none;">Thank you for your interest.</div>
+                                                    <div id="sec-error-message-wrapper"
+                                                        class="lp-form-section sec-error-message-wrapper"
+                                                        style="display: none;">Oops something went wrong.</div>
+                                                    <div id="sec-fields-wrapper"
+                                                        class="lp-form-section sec-fields-wrapper">
+                                                        <div id="lp-form-column" class="lp-form-column  ui-sortable"
+                                                            style="">
+                                                            <div class="field-control-group" data-field-name="FirstName"
+                                                                data-field-type="text" data-seq="1" style="">
+                                                                <div class="field-control"> <input type="text"
+                                                                        id="FirstName" name="FirstName" maxlength="100"
+                                                                        placeholder="Name *" value="" autocomplete="off"
+                                                                        required="required"> </div>
+                                                                <div class="field-validation-messages"><label
+                                                                        class="validation-msg hide"></label></div>
+                                                            </div>
+                                                            <div class="field-control-group"
+                                                                data-field-name="EmailAddress" data-field-type="email"
+                                                                data-seq="2" style="">
+                                                                <div class="field-control"> <input type="text"
+                                                                        id="EmailAddress" name="EmailAddress"
+                                                                        maxlength="254" placeholder="Email *" value=""
+                                                                        autocomplete="off" required="required"> </div>
+                                                                <div class="field-validation-messages"><label
+                                                                        class="validation-msg hide"></label></div>
+                                                            </div>
+                                                            <div class="field-control-group" data-field-name="Phone"
+                                                                data-field-type="phone" data-ph-control-type="phone"
+                                                                data-seq="3" style="">
+                                                                <div class="field-control"> <input type="text"
+                                                                        id="Phone" name="Phone" maxlength="15"
+                                                                        placeholder="Phone Number *" value=""
+                                                                        autocomplete="off"
+                                                                        data-control-style="height:35px !important;color:#4d4d4d;background-color:#ffffff !important;border:1px solid #5e5e5e !important;border-width:1px !important;border-radius:2px !important;-webkit-border-radius:2px !important;-moz-border-radius:2px !important;-o-border-radius:2px !important;font-family:Roboto !important;-webkit-box-shadow:rgba(0,0,0,0) 0 0 0, inset rgba(0,0,0,0) 0 0 0 !important;-moz-box-shadow:rgba(0,0,0,0) 0 0 0, inset rgba(0,0,0,0) 0 0 0 !important;box-shadow:rgba(0,0,0,0) 0 0 0, inset rgba(0,0,0,0) 0 0 0 !important;"
+                                                                        data-ph-style="color:#4d4d4d !important;background-color:#ffffff !important;border:1px solid #5e5e5e !important;border-width:1px !important;border-radius:2px !important;-webkit-border-radius:2px !important;-moz-border-radius:2px !important;-o-border-radius:2px !important;font-family:Roboto !important;-webkit-box-shadow:rgba(0,0,0,0) 0 0 0, inset rgba(0,0,0,0) 0 0 0 !important;-moz-box-shadow:rgba(0,0,0,0) 0 0 0, inset rgba(0,0,0,0) 0 0 0 !important;box-shadow:rgba(0,0,0,0) 0 0 0, inset rgba(0,0,0,0) 0 0 0 !important;"
+                                                                        jqvalidaterange="true" jqmin="7" jqmax="15"
+                                                                        required="required"> </div>
+                                                                <div class="field-validation-messages"><label
+                                                                        class="validation-msg hide"></label></div>
+                                                            </div>
+                                                            <div class="field-control-group" data-field-name="Notes"
+                                                                data-field-type="text" data-seq="4" style="">
+                                                                <div class="field-control"> <textarea id="Notes"
+                                                                        name="Notes" data-field-type="html"
+                                                                        title="Notes" placeholder="Notes"
+                                                                        maxlength="2000" data-exclude="Notes"
+                                                                        onblur=" if($(this).val() === '') { $(this).attr('placeholder', $(this).attr('data-exclude')); } else { $(this).attr('placeholder',''); } "
+                                                                        onfocus=" $(this).attr('placeholder', ''); "
+                                                                        autocomplete="off"></textarea>
+                                                                </div>
+                                                                <div class="field-validation-messages"><label
+                                                                        class="validation-msg hide"></label></div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div id="field_1_10"
-                                                        class="gfield gform_validation_container field_sublabel_below field_description_below gfield_visibility_visible"
-                                                        data-js-reload="field_1_10"><label class='gfield_label'
-                                                            for='input_1_10'>Comments</label>
-                                                        <div class='ginput_container'><input name='input_10'
-                                                                id='input_1_10' type='text' value='' /></div>
+                                                    <div id="sec-google-recaptcha-wrapper"
+                                                        data-googlerecaptcha-version="GoogleRecaptchaV3Invisible"
+                                                        data-googlerecaptcha-score="0.5"
+                                                        class="lp-form-section sec-google-recaptcha-wrapper v3-invisible">
+                                                        <div class="g-recaptcha-v3"
+                                                            data-sitekey="6Ldr9ngnAAAAAFPC_0mV8Iq0DAltggWPGn02U5ZH"
+                                                            data-callback="_lsq_recaptcha_callback"
+                                                            data-expired-callback="_lsq_recaptcha_expired_callback">
+                                                            <textarea id="g-recaptcha-response"
+                                                                name="g-recaptcha-response" class="g-recaptcha-response"
+                                                                style="display:none;"></textarea>
+                                                        </div>
                                                     </div>
+                                                    <div id="sec-button-wrapper"
+                                                        class="lp-form-section sec-button-wrapper btn-align-left">
+                                                        <button id="form-submit-button"
+                                                            class="form-submit-button gradient btn center-block"
+                                                            style="background-color: #C78853;">
+                                                            Submit</button>
+                                                    </div>
+                                                    <div id="sec-formdata-wrapper"
+                                                        class="lp-form-section sec-formdata-wrapper"
+                                                        style="display: none;"><textarea
+                                                            id="txtLoadedJson">{"LSQLeadFields":[{"Seq":1,"Name":"Name","SchemaName":"FirstName","Type":"text","CtrlType":"textbox","IsMandatory":"1","DisplayName":"Name","MinLength":"","MaxLength":"100","DefaultValue":"","MaskText":null,"OptionValues":"","ChildFields":[],"FormLabel":"First Name","Position":"1,1","IsHidden":"0","IsUsedinForm":"1","Height":"0","SMSVerification":"0","AllowOnlyValidData":true,"ParentField":"","IsUnique":false,"FieldConfiguration":null,"IsSearchKey":false},{"Seq":3,"Name":"Email","SchemaName":"EmailAddress","Type":"email","CtrlType":"email","IsMandatory":"1","DisplayName":"Email","MinLength":"","MaxLength":"254","DefaultValue":"","MaskText":null,"OptionValues":"","ChildFields":[],"FormLabel":"Email","Position":"2,1","IsHidden":"0","IsUsedinForm":"1","Height":"0","SMSVerification":"0","AllowOnlyValidData":true,"ParentField":"","IsUnique":true,"FieldConfiguration":{"IsDefaultSearchKey":true,"FormatValidationRequired":true,"ValidationRegex":"","ValidationMessage":"","MaxLength":254,"ValidationFor":"","AdditionalConfiguration":{"AllowLeadingZero":false,"DefaultCC":null,"IfCCNotProvided":0,"PhoneNumberFormat":0}},"IsSearchKey":true},{"Seq":4,"Name":"Phone Number","SchemaName":"Phone","Type":"phone","CtrlType":"phone","IsMandatory":"1","DisplayName":"Phone Number","MinLength":"7","MaxLength":"15","DefaultValue":"","MaskText":null,"OptionValues":"","ChildFields":[],"FormLabel":"Phone Number","Position":"3,1","IsHidden":"0","IsUsedinForm":"1","Height":"0","SMSVerification":"0","AllowOnlyValidData":true,"ParentField":"","IsUnique":true,"FieldConfiguration":{"IsDefaultSearchKey":false,"FormatValidationRequired":true,"ValidationRegex":"","ValidationMessage":"","MinLength":7,"MaxLength":15,"AdditionalConfiguration":{"AllowLeadingZero":false,"DefaultCC":"91","IfCCNotProvided":1,"PhoneNumberFormat":1}},"IsSearchKey":false},{"Seq":15,"Name":"Notes","SchemaName":"Notes","Type":"text","CtrlType":"html","IsMandatory":"0","DisplayName":"Notes","MinLength":"","MaxLength":"2000","DefaultValue":"","MaskText":null,"OptionValues":"","ChildFields":[],"FormLabel":"Notes","Position":"4,1","IsHidden":"0","IsUsedinForm":"1","Height":"100","SMSVerification":"0","AllowOnlyValidData":true,"ParentField":null,"IsUnique":false,"FieldConfiguration":null,"IsSearchKey":false}],"Version":"2.0","FormWidth":"337","FormSize":"","FieldLabelColor":"#454444","FieldLabelFontSize":12,"FieldLabelFontWeight":"normal","FieldLabelFontFamily":"Open Sans","FieldHeight":"35","FieldColor":"#4d4d4d","FieldBackgroundColor":"#ffffff","FieldFontFamily":"Roboto","FieldBorderColor":"#5e5e5e","FieldBorderWidth":"1","FieldCornerRadius":"2","FieldShadow":"0","ButtonText":"Submit","ButtonTextFontFamily":"Arial","ButtonTextFontSize":19,"ButtonTextFontWeight":"bold","ButtonTextColor":"#ffffff","ButtonColor":"#0e67c7","ButtonWidth":"205","ButtonHeight":"53","ButtonCornerRadius":"2","ButtonStyle":"plain","ButtonAlignment":"left","BackgroundColor":"transparent","Layout":"fluid","LabelPlacement":"inside","ContainsCaptcha":false,"ContainsGoogleRecaptcha":true,"GoogleRecaptchaVersion":"GoogleRecaptchaV3Invisible","GoogleRecaptchaScore":"0.5","ContainsPasswordField":false,"AccountPhoneNumberFormat":"DEFAULT","DefaultCountryCode":"91","ContainsDPR":false,"ContainsDPRDetails":false}</textarea>
+                                                    </div>
+                                                </div><input type="hidden" name="MXHOrgCode" value="68500"><input
+                                                    type="hidden" name="MXHLandingPageId"
+                                                    value="d3cf62fb-d6c5-11ee-af88-022ac2ab2d4d"><input type="hidden"
+                                                    name="MXHFormBehaviour" value="1"><input type="hidden"
+                                                    name="MXHOutputMessagePosition" value="0"><input type="hidden"
+                                                    name="MXHFormDataTransfer" value="0"><input type="hidden"
+                                                    name="MXHRedirectUrl"
+                                                    value="https://satyaesthetics.com/Thankyou.html"><input
+                                                    type="hidden" name="MXHAsc" value="5"><input type="hidden"
+                                                    name="MXHFormName" value="FORM 0"><input type="hidden"
+                                                    name="MXHIsExternallyUsed" value="1"><input type="hidden"
+                                                    name="MXHSecretKey" value="EmailAddress">
+                                            </form>
+                                            <div class="lp-form-footer-wrapper">
+                                                <div class="lp-form-footer-content-wrapper"
+                                                    data-hover-bg-color="rgba(0,0,0,0)" data-bg-color-type="none"
+                                                    style="filter: none; min-height: 0px; padding-bottom: 8px; padding-top: 2px; padding-left: 15px; background: none;">
                                                 </div>
                                             </div>
-                                            <div class='gform_footer top_label'> <input type='submit'
-                                                    id='gform_submit_button_1' class='gform_button button'
-                                                    value='Send' />
-                                            </div>
-                                        </form>
+                                        </div>
                                     </div>
+                                    <!-- Landing Page Id for Tracking -->
+                                    <script
+                                        type="text/javascript"> var MXLandingPageId = 'd3cf62fb-d6c5-11ee-af88-022ac2ab2d4d'; </script>
+                                    <!-- Script -->
+                                    <script type="text/javascript"
+                                        src="https://dwmbily8o2kmd.cloudfront.net/common_r21/js/lsq.form.v2.min.js"></script>
                                 </div>
                             </div>
 
