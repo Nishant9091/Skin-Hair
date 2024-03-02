@@ -156,7 +156,7 @@ $(function () {
       loop: !0,
       margin: 30,
       mouseDrag: !0,
-      autoplay: true,
+      autoplay: false,
       dots: false,
       nav: true,
       navText: [
