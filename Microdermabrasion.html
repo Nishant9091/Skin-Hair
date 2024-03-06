@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Microdermabrasion: Transform Your Skin with Professional Exfoliation</title>
+    <meta name="description"
+        content=" Experience the rejuvenating effects of microdermabrasion, a professional exfoliation technique to reveal smoother, healthier skin, At Satya Aesthetics. ">
+    <meta name="keywords" content="Microdermabrasion">
+    <meta name="robots" content="index, follow">
+    <meta name="copyright" content="Satya Aesthetics">
+    <meta name="language" content="EN">
+
+    <link rel="shortcut icon" href="assets/imgs/Satya-logo-Gold.png " type="image/x-icon">
+    <link rel="canonical" href="https://satyaesthetics.com/Microdermabrasion.html">
+
+    <script>class RocketLazyLoadScripts { constructor(e) { this.triggerEvents = e, this.eventOptions = { passive: !0 }, this.userEventListener = this.triggerListener.bind(this), this.delayedScripts = { normal: [], async: [], defer: [] }, this.allJQueries = [] } _addUserInteractionListener(e) { this.triggerEvents.forEach((t => window.addEventListener(t, e.userEventListener, e.eventOptions))) } _removeUserInteractionListener(e) { this.triggerEvents.forEach((t => window.removeEventListener(t, e.userEventListener, e.eventOptions))) } triggerListener() { this._removeUserInteractionListener(this), "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", this._loadEverythingNow.bind(this)) : this._loadEverythingNow() } async _loadEverythingNow() { this._delayEventListeners(), this._delayJQueryReady(this), this._handleDocumentWrite(), this._registerAllDelayedScripts(), this._preloadAllScripts(), await this._loadScriptsFromList(this.delayedScripts.normal), await this._loadScriptsFromList(this.delayedScripts.defer), await this._loadScriptsFromList(this.delayedScripts.async), await this._triggerDOMContentLoaded(), await this._triggerWindowLoad(), window.dispatchEvent(new Event("rocket-allScriptsLoaded")) } _registerAllDelayedScripts() { document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e => { e.hasAttribute("src") ? e.hasAttribute("async") && !1 !== e.async ? this.delayedScripts.async.push(e) : e.hasAttribute("defer") && !1 !== e.defer || "module" === e.getAttribute("data-rocket-type") ? this.delayedScripts.defer.push(e) : this.delayedScripts.normal.push(e) : this.delayedScripts.normal.push(e) })) } async _transformScript(e) { return await this._requestAnimFrame(), new Promise((t => { const n = document.createElement("script"); let r;[...e.attributes].forEach((e => { let t = e.nodeName; "type" !== t && ("data-rocket-type" === t && (t = "type", r = e.nodeValue), n.setAttribute(t, e.nodeValue)) })), e.hasAttribute("src") ? (n.addEventListener("load", t), n.addEventListener("error", t)) : (n.text = e.text, t()), e.parentNode.replaceChild(n, e) })) } async _loadScriptsFromList(e) { const t = e.shift(); return t ? (await this._transformScript(t), this._loadScriptsFromList(e)) : Promise.resolve() } _preloadAllScripts() { var e = document.createDocumentFragment();[...this.delayedScripts.normal, ...this.delayedScripts.defer, ...this.delayedScripts.async].forEach((t => { const n = t.getAttribute("src"); if (n) { const t = document.createElement("link"); t.href = n, t.rel = "preload", t.as = "script", e.appendChild(t) } })), document.head.appendChild(e) } _delayEventListeners() { let e = {}; function t(t, n) { !function (t) { function n(n) { return e[t].eventsToRewrite.indexOf(n) >= 0 ? "rocket-" + n : n } e[t] || (e[t] = { originalFunctions: { add: t.addEventListener, remove: t.removeEventListener }, eventsToRewrite: [] }, t.addEventListener = function () { arguments[0] = n(arguments[0]), e[t].originalFunctions.add.apply(t, arguments) }, t.removeEventListener = function () { arguments[0] = n(arguments[0]), e[t].originalFunctions.remove.apply(t, arguments) }) }(t), e[t].eventsToRewrite.push(n) } function n(e, t) { let n = e[t]; Object.defineProperty(e, t, { get: () => n || function () { }, set(r) { e["rocket" + t] = n = r } }) } t(document, "DOMContentLoaded"), t(window, "DOMContentLoaded"), t(window, "load"), t(window, "pageshow"), t(document, "readystatechange"), n(document, "onreadystatechange"), n(window, "onload"), n(window, "onpageshow") } _delayJQueryReady(e) { let t = window.jQuery; Object.defineProperty(window, "jQuery", { get: () => t, set(n) { if (n && n.fn && !e.allJQueries.includes(n)) { n.fn.ready = n.fn.init.prototype.ready = function (t) { e.domReadyFired ? t.bind(document)(n) : document.addEventListener("rocket-DOMContentLoaded", (() => t.bind(document)(n))) }; const t = n.fn.on; n.fn.on = n.fn.init.prototype.on = function () { if (this[0] === window) { function e(e) { return e.split(" ").map((e => "load" === e || 0 === e.indexOf("load.") ? "rocket-jquery-load" : e)).join(" ") } "string" == typeof arguments[0] || arguments[0] instanceof String ? arguments[0] = e(arguments[0]) : "object" == typeof arguments[0] && Object.keys(arguments[0]).forEach((t => { delete Object.assign(arguments[0], { [e(t)]: arguments[0][t] })[t] })) } return t.apply(this, arguments), this }, e.allJQueries.push(n) } t = n } }) } async _triggerDOMContentLoaded() { this.domReadyFired = !0, await this._requestAnimFrame(), document.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._requestAnimFrame(), window.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._requestAnimFrame(), document.dispatchEvent(new Event("rocket-readystatechange")), await this._requestAnimFrame(), document.rocketonreadystatechange && document.rocketonreadystatechange() } async _triggerWindowLoad() { await this._requestAnimFrame(), window.dispatchEvent(new Event("rocket-load")), await this._requestAnimFrame(), window.rocketonload && window.rocketonload(), await this._requestAnimFrame(), this.allJQueries.forEach((e => e(window).trigger("rocket-jquery-load"))), window.dispatchEvent(new Event("rocket-pageshow")), await this._requestAnimFrame(), window.rocketonpageshow && window.rocketonpageshow() } _handleDocumentWrite() { const e = new Map; document.write = document.writeln = function (t) { const n = document.currentScript, r = document.createRange(), i = n.parentElement; let o = e.get(n); void 0 === o && (o = n.nextSibling, e.set(n, o)); const a = document.createDocumentFragment(); r.setStart(a, 0), a.appendChild(r.createContextualFragment(t)), i.insertBefore(a, o) } } async _requestAnimFrame() { return new Promise((e => requestAnimationFrame(e))) } static run() { const e = new RocketLazyLoadScripts(["keydown", "mousemove", "touchmove", "touchstart", "touchend", "wheel"]); e._addUserInteractionListener(e) } } RocketLazyLoadScripts.run();</script>
+
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="assets/css/themify-icons.css" />
+    <link rel="stylesheet" href="assets/css/flaticon.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/custom.css" />
+    <link rel='stylesheet' id='megamenu-css' href='assets/css/stylef82d.css' media='all' />
+    <link data-minify="1" rel='stylesheet' id='dashicons-css' href='assets/css/dashicons.min138c.css?ver=1708005023'
+        media='all' />
+    <link rel='stylesheet' id='style-css' href='assets/css/style8a54.css' media='all' />
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <div class="logo-wrapper navbar-brand valign">
+                <div class="logo">
+                    <a href="index.html" class="custom-logo-link" rel="home" aria-current="page"><img height="124"
+                            src="assets/imgs/Satya-logo-Gold.png" class="custom-logo w-50 w-md-100 " alt="Satya_Logo"
+                            decoding="async" /></a>
+                </div>
+            </div>
+
+            <!-- Navbar links -->
+            <div id="mega-menu-wrap-main" class="mega-menu-wrap">
+                <div class="mega-menu-toggle">
+                    <div class="mega-toggle-blocks-left"></div>
+                    <div class="mega-toggle-blocks-center"></div>
+                    <div class="mega-toggle-blocks-right">
+                        <div class='mega-toggle-block mega-menu-toggle-animated-block mega-toggle-block-0'
+                            id='mega-toggle-block-0'>
+                            <button aria-label="Toggle Menu" class="mega-toggle-animated mega-toggle-animated-slider"
+                                type="button" aria-expanded="false" onclick="toggleMenu()">
+                                <span class="mega-toggle-animated-box">
+                                    <span class="mega-toggle-animated-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <ul id="mega-menu-main" class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js"
+                    data-event="hover_intent" data-effect="fade_up" data-effect-speed="200"
+                    data-effect-mobile="disabled" data-effect-speed-mobile="0" data-mobile-force-width="false"
+                    data-second-click="go" data-document-click="collapse" data-vertical-behaviour="standard"
+                    data-breakpoint="768" data-unbind="true" data-mobile-state="collapse_all"
+                    data-hover-intent-timeout="300" data-hover-intent-interval="100">
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-home mega-current-menu-item mega-page_item mega-page-item-9 mega-current_page_item mega-align-bottom-left mega-menu-flyout mega-menu-item-86'
+                        id='mega-menu-item-86'><a class="mega-menu-link" href="index.html" aria-current="page"
+                            tabindex="0">Home</a></li>
+                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-3165'
+                        id='mega-menu-item-3165'><a class="mega-menu-link" href="About.html" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">About Us</a>
+                    </li>
+                    <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-88 dropdown'
+                        id='mega-menu-item-88'><a class="mega-menu-link" href="#Treatments" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">Skin Treatments<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-row mega-satya-mega-menu satya-mega-menu' id='mega-menu-88-0'>
+                                <ul class="mega-sub-menu">
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-0'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2432'
+                                                id='mega-menu-item-2432'><a class="mega-menu-link"
+                                                    href="5D-facial.html">5d facial</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2433'
+                                                id='mega-menu-item-2433'><a class="mega-menu-link"
+                                                    href="Carbon-facial.html">Carbon facial</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2434'
+                                                id='mega-menu-item-2434'><a class="mega-menu-link"
+                                                    href="Fractional-Laser.html">Fractional co2
+                                                    laser</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2435'
+                                                id='mega-menu-item-2435'><a class="mega-menu-link"
+                                                    href="Laser-hair-removal.html">Laser
+                                                    hair reduction </a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2535'
+                                                id='mega-menu-item-2535'><a class="mega-menu-link" href="MNRF.html">MNRF
+                                                    (Morpheus) </a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2536'
+                                                id='mega-menu-item-2536'><a class="mega-menu-link"
+                                                    href="HIFU.html">HIFU</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-1'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2537'
+                                                id='mega-menu-item-2537'><a class="mega-menu-link"
+                                                    href="Vampire-Facelift.html">Vampire Facelift </a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2439'
+                                                id='mega-menu-item-2439'><a class="mega-menu-link"
+                                                    href="Mesotheraphy.html">Mesotheraphy</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2441'
+                                                id='mega-menu-item-2441'><a class="mega-menu-link"
+                                                    href="Lip-filler.html">LIP
+                                                    enhancement</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2539'
+                                                id='mega-menu-item-2539'><a class="mega-menu-link"
+                                                    href="Chemical-Peel.html">Chemical Peel/ Glow Peel</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2443'
+                                                id='mega-menu-item-2443'><a class="mega-menu-link"
+                                                    href="Dermal-Fillers.html">Dermal Fillers</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2563'
+                                                id='mega-menu-item-2563'><a class="mega-menu-link"
+                                                    href="Mole-Removal.html">Mole Removal</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-2'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2562'
+                                                id='mega-menu-item-2562'><a class="mega-menu-link"
+                                                    href="AFT-SSR.html">AFT-SSR</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2561'
+                                                id='mega-menu-item-2561'><a class="mega-menu-link"
+                                                    href="PRP.html">PRP</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2549'
+                                                id='mega-menu-item-2549'><a class="mega-menu-link"
+                                                    href="forma-facial.html">FORMA Facial</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2541'
+                                                id='mega-menu-item-2541'><a class="mega-menu-link"
+                                                    href="Clearlift-Laser.html">Clearlift Laser</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2546'
+                                                id='mega-menu-item-2546'><a class="mega-menu-link"
+                                                    href="Clearskin-pro.html">CLEARSKIN PRO</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2689'
+                                                id='mega-menu-item-2689'><a class="mega-menu-link"
+                                                    href="Botulinum-Toxin.html">Botulinum Toxin</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-3-of-12' id='mega-menu-88-0-3'>
+                                        <ul class="mega-sub-menu">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2546'
+                                                id='mega-menu-item-2546'><a class="mega-menu-link"
+                                                    href="Microdermabrasion.html">Skin Polishing/ Microdermabrasion</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2689'
+                                                id='mega-menu-item-2689'><a class="mega-menu-link" href="IPL.html">IPL
+                                                    Photofacial</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2546'
+                                                id='mega-menu-item-2546'><a class="mega-menu-link"
+                                                    href="Laser-Toning.html">Laser Toning/ Peel</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2546'
+                                                id='mega-menu-item-2546'><a class="mega-menu-link"
+                                                    href="Dermapen-4.html">Dermapen 4</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-89 dropdown'
+                        id='mega-menu-item-89'><a class="mega-menu-link" href="https://satyahairsolutions.com/"
+                            aria-haspopup="true" aria-expanded="false" tabindex="0">Hair Transplant<span
+                                class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-row' id='mega-menu-89-0'>
+                                <ul class="mega-sub-menu">
+                                    <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-0'>
+                                        <ul class="mega-sub-menu" style="column-count: 2;">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
+                                                id='mega-menu-item-2661'><a class="mega-menu-link"
+                                                    href="concerns/aging/index.html"> <strong style="color: #C78853;">
+                                                        HAIR TRANSPLANT</strong></a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
+                                                id='mega-menu-item-2661'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/fut-hair-transplant/"> FUT</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2665'
+                                                id='mega-menu-item-2665'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/fue-hair-transplant/">FUE</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
+                                                id='mega-menu-item-2657'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/maximum-harvesting-technique/">MHT</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
+                                                id='mega-menu-item-2668'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/balanced-hair-transplant/">
+                                                    Balanced Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
+                                                id='mega-menu-item-2656'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/beard-restoration/">Beard
+                                                    Restoration</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
+                                                id='mega-menu-item-2669'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/synthetic-hair-transplant/">Synthetic
+                                                    Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
+                                                id='mega-menu-item-2657'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/long-hair-transplant/">Long
+                                                    Hair
+                                                    Transplant</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
+                                                id='mega-menu-item-2668'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/body-hair-transplant/"> Body
+                                                    Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
+                                                id='mega-menu-item-2656'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/female-hair-transplant/">
+                                                    Female Hair Transplant</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
+                                                id='mega-menu-item-2669'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/repair-hair-transplants/">Repair
+                                                    Hair Transplant</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-1'>
+                                        <ul class="mega-sub-menu" style="column-count: 2;">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2653'
+                                                id='mega-menu-item-2653'><a class="mega-menu-link"
+                                                    href="concerns/sagging/index.html"><strong
+                                                        style="color: #C78853;">NON SURGICAL</strong></a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2658'
+                                                id='mega-menu-item-2658'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/platelet-rich-plasma/">PRP</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2672'
+                                                id='mega-menu-item-2672'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/mesotherapy/">Mesotherapy</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2654'
+                                                id='mega-menu-item-2654'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/stem-cell-hair-transplant/">Stem
+                                                    Cell Therapy</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2652'
+                                                id='mega-menu-item-2652'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/hair-weaving-treatment/">Hair
+                                                    Weaving</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
+                                                id='mega-menu-item-2659'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/laser-comb/">Laser Comb</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
+                                                id='mega-menu-item-2659'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/scalp-micropigmentation/">Scalp
+                                                    Micro Pigmentation</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='mega-dropdown mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-89 dropdown'
+                        id='mega-menu-item-89'><a class="mega-menu-link" href="#" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">Concerns<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-row' id='mega-menu-89-0'>
+                                <ul class="mega-sub-menu">
+                                    <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-0'>
+                                        <ul class="mega-sub-menu" style="column-count: 2;">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
+                                                id='mega-menu-item-2661'><a class="mega-menu-link"
+                                                    href="concerns/aging/index.html"> <strong style="color: #C78853;">
+                                                        SKIN CONCERN</strong></a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2661'
+                                                id='mega-menu-item-2661'><a class="mega-menu-link"
+                                                    href="Acne-Scar.html"> Acne scars </a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2665'
+                                                id='mega-menu-item-2665'><a class="mega-menu-link"
+                                                    href="Stretch-Marks.html">Stretch marks</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
+                                                id='mega-menu-item-2657'><a class="mega-menu-link" href="Acne.html">Acne
+                                                </a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2668'
+                                                id='mega-menu-item-2668'><a class="mega-menu-link"
+                                                    href="Pigmentation.html"> Pigmentation/ Dark spots</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2656'
+                                                id='mega-menu-item-2656'><a class="mega-menu-link"
+                                                    href="Pseudo.html">Acanthosis nigricans </a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2669'
+                                                id='mega-menu-item-2669'><a class="mega-menu-link"
+                                                    href="Vitiligo.html">Vitiligo </a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2657'
+                                                id='mega-menu-item-2657'><a class="mega-menu-link"
+                                                    href="Under-eye-circle.html">Under eye
+                                                    circles </a></li>
+                                        </ul>
+                                    </li>
+                                    <li class='mega-menu-column mega-menu-columns-6-of-12' id='mega-menu-89-0-1'>
+                                        <ul class="mega-sub-menu" style="column-count: 2;">
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2653'
+                                                id='mega-menu-item-2653'><a class="mega-menu-link"
+                                                    href="concerns/sagging/index.html"><strong
+                                                        style="color: #C78853;">HAIR CONCERN</strong></a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2658'
+                                                id='mega-menu-item-2658'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/male-pattern-baldness/">Male
+                                                    Pattern
+                                                    Baldness</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2672'
+                                                id='mega-menu-item-2672'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/female-pattern-baldness/">Female
+                                                    Pattern Baldness</a>
+                                            </li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2654'
+                                                id='mega-menu-item-2654'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/alopecia-areata/">Alopecia
+                                                    Areata</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2652'
+                                                id='mega-menu-item-2652'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/pseudopelade-scarring-alopecia/">Pseudopelade
+                                                    Scarring
+                                                    Alopecia</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
+                                                id='mega-menu-item-2659'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/telogen-effluvium/">Telogen
+                                                    Effluvium</a></li>
+                                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-2659'
+                                                id='mega-menu-item-2659'><a class="mega-menu-link"
+                                                    href="https://satyahairsolutions.com/traction-alopecia/">Traction
+                                                    Alopecia</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-3165'
+                        id='mega-menu-item-3165'><a class="mega-menu-link" href="#" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">Result<span class="mega-indicator"></span></a>
+                        <ul class="mega-sub-menu">
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-87'
+                                id='mega-menu-item-87'><a class="mega-menu-link" href="image-gallery.html">Image
+                                    Gallery</a></li>
+                            <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-3166'
+                                id='mega-menu-item-3166'><a class="mega-menu-link" href="video-gallery.html">Video
+                                    Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2431'
+                        id='mega-menu-item-2431'><a class="mega-menu-link" href="blog.html" tabindex="0">Blog</a></li>
+                    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-2581'
+                        id='mega-menu-item-2581'><a class="mega-menu-link" href="contact-us.html"
+                            tabindex="0">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Header Banner -->
+    <div class="banner-header section-padding valign bg-img bg-fixed" data-overlay-dark="4"
+        data-background="assets/imgs/DSC09861.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 caption mt-90">
+                    <h2> Microdermabrasion</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main id="primary1" class="site-main1">
+        <div class="entry-content">
+
+            <!-- About -->
+            <section class="about section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 mb-30 ">
+                            <span>
+                                <i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i
+                                    class="star-rating"></i> <i class="star-rating"></i>
+                            </span>
+                            <div class="section-subtitle">Satya</div>
+                            <div class="section-title">
+                                <h1 class="fs-2">What Is Microdermabrasion?</h1>
+                            </div>
+                            <p>To revitalize the skin, a specialized applicator with an abrasive surface is used to
+                                gently sand away the skin's thick outer layer.
+                                <br>To achieve the same results as utilizing the abrasive surface, another method of
+                                microdermabrasion uses suction to spray small particles of sodium bicarbonate or
+                                aluminium oxide. Continue reading to find out more about the process.
+                            </p>
+                            <h2>For whom is microdermabrasion intended?</h2>
+                            <p>Microdermabrasion is thought to be safe for the majority of skin tones and types. Those
+                                who have any of the following skin issues may decide to have the procedure:
+                            </p>
+                            <ul>
+                                <li> fine lines and wrinkles
+                                </li>
+                                <li> hyperpigmentation, age spots and brown spots
+                                </li>
+                                <li> enlarged pores and blackheads
+                                </li>
+                                <li> acne and acne scars
+                                </li>
+                                <li> stretch marks
+                                </li>
+                                <li> dull-looking skin complexion
+                                </li>
+                                <li> uneven skin tone and texture
+                                </li>
+                                <li> melasma
+                                </li>
+                                <li> sun damage
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col col-md-6 "> <img decoding="async" src="assets/imgs/service/mesotherapy.png"
+                                style="height: 21rem; object-fit: cover;" alt="botox treatment in gurgaon"> </div>
+                        <div class="col-md-12">
+                            <h2>Risks and side effects of microdermabrasion</h2>
+                            <p>It could be necessary to postpone microdermabrasion for those who have taken the acne
+                                medication isotretinoin within the last six months. They are more likely to experience
+                                side effects including scarring.
+                                <br><br>
+                                Any area of skin that is changing, growing, bleeding, or otherwise altering should be
+                                discussed with a physician. These problems may be signs of skin cancer.
+                            </p>
+                            <h2>Following microdermabrasion, one might observe:</h2>
+                            <ul>
+                                <li> skin swelling
+                                </li>
+                                <li> skin redness, similar to sunburn
+                                </li>
+                                <li> bruising
+                                </li>
+                                <li> a burning or stinging sensation
+                                </li>
+                                <li> increased sensitivity of the skin to sunlight
+                                </li>
+                            </ul>
+                            <h2>How does microdermabrasion work?</h2>
+                            <p>An hour or so is often required for the in-office technique known as microdermabrasion.
+                                Usually, a licensed skin care specialist does it, and she or he may or may not be
+                                supervised by a medical practitioner. Your state will determine how to proceed with
+                                this.
+                                <br><br>
+                                For microdermabrasion, an anaesthetic or a numbing medication is not required.
+                                <br><br>
+                                You will be seated on a reclining recliner for the duration of your appointment. In the
+                                targeted locations, your physician will use portable equipment to shave off the outer
+                                layer of skin or lightly spray the particles. Your skin will be treated with sunscreen
+                                and a moisturizer after the procedure.
+                            </p>
+                            <div class="reservations d-flex justify-content-center align-items-center mt-5">
+                                <div class="butn-dark"> <a href="contact-us.html"><span>Get
+                                            appointment</span></a> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="treat-res ">
+                <div class="background bg-img bg-fixed section-padding " data-background="assets/imgs/infra/1.jpeg"
+                    data-overlay-dark="2">
+                    <div class="blur-overlay"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="owl-carousel owl-theme">
+                                    <div> <iframe width="560" height="315"
+                                            src="https://www.youtube.com/embed/fR9fOZqrIGE?si=YJLYiGoMVE3DXBIP"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowfullscreen></iframe> </div>
+                                    <div> <iframe width="560" height="315"
+                                            src="https://www.youtube.com/embed/fR9fOZqrIGE?si=YJLYiGoMVE3DXBIP"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowfullscreen></iframe> </div>
+                                    <div> <iframe width="560" height="315"
+                                            src="https://www.youtube.com/embed/fR9fOZqrIGE?si=YJLYiGoMVE3DXBIP"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowfullscreen></iframe> </div>
+                                    <div> <iframe width="560" height="315"
+                                            src="https://www.youtube.com/embed/fR9fOZqrIGE?si=YJLYiGoMVE3DXBIP"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowfullscreen></iframe> </div>
+                                    <div> <iframe width="560" height="315"
+                                            src="https://www.youtube.com/embed/fR9fOZqrIGE?si=YJLYiGoMVE3DXBIP"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowfullscreen></iframe> </div>
+                                    <div> <iframe width="560" height="315"
+                                            src="https://www.youtube.com/embed/fR9fOZqrIGE?si=YJLYiGoMVE3DXBIP"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowfullscreen></iframe> </div>
+                                    <div> <iframe width="560" height="315"
+                                            src="https://www.youtube.com/embed/fR9fOZqrIGE?si=YJLYiGoMVE3DXBIP"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowfullscreen></iframe> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Faqs -->
+            <section class="section-padding bg-cream">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-subtitle">Things to Know</div>
+                            <div class="section-title">
+                                <h3>MICRODERMABRASION</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <ul class="accordion-box clearfix">
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">What does microdermabrasion do for your face?</h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>Microdermabrasion treatments have several advantages and involve
+                                                    lightly sanding your skin with a minimally abrasive tool to remove
+                                                    the thicker, uneven outer layer. Stretch marks, discolouration, UV
+                                                    damage, and mild scarring can all be treated with this kind of skin
+                                                    rejuvenation.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">How long does microdermabrasion last?</h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">Usually, the treatment's benefits endure for one month.
+                                                The duration of the effects is contingent upon your age and the degree
+                                                to which you are reacting to the treatment; nonetheless, most patients
+                                                find that routine checkups are scheduled every four weeks.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">Can you see the results after 1 microdermabrasion?
+                                        </h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>After just one microdermabrasion treatment, you might see an
+                                                    improvement in the appearance of your skin, but more sessions may be
+                                                    necessary to achieve the desired effects.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion block">
+                                    <div class="acc-btn">
+                                        <h3 class="for-seo">Is microdermabrasion Painful?</h3>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">
+                                                <p>Microdermabrasion is painless. At most, you might have slight pain.
+                                                    The process has been likened to a rough cat tongue lick. Some
+                                                    describe it as a little pulling sensation on the skin, while others
+                                                    describe it as a grittier kind of facial massage.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <br><br>
+                        </div>
+
+                        <div class="p-5 text-white" style="background-color: #C78853;">
+                            <p class="text-white">Call on us for a free consultation at &#8211; </p>
+
+                            <div class="col-md-6 mb-30 ">
+                                <strong>Gurgaon</strong>
+                                <p class="text-white"> Satya Clinic<br>
+                                    4301, Galleria Boulevard, opposite DLF Club, <br>
+                                    DLF Phase IV, Sector 27,<br>
+                                    Gurugram, Haryana 122002
+
+                                </p>
+                            </div>
+                            <div class="col-md-6 mb-30 ">
+                                <strong>Delhi</strong>
+                                <p class="text-white"> Satya Clinic<br>
+                                    ED 38 /A Pitampura, Near Pitampura,<br>
+                                    Madhuban Chowk, Delhi, 110034, India
+                                </p>
+
+                            </div>
+                            <div class="res-wrapper common-cta">
+
+                                <!-- call -->
+                                <div class="reservations block11">
+                                    <div class="icon"><span class="flaticon-call text-white"></span></div>
+                                    <div class="text">
+                                        <p class="text-white">Get Appointment at Our Gurgaon Clinic</p> <a
+                                            href="tel:9667684409 " class="text-white">9910094945
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="reservations block22">
+                                    <div class="icon"><span class="flaticon-call text-white"></span></div>
+                                    <div class="text">
+                                        <p class="text-white">Get Appointment at Our Delhi Clinic</p> <a
+                                            href="tel:9599491986 " class="text-white">9910094945</a>
+                                    </div>
+                                </div>
+                                <div class="butn-dark block33">
+                                    <a href="contact-us.html"><span> Get appointment</span></a>
+                                </div>
+                            </div><!-- END res-wrapper -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-md-3 text-center ">
+                        <a href="index.html"> <img src="assets/imgs/Satya-logo-Gold.png" class="w-50 " alt=""></a>
+                        <div class="footer-about-social-list justify-content-center mb-5 mb-md-0">
+                            <a href="https://www.instagram.com/satyahairskin/"><i class="ti-instagram"></i></a>
+                            <a href="https://twitter.com/HairSatya"><i class="ti-twitter"></i></a>
+                            <a href="https://youtube.com/@satyaaesthetics?si=VGiDWJ5fFi3t-HmX"><i
+                                    class="ti-youtube"></i></a>
+                            <a href="https://www.facebook.com/satyahairsolutions/"><i class="ti-facebook"></i></a>
+                            <a href="https://in.pinterest.com/Satyahairclinic/"><i class="ti-pinterest"></i></a>
+                            <a href="https://www.linkedin.com/company/satyaskinandhairtransplantclinic/"><i
+                                    class="ti-linkedin"></i></a>
+                            <a href="index.html"><i class="ti-google"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-end">
+                        <div class="footer-column footer-contact">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <h4 class="footer-title fw-bold fs-4" style="font-size:18px">Gurugram</h4>
+                                    <p class="footer-contact-text fw-bold text-white">4301, DLF phase 4,
+                                        Near Galleria, <br>
+                                        Gurugram-122002
+                                        <span style="padding-top: 10px;
+                                        font-weight: bold!important;color: #fff;font-size:17px"> <span
+                                                class="flaticon-call"></span> <a href="tel:9667684409">+919910094945</a>
+                                            |
+                                            info@satyaesthetics.com</span>
+                                    </p>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <h4 class="footer-title fw-bold fs-4" style="font-size:18px">Delhi</h4>
+                                    <p class="footer-contact-text fw-bold text-white" style="padding-bottom:0">ED 38 /A
+                                        Pitampura metro station,
+                                        <br>
+                                        Madhuban Chowk,
+                                        Delhi, 110034, India<span style="padding-top: 10px;
+                                        font-weight: bold!important;color: #fff;font-size:17px"> <span
+                                                class="flaticon-call"></span> <a href="tel:9599491986">+919910094945</a>
+                                            |
+                                            info@satyaesthetics.com</span>
+                                    </p>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="footer-column footer-explore clearfix">
+                            <h3 class="footer-title fw-bold fs-4">Quick Links</h3>
+                            <ul class="footer-explore-list list-unstyled" style="line-height: 20px;">
+                                <!-- <li><a href="index.html">Home</a></li> -->
+                                <!-- <li><a href="About.html">About</a></li> -->
+                                <li><a href="#Treatments">Skin Treatment</a></li>
+                                <li><a href="https://satyahairsolutions.com/">Hair Transplant</a></li>
+                                <li><a href="#Treatments">Concerns</a></li>
+                                <li><a href="#">Result</a></li>
+                                <li><a href="blog.html">Blog</a></li>
+                                <li><a href="contact-us.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div style="background-color: #36312E;">
+        <div class="container-fluid pt-5">
+            <div>
+                <h3 class="footer-title fw-bold">Top Searches at Satya Aesthetics</h3>
+            </div>
+            <div class="row">
+                <p class="text-white" style="text-align: justify;">
+                    Skin clinic near me
+                    <span style="color: #C78853;"> | &nbsp; </span>Skin care clinic
+                    <span style="color: #C78853;"> | &nbsp; </span>Skin clinic in delhi
+                    <span style="color: #C78853;"> | &nbsp; </span>Best skin care clinic in delhi
+                    <span style="color: #C78853;"> | &nbsp; </span>Best skin whitening clinic in delhi
+                    <span style="color: #C78853;"> | &nbsp; </span>Skin treatment clinic
+                    <span style="color: #C78853;"> | &nbsp; </span>Skin specialist clinic near me
+                    <span style="color: #C78853;"> | &nbsp; </span>Skin clinic in gurgaon
+                    <span style="color: #C78853;"> | &nbsp; </span>Skin care clinic in gurgaon
+                    <span style="color: #C78853;"> | &nbsp; </span>Best skin clinic in delhi ncr
+                    <span style="color: #C78853;"> | &nbsp; </span>Best skin and hair clinic in delhi ncr
+                    <span style="color: #C78853;"> | &nbsp; </span>Skin clinic in noida
+                    <span style="color: #C78853;"> | &nbsp; </span>Hair transplant in delhi
+                    <span style="color: #C78853;"> | &nbsp; </span>Hair transplant in Gurgaon
+                    <span style="color: #C78853;"> | &nbsp; </span>Synthetic hair transplant
+                    <span style="color: #C78853;"> | &nbsp; </span>Repair hair transplant
+                    <span style="color: #C78853;"> | &nbsp; </span>Artificial hair transplant
+                    <span style="color: #C78853;"> | &nbsp; </span>Hair transplant cost in India
+                    <span style="color: #C78853;"> | &nbsp; </span>Hair transplant in India
+                    <span style="color: #C78853;"> | &nbsp; </span>Corrective hair transplant
+                    <span style="color: #C78853;"> | &nbsp; </span>Elon musk hair transplant
+                    <span style="color: #C78853;"> | &nbsp; </span>eyebrow hair transplant
+                    <span style="color: #C78853;"> | &nbsp; </span>Body hair transplant
+                    <span style="color: #C78853;"> | &nbsp; </span>Beard hair transplant
+                    <span style="color: #C78853;"> | &nbsp; </span>Female hair transplant
+                    <span style="color: #C78853;"> | &nbsp; </span>Hair transplant clinic in Delhi
+                    <span style="color: #C78853;"> | &nbsp; </span>Hair transplant clinic in Gurgaon
+                    <span style="color: #C78853;"> | &nbsp; </span>Hair transplant near me
+                    <span style="color: #C78853;"> | &nbsp; </span>Skin and hair treatment in Delhi
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer-bottom-inner">
+                        <p class="footer-bottom-copy-right">Copyright © 2022 Satyaclinic. All rights reserved
+                        </p>
+                        <a href="sitemap.xml">
+                            <p>Site Map</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- jQuery -->
+    <script type="rocketlazyloadscript" src="assets/js/jquery-3.6.0.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/jquery-migrate-3.0.0.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/popper.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/scrollIt.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/jquery.waypoints.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/owl.carousel.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/jquery.stellar.min.js" defer></script>
+    <script type="rocketlazyloadscript" data-minify="1" src="assets/js/jquery.magnific-popup.js"></script>
+    <script type="rocketlazyloadscript" data-minify="1" src="assets/js/YouTubePopUp.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/smooth-scroll.min.js" defer></script>
+    <script type="rocketlazyloadscript" src="assets/js/custom-min.js" defer></script>
+
+</body>
+
+</html>

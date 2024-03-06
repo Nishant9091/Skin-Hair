@@ -1102,7 +1102,7 @@ blockquote cite:before {
   -webkit-animation-delay: 0.4s;
   animation-delay: 0.4s;
 }
-.header .caption h1 {
+.header .caption h2 {
   position: relative;
   margin-bottom: 20px;
   font-family: "Roboto", sans-serif;
@@ -4613,7 +4613,7 @@ select {
     background-attachment: scroll !important;
     background-position: 50% 0% !important;
   }
-  .header .caption h1 {
+  .header .caption h2{
     font-size: 40px;
   }
 }
@@ -4621,7 +4621,7 @@ select {
   .logo-wrapper .logo h2 {
     display: none;
   }
-  .header .caption h1 {
+  .header .caption h2 {
     font-size: 28px;
     margin-bottom: 15px;
     letter-spacing: 10px;
@@ -4798,11 +4798,20 @@ body {
 }
 .close-btn {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0px;
+  right: 0px;
   cursor: pointer;
+  border: 1px solid;
+  padding: 8px 15px;
+  border-radius: 50px;
+  font-size: 25px;
 }
-
+.close-btn:hover{
+  background-color: #c78853;
+  border: 1px solid #c78853;
+  color: #fff;
+  transition: .3s ease-in-out;
+}
 /* Your existing styles */
 .mega-menu {
   display: none; /* Initially hide the menu */
@@ -4825,3 +4834,6 @@ body {
   text-align: center;
 }
 
+.caption h2{
+  font-size: 60px;
+}
